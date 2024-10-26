@@ -4,9 +4,7 @@ import man from '../../assets/man.webp';
 import scene1 from '../../assets/scene1.webp';
 import { scenes } from '../../data/scenes';
 import { useEffect, useState } from 'react';
-import { Option, Options } from '../../components/dialog/Options';
-
-
+import {  Options } from '../../components/dialog/Options';
 
 const GamePage = () => {
 
@@ -15,7 +13,7 @@ const GamePage = () => {
   const decrementLives = useGameStore((state) => state.decrementLives);
 
   const [currentScene, setCurrentScene] = useState(scenes[level - 1]);
-  const [currentOptions, setCurrentOptions] = useState<Option[]>([]);
+  const [currentOptions, setCurrentOptions] = useState<{id:number, text:string, action: ()=>void}[]>([]);
   
 
   useEffect(() => {
@@ -33,7 +31,10 @@ const GamePage = () => {
           src={scene1}
           alt='background'
         />
-        <div className='relative max-w-6xl m-auto px-4 z-20 text-2xl text-red-500'>{lives}</div>
+        <div className='relative max-w-6xl m-auto px-4 z-20 text-2xl text-red-300 bg-stone-700'>
+          <p className=''> Numero de vidas</p>
+          <p>{lives} </p>
+        </div>
         <img
           className='absolute bottom-[300px] left-28 object-cover z-30'
           width={220}
