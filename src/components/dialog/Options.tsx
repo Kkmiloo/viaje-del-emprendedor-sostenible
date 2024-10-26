@@ -1,4 +1,4 @@
-import React from 'react';
+
 import './options.css';
 
 export interface Option {
@@ -11,7 +11,7 @@ interface OptionsProps {
   options: Option[];
 }
 
-export const Options: React.FC<OptionsProps> = ({ options }) => {
+export const Options = ({ options }: OptionsProps) => {
   return (
     <div className="dialog-options">
       {options.map((option) => (
