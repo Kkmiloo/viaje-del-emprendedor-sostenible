@@ -5,6 +5,7 @@ import scene1 from '../../assets/scene1.webp';
 import { scenes } from '../../data/scenes';
 import { useEffect, useState } from 'react';
 import { Options } from '../../components/dialog/Options';
+import { GameOptionI } from '../../interfaces/gameOption.interface';
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -18,9 +19,28 @@ const GamePage = () => {
   const resetGame = useGameStore((state) => state.resetGame);
 
   const [currentScene, setCurrentScene] = useState(scenes[level - 1]);
-  const [currentOptions, setCurrentOptions] = useState<
-    { id: number; text: string; action: () => void }[]
-  >([]);
+  const [currentOptions, setCurrentOptions] = useState<GameOptionI[]>([]);
+
+  const [currentStep, setCurrentStep] = useState<
+    'consequence' | 'impact' | 'additionalContext' | null
+  >(null);
+  const [selectedOption, setSelectedOption] = useState<GameOptionI | null>(
+    null
+  );
+
+  const handleOptionSelect = (option: GameOptionI) => {
+    setSelectedOption(option); // Guardar la opción seleccionada
+    setCurrentStep('consequence'); // Iniciar con 'consequence'
+
+    // Cambiar entre cada paso
+    setTimeout(() => setCurrentStep('impact'), 2000); 
+    setTimeout(() => setCurrentStep('additionalContext'), 4000);
+    setTimeout(() => {
+      setCurrentStep(null); 
+      setSelectedOption(null);
+      changeScene({ isCorrect: option.isCorrect }); // Pasar al siguiente nivel
+    }, 6000); 
+  };
 
   const changeScene = ({ isCorrect }: ChangeSceneParams) => {
     if (!isCorrect) {
@@ -43,11 +63,7 @@ const GamePage = () => {
 
     if (currentSceneData) {
       // Mapea las opciones de diálogo para incluir la función `changeScene`
-      const dialogOptions = currentSceneData.options.map((option) => ({
-        id: option.id,
-        text: option.text,
-        action: () => changeScene({ isCorrect: option.isCorrect }),
-      }));
+      const dialogOptions = currentSceneData.options;
 
       // Actualiza el estado de la escena y las opciones
       setCurrentScene(currentSceneData);
@@ -55,18 +71,14 @@ const GamePage = () => {
     }
   }, [level, decrementLives, changeLevel, isGameOver]);
 
-  const handleResetGame = () => {
-    resetGame(); // Reinicia el juego
-  };
-
   return (
     <main className='min-w-full min-h-screen bg-slate-400 flex flex-col'>
       {isGameOver ? (
-        <div className='flex flex-col items-center justify-center min-h-screen'>
-          <h1 className='text-4xl text-red-500'>Game Over</h1>
+        <div className='flex flex-col items-center justify-center h-full text-center text-3xl text-white'>
+          <h1>Game Over</h1>
           <button
-            onClick={handleResetGame}
-            className='mt-4 px-4 py-2 bg-blue-500 text-white rounded'
+            className='mt-4 p-2 bg-red-500 rounded text-white'
+            onClick={resetGame}
           >
             Reiniciar Juego
           </button>
@@ -74,13 +86,14 @@ const GamePage = () => {
       ) : (
         <>
           <div className='relative w-full flex-1'>
+            {/* Escena y Vidas */}
             <img
               className='absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center object-cover opacity-75'
               src={scene1}
               alt='background'
             />
             <div className='relative max-w-6xl m-auto px-4 z-20 text-2xl text-red-300 bg-stone-700'>
-              <p className=''>Numero de vidas</p>
+              <p>Numero de vidas</p>
               <p>{lives}</p>
               <h1>{scenes[level - 1].name}</h1>
             </div>
@@ -91,9 +104,38 @@ const GamePage = () => {
               alt='character'
             />
           </div>
-          <div className='z-40'>
-            <Options options={currentOptions} />
-          </div>
+
+          {/* Contenido Condicional: Consecuencia, Impacto, Contexto */}
+          {selectedOption ? (
+            <div className='z-40 text-white text-center p-4 bg-gray-800 h-72'>
+              {currentStep === 'consequence' && (
+                <>
+                  <p className='text-xl font-bold'> Consecuencia : </p>
+                  <p>{selectedOption.consequence}</p>
+                </>
+              )}
+              {currentStep === 'impact' && (
+                <>
+                  <p className='text-xl font-bold'> Impacto : </p>
+                  <p>{selectedOption.impact}</p>
+                </>
+              )}
+              {currentStep === 'additionalContext' && (
+                <>
+                  <p className='text-xl font-bold'> Contexto : </p>
+                  <p>{selectedOption.additionalContext}</p>
+                </>
+              )}
+            </div>
+          ) : (
+            <div className='z-40'>
+              <Options
+                options={currentOptions}
+                onSelectOption={handleOptionSelect}
+              />
+            </div>
+          )}
+
           <div className='relative w-full flex-shrink-0 pb-2'>
             <Dialog text={currentScene.introduction} />
           </div>
