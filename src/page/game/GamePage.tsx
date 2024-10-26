@@ -93,12 +93,12 @@ const GamePage = () => {
               alt='background'
             />
             <div className='relative max-w-6xl m-auto px-4 z-20 text-2xl text-red-300 bg-stone-700'>
+              <h1 className='font-bold text-gray-200 text-center'>{scenes[level - 1].name}</h1>
               <p>Numero de vidas</p>
               <p>{lives}</p>
-              <h1>{scenes[level - 1].name}</h1>
             </div>
             <img
-              className='absolute bottom-[300px] left-28 object-cover z-30'
+              className='absolute bottom-[90px] left-28 object-cover z-30'
               width={220}
               src={man}
               alt='character'
