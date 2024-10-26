@@ -14,7 +14,7 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
   };
 
   return (
-    <div className='flex flex-col p-2 bg-slate-200 max-w-6xl m-auto rounded-xl mb-10 '>
+    <div className='flex flex-col p-2 bg-slate-200 m-auto rounded-xl mb-10 z-50'>
       {options.map((option) => (
         <button
           key={option.id}

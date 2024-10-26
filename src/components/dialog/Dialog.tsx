@@ -60,7 +60,7 @@ export const Dialog = ({ text }: DialogProps) => {
   };
 
   return (
-    <div className='opacity-95  p-4 px-10 md:py-4 rounded-xl border-4 absolute bg-yellow-900 text-white text-lg bottom-5 md:bottom-10 max-h-56 md:max-h-64 h-[300px] w-full max-w-[calc(100%-18rem)] mx-36'>
+    <div className='opacity-95  p-4 px-10 md:py-4 rounded-xl border-4 absolute bg-yellow-900 text-white text-lg bottom-5 md:bottom-10 max-h-56 md:max-h-64 h-[300px] w-full md:max-w-[calc(100%-18rem)] max-w-[calc(100%-2rem)] mx-8 md:mx-36'>
       <div ref={containerRef} className='h-full overflow-auto'>
         <p>{pages[currentPage]}</p>
         {currentPage < pages.length - 1 && (
