@@ -2,18 +2,28 @@
 import { create, StateCreator} from 'zustand'
 
 interface GameState {
-  lives: number;
   level: number;
+  lives: number;
+  isGameOver: boolean;
   decrementLives: () => void;
-  resetLives: () => void;
+  changeLevel: (newLevel: number) => void;
+  resetGame: () => void;
 }
 
 const storeApi: StateCreator<GameState> = (set) => ({
-  lives: 3,
   level: 1,
+  lives: 3,
+  isGameOver: false,
   decrementLives: () =>
-    set((state) => ({ lives: state.lives > 0 ? state.lives - 1 : 0 })),
-  resetLives: () => set({ lives: 3 }),
+    set((state) => {
+      const newLives = state.lives - 1;
+      return {
+        lives: newLives,
+        isGameOver: newLives <= 0, 
+      };
+    }),
+  changeLevel: (newLevel) => set({ level: newLevel }),
+  resetGame: () => set({ level: 1, lives: 3, isGameOver: false }),
 });
 
 export const useGameStore = create<GameState>(storeApi)
