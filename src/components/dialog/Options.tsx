@@ -1,4 +1,4 @@
-export interface Option {
+interface Option {
   id: number;
   text: string;
   action: () => void;

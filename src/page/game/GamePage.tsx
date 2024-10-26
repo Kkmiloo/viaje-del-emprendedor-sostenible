@@ -4,9 +4,7 @@ import man from '../../assets/man.webp';
 import scene1 from '../../assets/scene1.webp';
 import { scenes } from '../../data/scenes';
 import { useEffect, useState } from 'react';
-import { Option, Options } from '../../components/dialog/Options';
-
-
+import {  Options } from '../../components/dialog/Options';
 
 const GamePage = () => {
 
@@ -15,7 +13,7 @@ const GamePage = () => {
   const decrementLives = useGameStore((state) => state.decrementLives);
 
   const [currentScene, setCurrentScene] = useState(scenes[level - 1]);
-  const [currentOptions, setCurrentOptions] = useState<Option[]>([]);
+  const [currentOptions, setCurrentOptions] = useState<{id:number, text:string, action: ()=>void}[]>([]);
   
 
   useEffect(() => {
