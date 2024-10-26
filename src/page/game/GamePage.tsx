@@ -33,7 +33,10 @@ const GamePage = () => {
           src={scene1}
           alt='background'
         />
-        <div className='relative max-w-6xl m-auto px-4 z-20 text-2xl text-red-500'>{lives}</div>
+        <div className='relative max-w-6xl m-auto px-4 z-20 text-2xl text-red-300 bg-stone-700'>
+          <p className=''> Numero de vidas</p>
+          <p>{lives} </p>
+        </div>
         <img
           className='absolute bottom-[300px] left-28 object-cover z-30'
           width={220}
