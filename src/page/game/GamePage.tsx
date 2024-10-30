@@ -3,11 +3,13 @@ import { Dialog } from '../../components/dialog/Dialog';
 import { Options } from '../../components/dialog/Options';
 import { scenes } from '../../data/scenes';
 import { useEffect, useState } from 'react';
-import man from '../../assets/man.webp';
+//import man from '../../assets/man.webp';
 import scene1 from '../../assets/scene1.webp';
 import { GameOptionI } from '../../interfaces/gameOption.interface';
-import { Introduction } from '../../components/dialog/Introduction'; 
-import { Ending } from '../../components/dialog/Ending';
+import { Introduction } from '../../components/game/Introduction';
+import { Ending } from '../../components/game/Ending';
+import { IntroLevel } from '../../components/game/IntroLevel';
+import { HealthIndicator } from '../../components/game/HealthIndicator';
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -16,7 +18,6 @@ interface ChangeSceneParams {
 const GamePage = () => {
   const {
     level,
-    lives,
     isGameOver,
     stage,
     changeStage,
@@ -32,6 +33,11 @@ const GamePage = () => {
   const [selectedOption, setSelectedOption] = useState<GameOptionI | null>(
     null
   );
+  const [showIntroLevel, setShowIntroLevel] = useState<boolean>(true);
+
+  const handleIntroLevel = () => {
+    setShowIntroLevel(false);
+  };
 
   const handleOptionSelect = (option: GameOptionI) => {
     setSelectedOption(option);
@@ -43,6 +49,7 @@ const GamePage = () => {
       setCurrentStep(null);
       setSelectedOption(null);
       changeScene({ isCorrect: option.isCorrect });
+      setShowIntroLevel(true);
     }, 6000);
   };
 
@@ -67,55 +74,58 @@ const GamePage = () => {
     }
   }, [level, decrementLives, incrementLevel, isGameOver]);
 
-  // Renderización de acuerdo a la etapa del juego
   return (
-    <main className='min-w-full min-h-screen bg-slate-400 flex flex-col'>
+    <main className='relative min-w-full min-h-screen flex flex-col'>
       {stage === 'introduction' && (
         <Introduction onStart={() => changeStage('level')} />
       )}
       {stage === 'level' && !isGameOver && (
         <>
-          <div className='relative w-full flex-1'>
-            <img
-              className='absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center object-cover opacity-75'
-              src={scene1}
-              alt='background'
-            />
-            <div className='relative max-w-6xl m-auto px-4 z-20 text-2xl text-red-300 bg-stone-700'>
-              <h1 className='font-bold text-gray-200 text-center'>
+          {showIntroLevel && (
+            <IntroLevel title={currentScene.name} onClick={handleIntroLevel} />
+          )}
+          <img
+            className='absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center object-cover'
+            src={scene1}
+            alt='background'
+          />
+          <div className=' w-full flex-1 z-20'>
+            <div className='relative max-w-6xl m-auto px-4 z-20 text-2xl bg-stone-200'>
+              <h1 className='font-bold  text-center'>
                 {currentScene.name}
               </h1>
-              <p>Numero de vidas: {lives}</p>
+              <HealthIndicator />
             </div>
-            <img
+            {/* <img
               className='absolute bottom-[90px] left-28 object-cover z-30'
               width={220}
               src={man}
               alt='character'
-            />
-          </div>
+            /> */}
 
-          {selectedOption ? (
-            <div className='z-40 text-white text-center p-4 bg-gray-800 h-72'>
-              {currentStep === 'consequence' && (
-                <p>Consecuencia: {selectedOption.consequence}</p>
-              )}
-              {currentStep === 'impact' && (
-                <p>Impacto: {selectedOption.impact}</p>
-              )}
-              {currentStep === 'additionalContext' && (
-                <p>Contexto adicional: {selectedOption.additionalContext}</p>
-              )}
-            </div>
-          ) : (
-            <Options
-              options={currentOptions}
-              onSelectOption={handleOptionSelect}
-            />
-          )}
-          <Dialog text={currentScene.introduction} />
+            <Dialog text={currentScene.introduction} />
+            {selectedOption ? (
+              <div className='z-40 text-white text-center p-4 bg-gray-800 h-72'>
+                {currentStep === 'consequence' && (
+                  <p>Consecuencia: {selectedOption.consequence}</p>
+                )}
+                {currentStep === 'impact' && (
+                  <p>Impacto: {selectedOption.impact}</p>
+                )}
+                {currentStep === 'additionalContext' && (
+                  <p>Contexto adicional: {selectedOption.additionalContext}</p>
+                )}
+              </div>
+            ) : (
+              <Options
+                options={currentOptions}
+                onSelectOption={handleOptionSelect}
+              />
+            )}
+          </div>
         </>
       )}
+
       {isGameOver && (
         <div className='flex flex-col items-center justify-center h-full text-center text-3xl text-white'>
           <h1>Game Over</h1>

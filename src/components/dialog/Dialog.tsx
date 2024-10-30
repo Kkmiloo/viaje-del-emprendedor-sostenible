@@ -4,12 +4,10 @@ interface DialogProps {
   text: string;
 }
 
-
 export const Dialog = ({ text }: DialogProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [pages, setPages] = useState<string[]>([]);
-
 
   // Función para dividir el texto en partes según el tamaño del contenedor
   const paginateText = (text: string, charsPerPage: number) => {
@@ -60,7 +58,7 @@ export const Dialog = ({ text }: DialogProps) => {
   };
 
   return (
-    <div className='opacity-95  p-4 px-10 md:py-4 rounded-xl border-4 absolute bg-yellow-900 text-white text-lg bottom-5 md:bottom-10 max-h-56 md:max-h-64 h-[300px] w-full md:max-w-[calc(100%-18rem)] max-w-[calc(100%-2rem)] mx-8 md:mx-36'>
+    <div className='p-4 px-10 md:py-4 rounded-xl border-4 bg-gray-100 text-lg max-h-56 w-full md:max-h-64 h-[300px] max-w-6xl m-auto z-20'>
       <div ref={containerRef} className='h-full overflow-auto'>
         <p>{pages[currentPage]}</p>
         {currentPage < pages.length - 1 && (
