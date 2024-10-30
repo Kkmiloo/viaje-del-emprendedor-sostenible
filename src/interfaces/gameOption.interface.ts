@@ -8,5 +8,6 @@ export interface GameOptionI {
   consequence: string;
   impact: string;
   additionalContext?: string;
+  image?: string;
   isCorrect: boolean;
 }
