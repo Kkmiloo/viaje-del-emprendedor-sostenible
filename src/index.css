@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.chewy {
+    font-family: "Chewy", system-ui;
+}
+.figtree {
+    font-family: "Figtree", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.game-bg-dots{
+    background-image: url('./assets/wave-haikei.svg');
+        background-attachment: fixed;
+        background-size: cover;
+}
