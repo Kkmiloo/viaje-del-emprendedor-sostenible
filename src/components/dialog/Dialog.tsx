@@ -58,7 +58,7 @@ export const Dialog = ({ text }: DialogProps) => {
   };
 
   return (
-    <div className='p-4 px-10 md:py-4 rounded-xl border-4 bg-gray-100 text-lg max-h-56 w-full md:max-h-64 h-[300px] max-w-6xl m-auto z-20'>
+    <div className='py-10 px-10 md:py-10 text-gray-800 text-xl font-medium rounded-xl border-4 bg-gray-100 max-h-56 w-full md:max-h-64 h-[300px] max-w-6xl m-auto z-20'>
       <div ref={containerRef} className='h-full overflow-auto'>
         <p>{pages[currentPage]}</p>
         {currentPage < pages.length - 1 && (
