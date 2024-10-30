@@ -4,7 +4,7 @@ import { Options } from '../../components/dialog/Options';
 import { scenes } from '../../data/scenes';
 import { useEffect, useState } from 'react';
 //import man from '../../assets/man.webp';
-import scene1 from '../../assets/scene1.webp';
+//import scene1 from '../../assets/scene1.webp';
 import { GameOptionI } from '../../interfaces/gameOption.interface';
 import { Introduction } from '../../components/game/Introduction';
 import { Ending } from '../../components/game/Ending';
@@ -75,7 +75,7 @@ const GamePage = () => {
   }, [level, decrementLives, incrementLevel, isGameOver]);
 
   return (
-    <main className='relative min-w-full min-h-screen flex flex-col'>
+    <main className='relative min-w-full min-h-screen flex flex-col justify-center'>
       {stage === 'introduction' && (
         <Introduction onStart={() => changeStage('level')} />
       )}
@@ -84,16 +84,14 @@ const GamePage = () => {
           {showIntroLevel && (
             <IntroLevel title={currentScene.name} onClick={handleIntroLevel} />
           )}
-          <img
+          {/* <img
             className='absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center object-cover'
             src={scene1}
             alt='background'
-          />
-          <div className=' w-full flex-1 z-20'>
-            <div className='relative max-w-6xl m-auto px-4 z-20 text-2xl bg-stone-200'>
-              <h1 className='font-bold  text-center'>
-                {currentScene.name}
-              </h1>
+          /> */}
+          <div className=' w-full flex flex-col z-20 '>
+            <div className='max-w-6xl items-center m-auto px-4 z-20 text-2xl bg-slate-700 w-full rounded-xl flex justify-between p-6 border-2 border-slate-200'>
+              <h1 className='font-bold text-center text-white '>{currentScene.name}</h1>
               <HealthIndicator />
             </div>
             {/* <img
