@@ -34,10 +34,16 @@ const GamePage = () => {
     null
   );
   const [showIntroLevel, setShowIntroLevel] = useState<boolean>(true);
+  const [showOptions, setShowOptions] = useState<boolean>(false);
+
 
   const handleIntroLevel = () => {
     setShowIntroLevel(false);
   };
+
+  const handleShowOptions = () => {
+    setShowOptions(true);
+  }
 
   const handleOptionSelect = (option: GameOptionI) => {
     setSelectedOption(option);
@@ -50,6 +56,7 @@ const GamePage = () => {
       setSelectedOption(null);
       changeScene({ isCorrect: option.isCorrect });
       setShowIntroLevel(true);
+      setShowOptions(false);
     }, 6000);
   };
 
@@ -91,7 +98,9 @@ const GamePage = () => {
           /> */}
           <div className=' w-full flex flex-col z-20 '>
             <div className='max-w-6xl items-center m-auto px-4 z-20 text-2xl bg-slate-700 w-full rounded-xl flex justify-between p-6 border-2 border-slate-200'>
-              <h1 className='font-bold text-center text-white '>{currentScene.name}</h1>
+              <h1 className='font-bold text-center text-white '>
+                {currentScene.name}
+              </h1>
               <HealthIndicator />
             </div>
             {/* <img
@@ -101,7 +110,11 @@ const GamePage = () => {
               alt='character'
             /> */}
 
-            <Dialog text={currentScene.introduction} />
+            <Dialog
+              text={currentScene.introduction}
+              question={currentScene.question}
+              onNext={handleShowOptions}
+            />
             {selectedOption ? (
               <div className='z-40 text-white text-center p-4 bg-gray-800 h-72'>
                 {currentStep === 'consequence' && (
@@ -115,10 +128,12 @@ const GamePage = () => {
                 )}
               </div>
             ) : (
-              <Options
-                options={currentOptions}
-                onSelectOption={handleOptionSelect}
-              />
+              showOptions && (
+                <Options
+                  options={currentOptions}
+                  onSelectOption={handleOptionSelect}
+                />
+              )
             )}
           </div>
         </>
