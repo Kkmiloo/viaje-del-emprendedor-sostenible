@@ -51,4 +51,5 @@ export const levelSix: GameLevelI = {
 
   options: randomizedOptions,
   incorrectQuestionId: incorrectQuestionId,
+  incorrectQuestionMessage: `perdiste una vida por "mala planificación de expansión". Al solo completar 150 instalaciones, no cumpliste con el contrato nacional, afectando tu capacidad de seguir expandiéndote.`,
 };

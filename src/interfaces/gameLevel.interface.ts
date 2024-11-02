@@ -7,4 +7,5 @@ export interface GameLevelI {
   question: string; // Array de preguntas para el nivel
   options: GameOptionI[];
   incorrectQuestionId: number; // ID de la pregunta que restará vida
+  incorrectQuestionMessage: string;
 }

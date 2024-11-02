@@ -54,4 +54,5 @@ export const levelOne: GameLevelI = {
 
   options: randomizedOptions,
   incorrectQuestionId: incorrectQuestionId,
+  incorrectQuestionMessage: `perdiste una vida por "incapacidad operativa". Solo pudiste realizar 3 instalaciones, lo que no cubrió las 5 instalaciones requeridas, afectando tu reputación y perdiendo futuros contratos.`,
 };
