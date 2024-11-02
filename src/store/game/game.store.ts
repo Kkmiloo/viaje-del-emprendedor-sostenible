@@ -1,5 +1,7 @@
 
 import { create, StateCreator} from 'zustand'
+import { devtools } from 'zustand/middleware';
+
 
 type GameStage = 'introduction' | 'level' | 'ending';
 interface GameState {
@@ -13,7 +15,9 @@ interface GameState {
   resetGame: () => void;
 }
 
-const storeApi: StateCreator<GameState> = (set) => ({
+const storeApi: StateCreator<GameState> = (
+  set
+) => ({
   level: 1,
   lives: 3,
   isGameOver: false,
@@ -32,4 +36,4 @@ const storeApi: StateCreator<GameState> = (set) => ({
     set({ level: 1, lives: 3, isGameOver: false, stage: 'introduction' }),
 });
 
-export const useGameStore = create<GameState>(storeApi)
+export const useGameStore = create<GameState>()(devtools(storeApi));
