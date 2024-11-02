@@ -18,7 +18,7 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
       {options.map((option) => (
         <div
           key={option.id}
-          className=' shadow-xl relative p-2 px-4 flex  flex-col align-middle hover:font-semibold justify-center text-lg font-medium md:w-1/3 w-full bg-slate-600 text-slate-50 rounded-lg cursor-pointer hover:bg-slate-700 m-1 md:h-48 h-40 hover:animate-wiggle animate-infinite animate-ease-in'
+          className='shadow-lg relative p-2 px-4 flex  flex-col align-middle justify-center text-lg font-medium md:w-1/3 w-full bg-slate-600 text-slate-50 rounded-lg cursor-pointer hover:bg-slate-700 m-1 md:h-48 h-40 hover:animate-wiggle animate-infinite animate-ease-in'
           onClick={() => handleOnClick(option)}
         >
           <p className='absolute text-[90px] right-0 -top-5 text-justify'>
