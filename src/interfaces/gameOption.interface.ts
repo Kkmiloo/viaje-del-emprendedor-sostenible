@@ -7,7 +7,7 @@ export interface GameOptionI {
   text: string;
   consequence: string;
   impact: string;
-  additionalContext?: string;
+  additionalContext: string;
   image?: string;
   isCorrect: boolean;
 }
