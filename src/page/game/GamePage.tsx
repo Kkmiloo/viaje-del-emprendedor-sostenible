@@ -10,6 +10,7 @@ import { Introduction } from '../../components/game/Introduction';
 import { Ending } from '../../components/game/Ending';
 import { IntroLevel } from '../../components/game/IntroLevel';
 import { HealthIndicator } from '../../components/game/HealthIndicator';
+import { Modal } from '../../components/dialog/Modal';
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -24,6 +25,7 @@ const GamePage = () => {
     incrementLevel,
     decrementLives,
     resetGame,
+    balance,
   } = useGameStore();
   const [currentScene, setCurrentScene] = useState(scenes[level - 1]);
   const [currentOptions, setCurrentOptions] = useState<GameOptionI[]>([]);
@@ -35,7 +37,7 @@ const GamePage = () => {
   );
   const [showIntroLevel, setShowIntroLevel] = useState<boolean>(true);
   const [showOptions, setShowOptions] = useState<boolean>(false);
-
+  const [showQuestion, setShowQuestion] = useState(false);
 
   const handleIntroLevel = () => {
     setShowIntroLevel(false);
@@ -43,21 +45,20 @@ const GamePage = () => {
 
   const handleShowOptions = () => {
     setShowOptions(true);
-  }
+  };
+
+  const handleOptionResult = () => {
+    setCurrentStep(null);
+    setSelectedOption(null);
+    changeScene({ isCorrect: selectedOption!.isCorrect });
+    setShowIntroLevel(true);
+    setShowOptions(false);
+    setShowQuestion(false);
+  };
 
   const handleOptionSelect = (option: GameOptionI) => {
     setSelectedOption(option);
     setCurrentStep('consequence');
-
-    setTimeout(() => setCurrentStep('impact'), 2000);
-    setTimeout(() => setCurrentStep('additionalContext'), 4000);
-    setTimeout(() => {
-      setCurrentStep(null);
-      setSelectedOption(null);
-      changeScene({ isCorrect: option.isCorrect });
-      setShowIntroLevel(true);
-      setShowOptions(false);
-    }, 6000);
   };
 
   const changeScene = ({ isCorrect }: ChangeSceneParams) => {
@@ -97,10 +98,16 @@ const GamePage = () => {
             alt='background'
           /> */}
           <div className=' w-full flex flex-col z-20 '>
-            <div className='max-w-6xl items-center m-auto px-4 z-20 text-2xl bg-slate-700 w-full rounded-xl flex justify-between p-6 border-2 border-slate-200'>
+            <div className='max-w-6xl items-center m-auto px-4 z-20 text-2xl bg-slate-700 w-full rounded-xl flex justify-between p-4 border-2 border-slate-200'>
               <h1 className='font-bold text-center text-white '>
                 {currentScene.name}
               </h1>
+            </div>
+            <div className='max-w-6xl m-auto flex justify-between items-center w-full px-6 py-2 bg-slate-700 border-2 rounded-xl'>
+              <div className='text-white'>
+                {' '}
+                💰 $ {Intl.NumberFormat().format(balance)} COP{' '}
+              </div>
               <HealthIndicator />
             </div>
             {/* <img
@@ -114,26 +121,42 @@ const GamePage = () => {
               text={currentScene.introduction}
               question={currentScene.question}
               onNext={handleShowOptions}
+              showQuestion={showQuestion}
+              setShowQuestion={setShowQuestion}
             />
-            {selectedOption ? (
-              <div className='z-40 text-white text-center p-4 bg-gray-800 h-72'>
+            {selectedOption && (
+              <>
                 {currentStep === 'consequence' && (
-                  <p>Consecuencia: {selectedOption.consequence}</p>
+                  <Modal
+                    text={selectedOption.consequence}
+                    onConfirm={() => {
+                      setCurrentStep('impact');
+                    }}
+                  />
                 )}
                 {currentStep === 'impact' && (
-                  <p>Impacto: {selectedOption.impact}</p>
+                  <Modal
+                    text={selectedOption.impact}
+                    onConfirm={() => {
+                      setCurrentStep('additionalContext');
+                    }}
+                  />
                 )}
                 {currentStep === 'additionalContext' && (
-                  <p>Contexto adicional: {selectedOption.additionalContext}</p>
+                  <Modal
+                    text={selectedOption.additionalContext!}
+                    onConfirm={() => {
+                      handleOptionResult();
+                    }}
+                  />
                 )}
-              </div>
-            ) : (
-              showOptions && (
-                <Options
-                  options={currentOptions}
-                  onSelectOption={handleOptionSelect}
-                />
-              )
+              </>
+            )}
+            {showOptions && (
+              <Options
+                options={currentOptions}
+                onSelectOption={handleOptionSelect}
+              />
             )}
           </div>
         </>
