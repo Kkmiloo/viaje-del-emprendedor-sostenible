@@ -1,18 +1,25 @@
 import { useState, useRef, useEffect } from 'react';
 import man from '../../assets/man.webp';
-import { TypeAnimation } from 'react-type-animation';
+import Typewriter from '../text/Typewriter';
 
 interface DialogProps {
   text: string;
   question?: string;
+  showQuestion?: boolean;
+  setShowQuestion?: (showQuestion: boolean) => void;
   onNext: () => void;
 }
 
-export const Dialog = ({ text, question, onNext }: DialogProps) => {
+export const Dialog = ({
+  text,
+  question,
+  onNext,
+  showQuestion,
+  setShowQuestion,
+}: DialogProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [pages, setPages] = useState<string[]>([]);
-  const [showQuestion, setShowQuestion] = useState(false);
 
   // Función para dividir el texto en partes según el tamaño del contenedor
   const paginateText = (text: string, charsPerPage: number) => {
@@ -62,8 +69,9 @@ export const Dialog = ({ text, question, onNext }: DialogProps) => {
     if (currentPage < pages.length - 1) {
       setCurrentPage(currentPage + 1);
     } else if (question) {
-      setShowQuestion(true);
-      onNext(); // Ejecuta la función al terminar la última página y tener pregunta
+      if(setShowQuestion)  setShowQuestion(true);
+      onNext();
+      // Ejecuta la función al terminar la última página y tener pregunta
     }
   };
 
@@ -81,21 +89,25 @@ export const Dialog = ({ text, question, onNext }: DialogProps) => {
         <div className='flex h-full items-center'>
           <img
             src={man}
-            className='max-w-32 w-fit h-fit rounded-xl border-4 border-slate-600 bg-red-500 p-2'
+            className=' max-w-24 w-fit h-fit rounded-xl border-4 border-slate-600 bg-red-500 p-2'
           />
           <div className='flex flex-col h-full justify-between ml-8 w-full'>
             {currentPage <= pages.length - 1 && !showQuestion && (
               <div className={` mt-4 `}>
-                <TypeAnimation sequence={[pages[currentPage]]} speed={50} />
+                <Typewriter
+                  text={pages[currentPage]}
+                  delay={30}
+                  infinite={false}
+                />
               </div>
             )}
             {showQuestion && question && (
               <div className='mt-4 text-center'>
-                <TypeAnimation sequence={[question]} speed={50} repeat={1}/>
+                <Typewriter text={question} delay={30} infinite={false} />
               </div>
             )}
 
-            { !showQuestion && (
+            {!showQuestion && (
               <div className='animate-bounce w-full'>
                 <svg
                   className='m-auto '
@@ -110,8 +122,8 @@ export const Dialog = ({ text, question, onNext }: DialogProps) => {
                     d='M12.08 70.78c-16.17-16.24-16.09-42.54.15-58.7 16.25-16.17 42.54-16.09 58.71.15L256 197.76 441.06 12.23c16.17-16.24 42.46-16.32 58.71-.15 16.24 16.16 16.32 42.46.15 58.7L285.27 285.96c-16.24 16.17-42.54 16.09-58.7-.15L12.08 70.78z'
                   />
                 </svg>
-              </div>)
-            }
+              </div>
+            )}
           </div>
         </div>
       </div>
