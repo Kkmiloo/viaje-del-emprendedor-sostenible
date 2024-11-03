@@ -9,10 +9,12 @@ interface GameState {
   lives: number;
   isGameOver: boolean;
   stage: GameStage;
+  balance: number;
   changeStage: (newStage: GameStage) => void;
   incrementLevel: () => void;
   decrementLives: () => void;
   resetGame: () => void;
+  setBalance: (newBalance: number) => void;
 }
 
 const storeApi: StateCreator<GameState> = (
@@ -22,6 +24,8 @@ const storeApi: StateCreator<GameState> = (
   lives: 3,
   isGameOver: false,
   stage: 'introduction',
+  balance: 100000,
+  setBalance: (newBalance) => set({ balance: newBalance }),
   changeStage: (newStage) => set({ stage: newStage }),
   incrementLevel: () => set((state) => ({ level: state.level + 1 })),
   decrementLives: () =>
