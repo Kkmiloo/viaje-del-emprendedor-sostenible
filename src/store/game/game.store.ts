@@ -10,6 +10,12 @@ interface GameState {
   isGameOver: boolean;
   stage: GameStage;
   balance: number;
+  goal: number;
+  installationTime: number;
+  moneyPerInstallation: number;
+  setGoal: (newGoal: number) => void;
+  setInstallationTime: (newInstallationTime: number) => void;
+  setMoneyPerInstallation: (newMoneyPerInstallation: number) => void;
   changeStage: (newStage: GameStage) => void;
   incrementLevel: () => void;
   decrementLives: () => void;
@@ -25,6 +31,14 @@ const storeApi: StateCreator<GameState> = (
   isGameOver: false,
   stage: 'introduction',
   balance: 100000,
+  goal: 5,
+  installationTime: 2,
+  moneyPerInstallation: 50000,
+  setGoal: (newGoal) => set({ goal: newGoal }),
+  setInstallationTime: (newInstallationTime) =>
+    set({ installationTime: newInstallationTime }),
+  setMoneyPerInstallation: (newMoneyPerInstallation) =>
+    set({ moneyPerInstallation: newMoneyPerInstallation }),
   setBalance: (newBalance) => set({ balance: newBalance }),
   changeStage: (newStage) => set({ stage: newStage }),
   incrementLevel: () => set((state) => ({ level: state.level + 1 })),
