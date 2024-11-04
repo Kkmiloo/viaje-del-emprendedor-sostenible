@@ -12,6 +12,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Invertiste en más personal, asegurando el cumplimiento del proyecto y mejorando tu reputación.',
     isCorrect: true,
+    balance: 7500000
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Aunque no cumpliste completamente con el proyecto, mantuviste tu reputación relativamente intacta.',
     isCorrect: true,
+    balance: 6000000
   },
   {
     id: 3,
@@ -32,6 +34,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Perdiste futuras oportunidades de proyectos municipales por no cumplir con el contrato.',
     isCorrect: false,
+    balance: 3750000
   },
 ];
 

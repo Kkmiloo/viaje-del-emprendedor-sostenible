@@ -13,6 +13,7 @@ const options: GameOptionI[] = [
       'Mejoraste la velocidad de instalación, pero algunos clientes quedaron insatisfechos',
     isCorrect: true,
     image: '🪛',
+    balance: 200000,
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ const options: GameOptionI[] = [
       'Lograste satisfacer a todos los clientes y mejorar tu reputación.',
     isCorrect: true,
     image: '👷‍♂️',
+    balance: 250000
   },
   {
     id: 3,
@@ -34,7 +36,8 @@ const options: GameOptionI[] = [
     additionalContext:
       'Al no cumplir con la demanda mínima, afectaste tu reputación en el mercado local.',
     isCorrect: false,
-    image: '💪'
+    image: '💪',
+    balance: 150000
   },
 ];
 

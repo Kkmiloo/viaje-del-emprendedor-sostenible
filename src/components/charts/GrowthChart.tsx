@@ -11,6 +11,7 @@ import {
 
 } from 'chart.js';
 import { useEffect, useRef } from 'react';
+import { useGameStore } from '../../store';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -22,21 +23,16 @@ ChartJS.register(
 
 export default function GrowthChart() {
   const chartRef = useRef<ChartJS<'line'>>();
+  const { gameBalance, idealGameBalance, level } = useGameStore();
+  
+  const labels = Array.from({ length: level }, (_, index) => `Nivel ${index + 1}`);
+
   const growthData = {
-    labels: [
-      'Nivel 1',
-      'Nivel 2',
-      'Nivel 3',
-      'Nivel 4',
-      'Nivel 5',
-      'Nivel 6',
-      'Nivel 7',
-      'Nivel 8',
-    ],
+    labels: ['',...labels],
     datasets: [
       {
-        label: 'Crecimiento Perfecto',
-        data: [0, 150, 300, 450, 700, 900, 1200, 1500], // Ajusta según el crecimiento perfecto por nivel
+        label: 'Competencia',
+        data: idealGameBalance, // Ajusta según el crecimiento perfecto por nivel
         borderColor: 'rgba(128, 128, 128, 0.5)',
         fill: false,
         borderWidth: 2,
@@ -45,10 +41,11 @@ export default function GrowthChart() {
         borderDash: [5, 5], // Línea punteada
       },
       {
-        label: 'Crecimiento del Jugador',
-        data: [0, 120, 250, 400, 600, 850, 1100, 1300], // Ajusta según las decisiones del jugador
+        label: 'Tu Empresa',
+        data: gameBalance, // Ajusta según las decisiones del jugador
         borderColor: 'rgba(255, 99, 132, 1)',
-        fill: false,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        fill: true,
         borderWidth: 2,
         pointRadius: 3,
         tension: 0.3,
@@ -62,8 +59,12 @@ export default function GrowthChart() {
         beginAtZero: true,
         title: {
           display: true,
-          text: 'Balance Acumulado ($COP)',
+          text: 'Balance Acumulado',
         },
+        suggestedMin: 0, // Establece el mínimo sugerido
+        suggestedMax:
+          Math.max(...growthData.datasets.map(data=> data.data[0])) ||
+          900000, // Valor máximo dinámico
       },
       x: {
         title: {

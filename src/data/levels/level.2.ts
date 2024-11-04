@@ -13,7 +13,8 @@ const options: GameOptionI[] = [
     additionalContext:
       'Mejoraste la eficiencia, pero aún perdiste contratos debido a la incapacidad de cubrir toda la demanda.',
     isCorrect: true,
-    image: '🛠️'
+    image: '🛠️',
+    balance: 800000
   },
   {
     id: 2,
@@ -25,7 +26,9 @@ const options: GameOptionI[] = [
     additionalContext:
       'Invertiste en talento, asegurando el crecimiento de la empresa.',
     isCorrect: true,
-    image: '👨‍🏭'
+    image: '👨‍🏭',
+    balance: 1000000
+  
   },
   {
     id: 3,
@@ -37,7 +40,8 @@ const options: GameOptionI[] = [
     additionalContext:
       'No cumpliste con la demanda mínima, afectando tu reputación.',
     isCorrect: false,
-    image: '🔲'
+    image: '🔲',
+    balance: 600000
   },
 ];
 

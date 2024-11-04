@@ -12,6 +12,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'La inversión fue alta, pero aseguraste el éxito del proyecto y consolidaste tu empresa como líder global.',
     isCorrect: true,
+    balance: 300000000
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Subcontrataste la mayor parte del trabajo, pero no lograste consolidar tu reputación como líder global',
     isCorrect: true,
+    balance: 240000000
   },
   {
     id: 3,
@@ -32,6 +34,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'No cumpliste con el contrato, afectando tu reputación global y perdiendo la oportunidad de consolidar tu imperio solar.',
     isCorrect: false,
+    balance: 150000000
   },
 ];
 

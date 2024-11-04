@@ -10,4 +10,5 @@ export interface GameOptionI {
   additionalContext: string;
   image?: string;
   isCorrect: boolean;
+  balance: number;
 }

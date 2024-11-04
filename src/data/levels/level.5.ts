@@ -12,6 +12,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Aunque la inversión en gerentes fue alta, la capacidad organizativa que añadieron permitió cumplir con el proyecto sin problemas.',
     isCorrect: true,
+    balance: 15000000
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Subcontrataste la logística, lo que te permitió avanzar rápidamente, pero no cumpliste completamente con el proyecto.',
     isCorrect: true,
+    balance: 12000000
   },
   {
     id: 3,
@@ -32,6 +34,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Perdiste futuras oportunidades de contratos comerciales debido a la incapacidad de cumplir con toda la demanda.',
     isCorrect: false,
+    balance: 7500000
   },
 ];
 

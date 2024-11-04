@@ -12,6 +12,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Aunque la inversión en gerentes fue alta, lograste cumplir con todo el contrato y asegurar futuras oportunidades en cada ciudad.',
     isCorrect: true,
+    balance: 30000000,
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'La subcontratación te ayudó a cumplir con la mayor parte del proyecto, pero tu margen de beneficio fue menor y perdiste algunas oportunidades futuras.',
     isCorrect: true,
+    balance: 24000000
   },
   {
     id: 3,
@@ -32,6 +34,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Perdiste la oportunidad de expandirte a nivel nacional y tu reputación en otras ciudades se vio afectada.',
     isCorrect: false,
+    balance: 15000000
   },
 ];
 

@@ -12,6 +12,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Invertiste más en personal, pero aseguraste la entrega del proyecto y obtuviste nuevas oportunidades.',
     isCorrect: true,
+    balance: 5000000
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Cumpliste con el contrato, pero tus ganancias fueron reducidas.',
     isCorrect: true,
+    balance: 4200000
   },
   {
     id: 3,
@@ -31,6 +33,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Perdiste oportunidades futuras por no cumplir con el contrato.',
     isCorrect: false,
+    balance: 3000000
   },
 ];
 

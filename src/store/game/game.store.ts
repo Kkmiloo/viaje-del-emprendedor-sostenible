@@ -4,6 +4,9 @@ import { devtools } from 'zustand/middleware';
 
 
 type GameStage = 'introduction' | 'level' | 'ending';
+
+const idealBalance = [ 800000, 1350000, 4700000, 6500000, 13200000, 27500000, 95600000, 290000000];
+
 interface GameState {
   level: number;
   lives: number;
@@ -13,6 +16,9 @@ interface GameState {
   goal: number;
   installationTime: number;
   moneyPerInstallation: number;
+  gameBalance: number[];
+  idealGameBalance: number[];
+  setGameBalance: (newBalance: number) => void;
   setGoal: (newGoal: number) => void;
   setInstallationTime: (newInstallationTime: number) => void;
   setMoneyPerInstallation: (newMoneyPerInstallation: number) => void;
@@ -24,17 +30,25 @@ interface GameState {
 }
 
 const storeApi: StateCreator<GameState> = (
-  set
+  set, get
 ) => ({
   level: 1,
   lives: 3,
   isGameOver: false,
   stage: 'introduction',
-  balance: 100000,
+  balance: 600000,
   goal: 5,
   installationTime: 2,
   moneyPerInstallation: 50000,
-  setGoal: (newGoal) => set({ goal: newGoal }),
+  gameBalance: [600000],
+  idealGameBalance: [600000],
+  setGameBalance: (newBalance) =>
+    set((state) => ({
+      gameBalance: [...state.gameBalance, get().balance + newBalance],
+      idealGameBalance: [...state.idealGameBalance, idealBalance[get().level - 1]],
+      balance: get().balance + newBalance
+    })),
+    setGoal: (newGoal) => set({ goal: newGoal }),
   setInstallationTime: (newInstallationTime) =>
     set({ installationTime: newInstallationTime }),
   setMoneyPerInstallation: (newMoneyPerInstallation) =>
@@ -51,7 +65,7 @@ const storeApi: StateCreator<GameState> = (
       };
     }),
   resetGame: () =>
-    set({ level: 1, lives: 3, isGameOver: false, stage: 'introduction' }),
+    set({ level: 1, lives: 3, isGameOver: false, stage: 'introduction' , balance: 600000, gameBalance: [600000], idealGameBalance: [600000], goal: 5, installationTime: 2, moneyPerInstallation: 50000 }),
 });
 
 export const useGameStore = create<GameState>()(devtools(storeApi));
