@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import BalanceChart from '../charts/BalanceChart';
+// import { useState } from 'react';
+// import BalanceChart from '../charts/BalanceChart';
 
 const GameFeedback = () => {
-  const [balanceHistory, setBalanceHistory] = useState([
-    1000, 1200, 1100, 1300, 1250,
-  ]); // Ejemplo de datos
+  // const [balanceHistory, setBalanceHistory] = useState([
+  //   1000, 1200, 1100, 1300, 1250,
+  // ]); // Ejemplo de datos
 
   return (
     <div>
