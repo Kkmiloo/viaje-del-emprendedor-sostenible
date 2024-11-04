@@ -28,6 +28,9 @@ const GamePage = () => {
     decrementLives,
     resetGame,
     balance,
+    setGoal,
+    setMoneyPerInstallation,
+    setGameBalance
   } = useGameStore();
   const [currentScene, setCurrentScene] = useState(scenes[level - 1]);
   const [currentOptions, setCurrentOptions] = useState<GameOptionI[]>([]);
@@ -60,6 +63,7 @@ const GamePage = () => {
 
   const handleOptionSelect = (option: GameOptionI) => {
     setSelectedOption(option);
+    setGameBalance(option.balance);
     setCurrentStep('consequence');
   };
 
@@ -79,6 +83,8 @@ const GamePage = () => {
 
     const currentSceneData = scenes.find((scene) => scene.level === level);
     if (currentSceneData) {
+      setGoal(currentSceneData.goal);
+      setMoneyPerInstallation(currentSceneData.moneyPerInstallation);
       setCurrentScene(currentSceneData);
       setCurrentOptions(currentSceneData.options);
     }
@@ -170,10 +176,10 @@ const GamePage = () => {
       )}
 
       {isGameOver && (
-        <div className='flex flex-col items-center justify-center h-full text-center text-3xl text-white'>
+        <div className='flex flex-col items-center justify-center h-full text-center text-3xl text-white z-40 bg-slate-700 m-auto p-12 rounded-lg border-4 border-gray-300'>
           <h1>Game Over</h1>
           <button
-            className='mt-4 p-2 bg-red-500 rounded text-white'
+            className='mt-4 p-2 bg-red-500 rounded text-white hover:bg-red-700'
             onClick={resetGame}
           >
             Reiniciar Juego
