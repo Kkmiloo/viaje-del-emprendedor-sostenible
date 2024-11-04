@@ -11,7 +11,21 @@ const Typewriter = ({ text, delay, infinite }: TypewriterProps) => {
   const [displayText, setDisplayText] = useState<(JSX.Element | string)[]>([]);
 
   // Define las palabras clave a resaltar
-  const keywords = ['COP', 'horas', 'panel', '$50,000'];
+  const keywords = [
+    'COP',
+    '8 horas',
+    '5 casas locales',
+    '5 instalaciones diarias',
+    '20 instalaciones diarias',
+    '50 instalaciones en 30 días',
+    '100 hogares',
+    '300 instalaciones',
+    '$50,000',
+    '$75,000',
+    '$100,000',
+    '$200,000',
+    '$300,000',
+  ];
 
   useEffect(() => {
     let timeout: number;
