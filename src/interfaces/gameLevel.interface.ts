@@ -8,4 +8,7 @@ export interface GameLevelI {
   options: GameOptionI[];
   incorrectQuestionId: number; // ID de la pregunta que restará vida
   incorrectQuestionMessage: string;
+  goal: number;
+  installationTime: number;
+  moneyPerInstallation: number;
 }

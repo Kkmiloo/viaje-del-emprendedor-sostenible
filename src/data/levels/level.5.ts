@@ -52,4 +52,7 @@ export const levelFive: GameLevelI = {
   options: randomizedOptions,
   incorrectQuestionId: incorrectQuestionId,
   incorrectQuestionMessage: `perdiste una vida por "mala gestión logística". Al solo completar 50 instalaciones, no cumpliste con el contrato, afectando tu reputación con los grandes clientes comerciales.`,
+  goal: 100,
+  installationTime: 6,
+  moneyPerInstallation: 150000
 };

@@ -58,4 +58,7 @@ export const levelTwo: GameLevelI = {
   options: randomizedOptions,
   incorrectQuestionId: incorrectQuestionId,
   incorrectQuestionMessage: `perdiste una vida por "incapacidad operativa". Solo lograste realizar 12 instalaciones, afectando gravemente tu reputación`,
+  goal: 20,
+  installationTime: 0.4,
+  moneyPerInstallation: 50000,
 };

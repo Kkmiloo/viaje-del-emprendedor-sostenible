@@ -52,4 +52,7 @@ export const levelSeven: GameLevelI = {
   options: randomizedOptions,
   incorrectQuestionId: incorrectQuestionId,
   incorrectQuestionMessage: `perdiste una vida por "incapacidad operativa internacional". Al solo completar 300 instalaciones, no pudiste cumplir con el contrato y afectaste tu capacidad para expandirte globalmente`,
+  goal: 500,
+  installationTime: 5,
+  moneyPerInstallation: 200000
 };
