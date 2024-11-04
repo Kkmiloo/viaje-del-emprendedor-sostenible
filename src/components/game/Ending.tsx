@@ -3,7 +3,7 @@ interface EndingProps {
 }
 
 export const Ending = ({ onRestart }: EndingProps) => (
-  <div className='flex flex-col items-center justify-center min-h-screen bg-slate-400'>
+  <div className='flex flex-col items-center justify-center  p-6  px-8  text-justify border-4 border-slate-700 rounded-xl max-w-6xl m-auto bg-gray-200 h-fit z-40'>
     <h1 className='text-3xl font-bold mb-4'>¡Felicidades, CEO Solar!</h1>
     <p className='text-xl mb-8'>
       Has completado Energy Empire: El Ascenso Solar, llevando tu empresa desde

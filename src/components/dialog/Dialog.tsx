@@ -97,11 +97,11 @@ export const Dialog = ({
           />
           <div
             className={`${
-              showQuestion ? 'justify-start ' : 'justify-between'
+              showQuestion ? 'justify-start ' : 'justify-between flex-col'
             } flex  h-full  ml-8 w-full`}
           >
             {currentPage <= pages.length - 1 && !showQuestion && (
-              <div className={` mt-4 `}>
+              <div >
                 <Typewriter
                   text={pages[currentPage]}
                   delay={30}
@@ -112,10 +112,11 @@ export const Dialog = ({
             {showQuestion && question && (
               <>
                 <div className='flex flex-col gap-1 border w-fit px-3 rounded-lg bg-gray-200 h-fit'>
+                  <h2 className='font-bold border-b border-slate-400 mb-2'>Objetivo</h2>
                   <p className='text-red-600'> 🏁: {goal}</p>
                   <p className='text-green-600'>💸: {Intl.NumberFormat().format(moneyPerInstallation)}</p>
                 </div>
-                <div className='mt-4 ml-4'>
+                <div className='ml-4'>
                   <Typewriter text={question} delay={30} infinite={false} />
                 </div>
               </>
