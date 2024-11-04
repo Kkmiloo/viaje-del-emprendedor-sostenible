@@ -11,6 +11,8 @@ import { Ending } from '../../components/game/Ending';
 import { IntroLevel } from '../../components/game/IntroLevel';
 import { HealthIndicator } from '../../components/game/HealthIndicator';
 import { Modal } from '../../components/dialog/Modal';
+import GrowthChart from '../../components/charts/GrowthChart';
+
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -83,7 +85,8 @@ const GamePage = () => {
   }, [level, decrementLives, incrementLevel, isGameOver]);
 
   return (
-    <main className='relative min-w-full min-h-screen flex flex-col justify-center'>
+    <main className='relative min-w-full min-h-screen flex flex-col justify-center w-full h-full '>
+      <div className='absolute inset-0 blur-sm bg-scene1  h-screen w-screen bg-contain bg-no-repeat object-cover'></div>
       {stage === 'introduction' && (
         <Introduction onStart={() => changeStage('level')} />
       )}
@@ -104,7 +107,7 @@ const GamePage = () => {
               </h1>
             </div>
             <div className='max-w-6xl m-auto flex justify-between items-center w-full px-6 py-2 bg-slate-700 border-2 rounded-xl'>
-              <div className='text-white'>
+              <div className='text-white font-bold'>
                 {' '}
                 💰 $ {Intl.NumberFormat().format(balance)} COP{' '}
               </div>
@@ -124,6 +127,7 @@ const GamePage = () => {
               showQuestion={showQuestion}
               setShowQuestion={setShowQuestion}
             />
+
             {selectedOption && (
               <>
                 {currentStep === 'consequence' && (
@@ -132,7 +136,10 @@ const GamePage = () => {
                     onConfirm={() => {
                       setCurrentStep('impact');
                     }}
-                  />
+                  >
+                    {' '}
+                    <GrowthChart />{' '}
+                  </Modal>
                 )}
                 {currentStep === 'impact' && (
                   <Modal

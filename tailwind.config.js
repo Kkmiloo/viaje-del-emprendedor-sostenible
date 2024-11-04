@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'scene1': "url(/src/assets/scene1.webp)"
+      },
       keyframes: {
         'fade-in-left': {
           '0%': { opacity: '0', transform: 'translateX(-50%)' },

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import man from '../../assets/man.webp';
 import Typewriter from '../text/Typewriter';
+import { useGameStore } from '../../store';
 
 interface DialogProps {
   text: string;
@@ -21,6 +22,7 @@ export const Dialog = ({
   const [currentPage, setCurrentPage] = useState(0);
   const [pages, setPages] = useState<string[]>([]);
 
+  const { goal, moneyPerInstallation } = useGameStore();
   // Función para dividir el texto en partes según el tamaño del contenedor
   const paginateText = (text: string, charsPerPage: number) => {
     const words = text.split(' ');
@@ -45,8 +47,6 @@ export const Dialog = ({
     return result;
   };
 
-  console.log(pages.length);
-
   // Efecto para calcular el tamaño del contenedor y paginar el texto
   useEffect(() => {
     if (containerRef.current) {
@@ -69,7 +69,7 @@ export const Dialog = ({
     if (currentPage < pages.length - 1) {
       setCurrentPage(currentPage + 1);
     } else if (question) {
-      if(setShowQuestion)  setShowQuestion(true);
+      if (setShowQuestion) setShowQuestion(true);
       onNext();
       // Ejecuta la función al terminar la última página y tener pregunta
     }
@@ -79,19 +79,27 @@ export const Dialog = ({
     <div
       className={`${
         !showQuestion ? 'cursor-pointer' : ''
-      }  py-10 px-6 md:py-10 text-gray-800 text-xl font-medium rounded-xl border-4 bg-gray-100 max-h-56 w-full md:max-h-64 h-[300px] max-w-6xl m-auto z-20`}
+      }  py-6  px-6 md:py-10 text-gray-800 text-xl font-medium rounded-xl border-4 bg-gray-100 h-auto md:h-[280px] max-h-56 w-full md:max-h-64  max-w-6xl m-auto z-20`}
       onClick={handleNext}
     >
       <div
         ref={containerRef}
         className='h-full overflow-auto flex flex-col justify-between'
       >
-        <div className='flex h-full items-center'>
+        <div
+          className={` ${
+            showQuestion && question ? 'items-start' : ''
+          }  flex h-full `}
+        >
           <img
             src={man}
-            className=' max-w-24 w-fit h-fit rounded-xl border-4 border-slate-600 bg-red-500 p-2'
+            className=' max-w-24 w-fit h-fit rounded-xl border-4 border-slate-600 bg-gray-200 p-2'
           />
-          <div className='flex flex-col h-full justify-between ml-8 w-full'>
+          <div
+            className={`${
+              showQuestion ? 'justify-start ' : 'justify-between'
+            } flex  h-full  ml-8 w-full`}
+          >
             {currentPage <= pages.length - 1 && !showQuestion && (
               <div className={` mt-4 `}>
                 <Typewriter
@@ -102,9 +110,15 @@ export const Dialog = ({
               </div>
             )}
             {showQuestion && question && (
-              <div className='mt-4 text-center'>
-                <Typewriter text={question} delay={30} infinite={false} />
-              </div>
+              <>
+                <div className='flex flex-col gap-1 border w-fit px-3 rounded-lg bg-gray-200 h-fit'>
+                  <p className='text-red-600'> 🏁: {goal}</p>
+                  <p className='text-green-600'>💸: {Intl.NumberFormat().format(moneyPerInstallation)}</p>
+                </div>
+                <div className='mt-4 ml-4'>
+                  <Typewriter text={question} delay={30} infinite={false} />
+                </div>
+              </>
             )}
 
             {!showQuestion && (
