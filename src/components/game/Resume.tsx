@@ -1,20 +1,16 @@
-
-import { ReactNode } from "react";
-
-interface ModalProps{
-    text: string;
-  onConfirm: () => void;
-  children?: ReactNode
+interface ResumeProps{
+    onConfirm: () => void;
+    children?: JSX.Element | JSX.Element[] | string
 }
 
-export const Modal = ({text, onConfirm, children}:ModalProps) => {
+
+export const Resume = ({onConfirm,children}: ResumeProps) => {
   return (
-    <div onClick={onConfirm} className='cursor-pointer '>
+    <div  onClick={onConfirm} className='cursor-pointer '>
       <div className='fixed inset-0 flex items-center justify-center z-50'>
         <div className='modal-overlay absolute inset-0 bg-gray-500 opacity-50'></div>
         <div className='animate-fade-right animate-duration-[500ms] animate-ease-in modal-container border-4  bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-lg z-50 overflow-y-auto'>
           <div className='modal-content py-4 text-left px-6 min-h-40'>
-            <p className='text-black'>{text}</p>
             <div className='mt-4'>{children}</div>
           </div>
           <div className='animate-bounce w-full animate-duration-[1000ms]'>

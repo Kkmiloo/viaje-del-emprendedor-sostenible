@@ -29,9 +29,7 @@ interface GameState {
   setBalance: (newBalance: number) => void;
 }
 
-const storeApi: StateCreator<GameState> = (
-  set, get
-) => ({
+const storeApi: StateCreator<GameState> = (set, get) => ({
   level: 1,
   lives: 3,
   isGameOver: false,
@@ -45,10 +43,13 @@ const storeApi: StateCreator<GameState> = (
   setGameBalance: (newBalance) =>
     set((state) => ({
       gameBalance: [...state.gameBalance, get().balance + newBalance],
-      idealGameBalance: [...state.idealGameBalance, idealBalance[get().level - 1]],
-      balance: get().balance + newBalance
+      idealGameBalance: [
+        ...state.idealGameBalance,
+        idealBalance[get().level - 1] ,
+      ],
+      balance: get().balance + newBalance,
     })),
-    setGoal: (newGoal) => set({ goal: newGoal }),
+  setGoal: (newGoal) => set({ goal: newGoal }),
   setInstallationTime: (newInstallationTime) =>
     set({ installationTime: newInstallationTime }),
   setMoneyPerInstallation: (newMoneyPerInstallation) =>
@@ -65,7 +66,18 @@ const storeApi: StateCreator<GameState> = (
       };
     }),
   resetGame: () =>
-    set({ level: 1, lives: 3, isGameOver: false, stage: 'introduction' , balance: 600000, gameBalance: [600000], idealGameBalance: [600000], goal: 5, installationTime: 2, moneyPerInstallation: 50000 }),
+    set({
+      level: 1,
+      lives: 3,
+      isGameOver: false,
+      stage: 'introduction',
+      balance: 600000,
+      gameBalance: [600000],
+      idealGameBalance: [600000],
+      goal: 5,
+      installationTime: 2,
+      moneyPerInstallation: 50000,
+    }),
 });
 
 export const useGameStore = create<GameState>()(devtools(storeApi));

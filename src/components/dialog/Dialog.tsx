@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import man from '../../assets/man.webp';
+//import man from '../../assets/man.webp';
+import robot from '../../assets/robotsito-04.png';
 import Typewriter from '../text/Typewriter';
 import { useGameStore } from '../../store';
 
@@ -8,6 +9,7 @@ interface DialogProps {
   question?: string;
   showQuestion?: boolean;
   setShowQuestion?: (showQuestion: boolean) => void;
+  finishedAnimation? : boolean;
   onNext: () => void;
 }
 
@@ -17,6 +19,7 @@ export const Dialog = ({
   onNext,
   showQuestion,
   setShowQuestion,
+  finishedAnimation,
 }: DialogProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -91,30 +94,33 @@ export const Dialog = ({
             showQuestion && question ? 'items-start' : ''
           }  flex h-full `}
         >
-          <img
-            src={man}
-            className=' max-w-24 w-fit h-fit rounded-xl border-4 border-slate-600 bg-gray-200 p-2'
-          />
+          <img src={robot} className=' max-w-36   h-fit rounded-xl p-2' />
           <div
             className={`${
               showQuestion ? 'justify-start ' : 'justify-between flex-col'
             } flex  h-full  ml-8 w-full`}
           >
             {currentPage <= pages.length - 1 && !showQuestion && (
-              <div >
-                <Typewriter
-                  text={pages[currentPage]}
-                  delay={30}
-                  infinite={false}
-                />
+              <div>
+                {finishedAnimation && (
+                  <Typewriter
+                    text={pages[currentPage]}
+                    delay={30}
+                    infinite={false}
+                  />
+                )}
               </div>
             )}
             {showQuestion && question && (
               <>
                 <div className='flex flex-col gap-1 border w-fit px-3 rounded-lg bg-gray-200 h-fit'>
-                  <h2 className='font-bold border-b border-slate-400 mb-2'>Objetivo</h2>
+                  <h2 className='font-bold border-b border-slate-400 mb-2'>
+                    Objetivo
+                  </h2>
                   <p className='text-red-600'> 🏁: {goal}</p>
-                  <p className='text-green-600'>💸: {Intl.NumberFormat().format(moneyPerInstallation)}</p>
+                  <p className='text-green-600'>
+                    💸: {Intl.NumberFormat().format(moneyPerInstallation)}
+                  </p>
                 </div>
                 <div className='ml-4'>
                   <Typewriter text={question} delay={30} infinite={false} />

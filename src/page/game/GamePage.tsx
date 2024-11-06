@@ -12,6 +12,7 @@ import { IntroLevel } from '../../components/game/IntroLevel';
 import { HealthIndicator } from '../../components/game/HealthIndicator';
 import { Modal } from '../../components/dialog/Modal';
 import GrowthChart from '../../components/charts/GrowthChart';
+import { Resume } from '../../components/game/Resume';
 
 
 interface ChangeSceneParams {
@@ -35,7 +36,7 @@ const GamePage = () => {
   const [currentScene, setCurrentScene] = useState(scenes[level - 1]);
   const [currentOptions, setCurrentOptions] = useState<GameOptionI[]>([]);
   const [currentStep, setCurrentStep] = useState<
-    'consequence' | 'impact' | 'additionalContext' | null
+    'consequence' | 'impact' | 'additionalContext' | 'resume' | null
   >(null);
   const [selectedOption, setSelectedOption] = useState<GameOptionI | null>(
     null
@@ -43,9 +44,11 @@ const GamePage = () => {
   const [showIntroLevel, setShowIntroLevel] = useState<boolean>(true);
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [showQuestion, setShowQuestion] = useState(false);
+  const [finishedAnimation, setFinishedAnimation] = useState(false);
 
   const handleIntroLevel = () => {
     setShowIntroLevel(false);
+    setTimeout( ()=> setFinishedAnimation(true) ,200)
   };
 
   const handleShowOptions = () => {
@@ -63,7 +66,7 @@ const GamePage = () => {
 
   const handleOptionSelect = (option: GameOptionI) => {
     setSelectedOption(option);
-    setGameBalance(option.balance);
+    setGameBalance(option.isCorrect ? option.balance : option.balance *.1);
     setCurrentStep('consequence');
   };
 
@@ -132,8 +135,8 @@ const GamePage = () => {
               onNext={handleShowOptions}
               showQuestion={showQuestion}
               setShowQuestion={setShowQuestion}
+              finishedAnimation={finishedAnimation}
             />
-
             {selectedOption && (
               <>
                 {currentStep === 'consequence' && (
@@ -142,10 +145,7 @@ const GamePage = () => {
                     onConfirm={() => {
                       setCurrentStep('impact');
                     }}
-                  >
-                    {' '}
-                    <GrowthChart />{' '}
-                  </Modal>
+                  ></Modal>
                 )}
                 {currentStep === 'impact' && (
                   <Modal
@@ -153,7 +153,9 @@ const GamePage = () => {
                     onConfirm={() => {
                       setCurrentStep('additionalContext');
                     }}
-                  />
+                  >
+                    <GrowthChart />{' '}
+                  </Modal>
                 )}
                 {currentStep === 'additionalContext' && (
                   <Modal
@@ -162,6 +164,25 @@ const GamePage = () => {
                       handleOptionResult();
                     }}
                   />
+                )}
+                {currentStep === 'resume' && (
+                  <Resume
+                    onConfirm={() => {
+                      handleOptionResult();
+                    }}
+                  >
+                    <div> 
+                      Dinero: {Intl.NumberFormat().format(
+                        selectedOption.balance
+                      )}
+                    </div>
+                    <div>
+                    reputacion : 2
+                    </div>
+                    <div>
+                    confianza : 2
+                    </div>
+                  </Resume>
                 )}
               </>
             )}
@@ -186,7 +207,7 @@ const GamePage = () => {
           </button>
         </div>
       )}
-      {stage === 'ending' && <Ending onRestart={resetGame} />}
+      {stage === 'ending' && !isGameOver && <Ending onRestart={resetGame} />}
     </main>
   );
 };

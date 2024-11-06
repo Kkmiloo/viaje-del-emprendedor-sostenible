@@ -14,11 +14,11 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
   };
 
   return (
-    <div className='animate-jump-in animate-duration-[1500ms] animate-ease-out flex md:flex-row  flex-col items-center justify-center gap-3 p-2 bg-slate-200 m-auto rounded-xl z-40 max-w-6xl'>
+    <div className='animate-jump-in animate-duration-[800ms] animate-ease-out flex md:flex-row  flex-col items-center justify-center gap-3 p-2 bg-slate-200 m-auto rounded-xl z-40 max-w-6xl'>
       {options.map((option) => (
         <div
           key={option.id}
-          className='shadow-lg relative p-2 px-4 flex  flex-col align-middle justify-center text-lg font-medium md:w-1/3 w-full bg-slate-600 text-slate-50 rounded-lg cursor-pointer hover:bg-slate-700 m-1 md:h-48 h-36 hover:animate-wiggle animate-infinite animate-ease-in'
+          className='shadow-lg relative p-2 px-4 flex  flex-col align-middle justify-center text-lg font-medium md:w-1/3 w-full bg-slate-600 text-slate-50 rounded-lg cursor-pointer hover:bg-slate-700 m-1 md:h-48 h-36 hover:animate-wiggle animate-infinite animate-ease-in animate-duration-[1200ms]'
           onClick={() => handleOnClick(option)}
         >
           <p className='absolute md:text-[90px] text-7xl right-0 -top-5  md:-top-14  text-justify'>
