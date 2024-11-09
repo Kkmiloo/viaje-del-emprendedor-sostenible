@@ -12,6 +12,8 @@ const options: GameOptionI[] = [
     additionalContext:
       'Invertiste mucho en abrir sedes locales, pero lograste cumplir con todo el contrato y aseguraste futuras oportunidades en América Latina.',
     isCorrect: true,
+    numberPanels: 500,
+    invest: 1400000,
     balance: 100000000,
     image: '/options/N7_A.png',
   },
@@ -24,6 +26,8 @@ const options: GameOptionI[] = [
     additionalContext:
       'La subcontratación ayudó a cumplir la mayor parte del contrato, pero con menos margen y sin asegurar futuras oportunidades en la región.',
     isCorrect: true,
+    numberPanels: 400,
+    invest: 5000000,
     balance: 80000000,
     image: '/options/N3_B.png',
   },
@@ -36,6 +40,8 @@ const options: GameOptionI[] = [
     additionalContext:
       'Perdiste oportunidades internacionales y tu reputación global se vio afectada.',
     isCorrect: false,
+    numberPanels: 300,
+    invest: 0,
     balance: 60000000,
     image: '/options/N7_C.png',
   },

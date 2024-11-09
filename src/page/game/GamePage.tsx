@@ -14,7 +14,8 @@ import { Modal } from '../../components/dialog/Modal';
 import GrowthChart from '../../components/charts/GrowthChart';
 import { Resume } from '../../components/game/Resume';
 import robot from '../../assets/robotsito-04.png';
-
+import { Counter } from '../../components/text/Counter';
+import { ProgressBar } from '../../components/stats/ProgressBar';
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -32,7 +33,10 @@ const GamePage = () => {
     balance,
     setGoal,
     setMoneyPerInstallation,
-    setGameBalance
+    setGameBalance,
+    reputation,
+    trust,
+    goal
   } = useGameStore();
   const [currentScene, setCurrentScene] = useState(scenes[level - 1]);
   const [currentOptions, setCurrentOptions] = useState<GameOptionI[]>([]);
@@ -49,7 +53,7 @@ const GamePage = () => {
 
   const handleIntroLevel = () => {
     setShowIntroLevel(false);
-    setTimeout( ()=> setFinishedAnimation(true) ,200)
+    setTimeout(() => setFinishedAnimation(true), 200);
   };
 
   const handleShowOptions = () => {
@@ -67,7 +71,7 @@ const GamePage = () => {
 
   const handleOptionSelect = (option: GameOptionI) => {
     setSelectedOption(option);
-    setGameBalance(option.isCorrect ? option.balance : option.balance *.1);
+    setGameBalance(option.isCorrect ? option.balance : option.balance * 0.1);
     setCurrentStep('consequence');
   };
 
@@ -172,15 +176,62 @@ const GamePage = () => {
                       handleOptionResult();
                     }}
                   >
-                    <div className='flex '>
-                      <img src={robot} alt='' className='w-28' />
-                      <div className='flex flex-col items-center w-full'>
-                        <div >
-                          Dinero:{' '}
-                          {Intl.NumberFormat().format(selectedOption.balance)}
+                    <div className='font-bold '>
+                      <div className='flex w-full'>
+                        <img src={robot} alt='' className='w-32 h-32' />
+                        <div className='flex flex-col items-center w-full ml-7'>
+                          <div className=' flex w-full justify-between items-center'>
+                            {' '}
+                            <p>Paneles: </p>{' '}
+                            <ProgressBar
+                              max={goal}
+                              value={selectedOption.numberPanels}
+                              progress='ratio'
+                              color='red'
+                            />{' '}
+                          </div>
+
+                          <div className='flex w-full justify-between items-center'>
+                            <p>reputacion : </p>
+                            <ProgressBar
+                              max={1}
+                              value={reputation}
+                              progress='percent'
+                              color='red'
+                            />{' '}
+                          </div>
+                          <div className='flex w-full justify-between items-center'>
+                            <p>confianza : </p>
+                            <ProgressBar
+                              max={1}
+                              value={trust}
+                              progress='percent'
+                              color='red'
+                            />{' '}
+                          </div>
+                          <div className='flex w-full justify-between items-center mb-4'>
+                            <p>Dinero:</p>
+                            <div className='flex mr-4'>
+                              <Counter
+                                duration={3}
+                                number={currentScene.moneyPerInstallation}
+                              />{' '}
+                              *{' '}
+                              <Counter
+                                duration={2}
+                                number={selectedOption.numberPanels}
+                              />
+                            </div>
+                            <Counter
+                              duration={3}
+                              number={selectedOption.balance}
+                            />
+                          </div>
                         </div>
-                        <div>reputacion : 2</div>
-                        <div>confianza : 2</div>
+                      </div>
+                      <div>
+
+                        <GrowthChart />
                       </div>
                     </div>
                   </Resume>

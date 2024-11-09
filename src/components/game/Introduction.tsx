@@ -69,12 +69,7 @@ export const Introduction = ({ onStart }: IntroductionProps) => {
         </button>
       )}
 
-      <img
-        className='absolute -bottom-36 -left-24 object-cover z-30'
-        width={220}
-        src={man}
-        alt='character'
-      />
+
     </div>
   );
 };

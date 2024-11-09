@@ -13,6 +13,8 @@ const options: GameOptionI[] = [
       'Aunque la inversión en gerentes fue alta, lograste cumplir con todo el contrato y asegurar futuras oportunidades en cada ciudad.',
     image: '/options/N6_A.png',
     isCorrect: true,
+    numberPanels: 300,
+    invest: 1500000,
     balance: 30000000,
   },
   {
@@ -25,6 +27,8 @@ const options: GameOptionI[] = [
       'La subcontratación te ayudó a cumplir con la mayor parte del proyecto, pero tu margen de beneficio fue menor y perdiste algunas oportunidades futuras.',
     image: '/options/N3_B.png',
     isCorrect: true,
+    numberPanels: 240,
+    invest: 2000000,
     balance: 24000000,
   },
   {
@@ -37,6 +41,8 @@ const options: GameOptionI[] = [
       'Perdiste la oportunidad de expandirte a nivel nacional y tu reputación en otras ciudades se vio afectada.',
     image: '/options/N3_C.png',
     isCorrect: false,
+    numberPanels: 150,
+    invest:0,
     balance: 15000000,
   },
 ];

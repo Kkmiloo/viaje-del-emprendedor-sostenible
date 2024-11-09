@@ -13,6 +13,8 @@ const options: GameOptionI[] = [
       'Invertiste más en personal, pero aseguraste la entrega del proyecto y obtuviste nuevas oportunidades.',
     image: '/options/N3_A.png',
     isCorrect: true,
+    numberPanels: 50,
+    invest: 300000,
     balance: 5000000,
   },
   {
@@ -24,6 +26,8 @@ const options: GameOptionI[] = [
     additionalContext:
       'Cumpliste con el contrato, pero tus ganancias fueron reducidas.',
     image: '/options/N3_B.png',
+    numberPanels: 50,
+    invest: 800000,
     isCorrect: true,
     balance: 4200000,
   },
@@ -35,6 +39,8 @@ const options: GameOptionI[] = [
     additionalContext:
       'Perdiste oportunidades futuras por no cumplir con el contrato.',
     image: '/options/N3_C.png',
+    numberPanels: 30,
+    invest: 0,
     isCorrect: false,
     balance: 3000000,
   },

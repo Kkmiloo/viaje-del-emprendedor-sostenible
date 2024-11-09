@@ -12,6 +12,8 @@ const options: GameOptionI[] = [
     additionalContext:
       'La inversión fue alta, pero aseguraste el éxito del proyecto y consolidaste tu empresa como líder global.',
     isCorrect: true,
+    numberPanels: 500,
+    invest: 10000000,
     balance: 300000000,
     image: '/options/N8_A.png',
   },
@@ -24,6 +26,8 @@ const options: GameOptionI[] = [
     additionalContext:
       'Subcontrataste la mayor parte del trabajo, pero no lograste consolidar tu reputación como líder global',
     isCorrect: true,
+    numberPanels: 800,
+    invest: 15_000_000,
     balance: 240000000,
     image: '/options/N3_B.png',
   },
@@ -37,6 +41,8 @@ const options: GameOptionI[] = [
       'No cumpliste con el contrato, afectando tu reputación global y perdiendo la oportunidad de consolidar tu imperio solar.',
     isCorrect: false,
     balance: 150000000,
+    invest: 0,
+    numberPanels: 500,
     image: '/options/N3_C.png',
   },
 ];

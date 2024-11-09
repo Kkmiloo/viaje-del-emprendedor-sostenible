@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 //import man from '../../assets/man.webp';
 import robot from '../../assets/robotsito-04.png';
+import robotQuestion from '../../assets/robotsito-07.png';
+
 import Typewriter from '../text/Typewriter';
 import { useGameStore } from '../../store';
 
@@ -94,7 +96,7 @@ export const Dialog = ({
             showQuestion && question ? 'items-start' : ''
           }  flex h-full `}
         >
-          <img src={robot} className=' max-w-28 md:max-w-36 h-fit rounded-xl p-2' />
+          <img src={showQuestion?  robotQuestion: robot} className=' max-w-28 md:max-w-36 h-fit rounded-xl p-2' />
           <div
             className={`${
               showQuestion ? 'justify-start ' : 'justify-between flex-col'
@@ -114,7 +116,7 @@ export const Dialog = ({
             {showQuestion && question && (
               <div className='flex flex-col md:flex-row text-base md:text-xl'>
                 <div className='flex md:flex-col gap-1 border w-full px-3 rounded-lg bg-gray-200 h-fit md:w-fit mb-2 '>
-                  <h2 className='font-bold md:border-b border-r pr-2 border-slate-400 md:mb-2'>
+                  <h2 className='font-bold md:border-b md:border-r-0 border-r pr-2 border-slate-400 md:mb-2'>
                     Objetivo
                   </h2>
                   <p className='text-red-600'> 🏁: {goal}</p>

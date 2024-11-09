@@ -18,6 +18,8 @@ interface GameState {
   moneyPerInstallation: number;
   gameBalance: number[];
   idealGameBalance: number[];
+  reputation: number;
+  trust: number;
   setGameBalance: (newBalance: number) => void;
   setGoal: (newGoal: number) => void;
   setInstallationTime: (newInstallationTime: number) => void;
@@ -40,6 +42,8 @@ const storeApi: StateCreator<GameState> = (set, get) => ({
   moneyPerInstallation: 50000,
   gameBalance: [600000],
   idealGameBalance: [600000],
+  reputation: 1,
+  trust: 1,
   setGameBalance: (newBalance) =>
     set((state) => ({
       gameBalance: [...state.gameBalance, get().balance + newBalance],
@@ -70,6 +74,8 @@ const storeApi: StateCreator<GameState> = (set, get) => ({
       level: 1,
       lives: 3,
       isGameOver: false,
+      reputation: 1,
+      trust: 1,
       stage: 'introduction',
       balance: 600000,
       gameBalance: [600000],

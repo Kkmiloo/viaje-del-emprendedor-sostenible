@@ -13,6 +13,8 @@ const options: GameOptionI[] = [
       'Invertiste en más personal, asegurando el cumplimiento del proyecto y mejorando tu reputación.',
     image: '/options/N4_A.png',
     isCorrect: true,
+    numberPanels: 100,
+    invest: 200000,
     balance: 7500000,
   },
   {
@@ -25,6 +27,8 @@ const options: GameOptionI[] = [
       'Aunque no cumpliste completamente con el proyecto, mantuviste tu reputación relativamente intacta.',
     image: '/options/N1_A.png',
     isCorrect: true,
+    numberPanels: 80,
+    invest: 100000,
     balance: 6000000,
   },
   {
@@ -37,6 +41,8 @@ const options: GameOptionI[] = [
       'Perdiste futuras oportunidades de proyectos municipales por no cumplir con el contrato.',
     image: '/options/N3_C.png',
     isCorrect: false,
+    numberPanels: 50,
+    invest: 0,
     balance: 3750000,
   },
 ];
