@@ -11,7 +11,7 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $30,000,000 COP.',
     additionalContext:
       'Aunque la inversión en gerentes fue alta, lograste cumplir con todo el contrato y asegurar futuras oportunidades en cada ciudad.',
-    image: '/src/assets/options/N6_A.png',
+    image: '/options/N6_A.png',
     isCorrect: true,
     balance: 30000000,
   },
@@ -23,7 +23,7 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $24,000,000 COP.',
     additionalContext:
       'La subcontratación te ayudó a cumplir con la mayor parte del proyecto, pero tu margen de beneficio fue menor y perdiste algunas oportunidades futuras.',
-    image: '/src/assets/options/N3_B.png',
+    image: '/options/N3_B.png',
     isCorrect: true,
     balance: 24000000,
   },
@@ -35,7 +35,7 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $15,000,000 COP.',
     additionalContext:
       'Perdiste la oportunidad de expandirte a nivel nacional y tu reputación en otras ciudades se vio afectada.',
-    image: '/src/assets/options/N3_C.png',
+    image: '/options/N3_C.png',
     isCorrect: false,
     balance: 15000000,
   },

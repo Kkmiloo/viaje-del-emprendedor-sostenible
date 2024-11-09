@@ -12,7 +12,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Mejoraste la velocidad de instalación, pero algunos clientes quedaron insatisfechos',
     isCorrect: true,
-    image: '/src/assets/options/N1_A.png',
+    image: '/options/N1_A.png',
     balance: 200000,
   },
   {
@@ -24,7 +24,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Lograste satisfacer a todos los clientes y mejorar tu reputación.',
     isCorrect: true,
-    image: '/src/assets/options/N1_B.png',
+    image: '/options/N1_B.png',
     balance: 250000,
   },
   {
@@ -36,7 +36,7 @@ const options: GameOptionI[] = [
     additionalContext:
       'Al no cumplir con la demanda mínima, afectaste tu reputación en el mercado local.',
     isCorrect: false,
-    image: '/src/assets/options/N1_C.png',
+    image: '/options/N1_C.png',
     balance: 150000,
   },
 ];
