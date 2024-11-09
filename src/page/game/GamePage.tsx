@@ -13,6 +13,7 @@ import { HealthIndicator } from '../../components/game/HealthIndicator';
 import { Modal } from '../../components/dialog/Modal';
 import GrowthChart from '../../components/charts/GrowthChart';
 import { Resume } from '../../components/game/Resume';
+import robot from '../../assets/robotsito-04.png';
 
 
 interface ChangeSceneParams {
@@ -161,7 +162,7 @@ const GamePage = () => {
                   <Modal
                     text={selectedOption.additionalContext!}
                     onConfirm={() => {
-                      handleOptionResult();
+                      setCurrentStep('resume');
                     }}
                   />
                 )}
@@ -171,16 +172,16 @@ const GamePage = () => {
                       handleOptionResult();
                     }}
                   >
-                    <div> 
-                      Dinero: {Intl.NumberFormat().format(
-                        selectedOption.balance
-                      )}
-                    </div>
-                    <div>
-                    reputacion : 2
-                    </div>
-                    <div>
-                    confianza : 2
+                    <div className='flex '>
+                      <img src={robot} alt='' className='w-28' />
+                      <div className='flex flex-col items-center w-full'>
+                        <div >
+                          Dinero:{' '}
+                          {Intl.NumberFormat().format(selectedOption.balance)}
+                        </div>
+                        <div>reputacion : 2</div>
+                        <div>confianza : 2</div>
+                      </div>
                     </div>
                   </Resume>
                 )}

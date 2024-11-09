@@ -11,8 +11,9 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $5,000,000 COP (50 instalaciones x $100,000 COP).',
     additionalContext:
       'Invertiste más en personal, pero aseguraste la entrega del proyecto y obtuviste nuevas oportunidades.',
+    image: '/src/assets/options/N3_A.png',
     isCorrect: true,
-    balance: 5000000
+    balance: 5000000,
   },
   {
     id: 2,
@@ -22,8 +23,9 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $4,200,000 COP (menos el costo de subcontratación).',
     additionalContext:
       'Cumpliste con el contrato, pero tus ganancias fueron reducidas.',
+    image: '/src/assets/options/N3_B.png',
     isCorrect: true,
-    balance: 4200000
+    balance: 4200000,
   },
   {
     id: 3,
@@ -32,8 +34,9 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $3,000,000 COP (30 instalaciones x $100,000 COP).',
     additionalContext:
       'Perdiste oportunidades futuras por no cumplir con el contrato.',
+    image: '/src/assets/options/N3_C.png',
     isCorrect: false,
-    balance: 3000000
+    balance: 3000000,
   },
 ];
 

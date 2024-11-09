@@ -11,8 +11,9 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $7,500,000 COP.',
     additionalContext:
       'Invertiste en más personal, asegurando el cumplimiento del proyecto y mejorando tu reputación.',
+    image: '/src/assets/options/N4_A.png',
     isCorrect: true,
-    balance: 7500000
+    balance: 7500000,
   },
   {
     id: 2,
@@ -22,8 +23,9 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $6,000,000 COP.',
     additionalContext:
       'Aunque no cumpliste completamente con el proyecto, mantuviste tu reputación relativamente intacta.',
+    image: '/src/assets/options/N1_A.png',
     isCorrect: true,
-    balance: 6000000
+    balance: 6000000,
   },
   {
     id: 3,
@@ -33,8 +35,9 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $3,750,000 COP.',
     additionalContext:
       'Perdiste futuras oportunidades de proyectos municipales por no cumplir con el contrato.',
+    image: '/src/assets/options/N3_C.png',
     isCorrect: false,
-    balance: 3750000
+    balance: 3750000,
   },
 ];
 

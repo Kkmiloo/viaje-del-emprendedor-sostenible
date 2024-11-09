@@ -10,6 +10,9 @@ export const Resume = ({onConfirm,children}: ResumeProps) => {
       <div className='fixed inset-0 flex items-center justify-center z-50'>
         <div className='modal-overlay absolute inset-0 bg-gray-500 opacity-50'></div>
         <div className='animate-fade-right animate-duration-[500ms] animate-ease-in modal-container border-4  bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-lg z-50 overflow-y-auto'>
+          <div className="w-full bg-slate-700 p-2">
+            <h2 className="text-white font-bold text-xl text-center"> Resumen</h2>
+          </div>
           <div className='modal-content py-4 text-left px-6 min-h-40'>
             <div className='mt-4'>{children}</div>
           </div>

@@ -11,8 +11,9 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $15,000,000 COP.',
     additionalContext:
       'Aunque la inversión en gerentes fue alta, la capacidad organizativa que añadieron permitió cumplir con el proyecto sin problemas.',
+    image: '/src/assets/options/N5_A.png',
     isCorrect: true,
-    balance: 15000000
+    balance: 15000000,
   },
   {
     id: 2,
@@ -22,8 +23,9 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $12,000,000 COP.',
     additionalContext:
       'Subcontrataste la logística, lo que te permitió avanzar rápidamente, pero no cumpliste completamente con el proyecto.',
+    image: '/src/assets/options/N3_B.png',
     isCorrect: true,
-    balance: 12000000
+    balance: 12000000,
   },
   {
     id: 3,
@@ -33,8 +35,9 @@ const options: GameOptionI[] = [
     impact: 'Ingresos de $7,500,000 COP.',
     additionalContext:
       'Perdiste futuras oportunidades de contratos comerciales debido a la incapacidad de cumplir con toda la demanda.',
+    image: '/src/assets/options/N3_C.png',
     isCorrect: false,
-    balance: 7500000
+    balance: 7500000,
   },
 ];
 
