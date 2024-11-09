@@ -13,4 +13,6 @@ export interface GameOptionI {
   numberPanels: number;
   invest: number;
   balance: number;
+  trustResult: number;
+  reputationResult: number;
 }

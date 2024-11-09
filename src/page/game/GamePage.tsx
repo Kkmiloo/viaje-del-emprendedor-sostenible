@@ -34,9 +34,11 @@ const GamePage = () => {
     setGoal,
     setMoneyPerInstallation,
     setGameBalance,
+    setReputation,
+    setTrust,
     reputation,
     trust,
-    goal
+    goal,
   } = useGameStore();
   const [currentScene, setCurrentScene] = useState(scenes[level - 1]);
   const [currentOptions, setCurrentOptions] = useState<GameOptionI[]>([]);
@@ -71,6 +73,8 @@ const GamePage = () => {
 
   const handleOptionSelect = (option: GameOptionI) => {
     setSelectedOption(option);
+    setTrust(option.trustResult);
+    setReputation(option.reputationResult);
     setGameBalance(option.isCorrect ? option.balance : option.balance * 0.1);
     setCurrentStep('consequence');
   };
@@ -180,7 +184,7 @@ const GamePage = () => {
                       <div className='flex w-full'>
                         <img src={robot} alt='' className='w-32 h-32' />
                         <div className='flex flex-col items-center w-full ml-7'>
-                          <div className=' flex w-full justify-between items-center'>
+                          <div className=' flex w-full justify-between items-center animate-fade-right animate-ease-in'>
                             {' '}
                             <p>Paneles: </p>{' '}
                             <ProgressBar
@@ -194,7 +198,7 @@ const GamePage = () => {
                           <div className='flex w-full justify-between items-center'>
                             <p>reputacion : </p>
                             <ProgressBar
-                              max={1}
+                              max={100}
                               value={reputation}
                               progress='percent'
                               color='red'
@@ -203,7 +207,7 @@ const GamePage = () => {
                           <div className='flex w-full justify-between items-center'>
                             <p>confianza : </p>
                             <ProgressBar
-                              max={1}
+                              max={100}
                               value={trust}
                               progress='percent'
                               color='red'
@@ -213,24 +217,23 @@ const GamePage = () => {
                             <p>Dinero:</p>
                             <div className='flex mr-4'>
                               <Counter
-                                duration={3}
+                                duration={4}
                                 number={currentScene.moneyPerInstallation}
                               />{' '}
                               *{' '}
                               <Counter
-                                duration={2}
+                                duration={4}
                                 number={selectedOption.numberPanels}
                               />
                             </div>
                             <Counter
-                              duration={3}
+                              duration={4}
                               number={selectedOption.balance}
                             />
                           </div>
                         </div>
                       </div>
                       <div>
-
                         <GrowthChart />
                       </div>
                     </div>

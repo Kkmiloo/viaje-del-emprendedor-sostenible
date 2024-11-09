@@ -14,8 +14,10 @@ const options: GameOptionI[] = [
     image: '/options/N5_A.png',
     isCorrect: true,
     numberPanels: 100,
-    invest: 400000,
+    invest: 800000,
     balance: 15000000,
+    trustResult: 20,
+    reputationResult: 20,
   },
   {
     id: 2,
@@ -30,6 +32,8 @@ const options: GameOptionI[] = [
     numberPanels: 80,
     invest: 1000000,
     balance: 12000000,
+    trustResult: 10,
+    reputationResult: -10,
   },
   {
     id: 3,
@@ -44,6 +48,8 @@ const options: GameOptionI[] = [
     invest: 0,
     numberPanels: 50,
     balance: 7500000,
+    trustResult: -20,
+    reputationResult: -20,
   },
 ];
 
@@ -66,5 +72,5 @@ export const levelFive: GameLevelI = {
   incorrectQuestionMessage: `perdiste una vida por "mala gestión logística". Al solo completar 50 instalaciones, no cumpliste con el contrato, afectando tu reputación con los grandes clientes comerciales.`,
   goal: 100,
   installationTime: 6,
-  moneyPerInstallation: 150000
+  moneyPerInstallation: 150000,
 };

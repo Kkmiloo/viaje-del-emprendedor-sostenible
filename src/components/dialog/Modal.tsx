@@ -17,7 +17,7 @@ export const Modal = ({text, onConfirm, children}:ModalProps) => {
             <p className='text-black'>{text}</p>
             <div className='mt-4'>{children}</div>
           </div>
-          <div className='animate-bounce w-full animate-duration-[1000ms]'>
+          <div className='animate-bounce w-full animate-duration-[2000ms]'>
             <svg
               className='m-auto '
               xmlns='http://www.w3.org/2000/svg'

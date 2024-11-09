@@ -16,6 +16,8 @@ const options: GameOptionI[] = [
     numberPanels: 50,
     invest: 300000,
     balance: 5000000,
+    trustResult: 20,
+    reputationResult: 20,
   },
   {
     id: 2,
@@ -30,6 +32,8 @@ const options: GameOptionI[] = [
     invest: 800000,
     isCorrect: true,
     balance: 4200000,
+    trustResult: 20,
+    reputationResult: 20,
   },
   {
     id: 3,
@@ -43,6 +47,8 @@ const options: GameOptionI[] = [
     invest: 0,
     isCorrect: false,
     balance: 3000000,
+    trustResult: -20,
+    reputationResult:-20
   },
 ];
 

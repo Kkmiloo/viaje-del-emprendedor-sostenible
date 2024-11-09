@@ -16,7 +16,7 @@ export const Resume = ({onConfirm,children}: ResumeProps) => {
           <div className='modal-content py-4 text-left px-6 min-h-40'>
             <div className='mt-4'>{children}</div>
           </div>
-          <div className='animate-bounce w-full animate-duration-[1000ms]'>
+          <div className='animate-bounce w-full animate-duration-[2000ms]'>
             <svg
               className='m-auto '
               xmlns='http://www.w3.org/2000/svg'

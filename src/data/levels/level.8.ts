@@ -16,6 +16,8 @@ const options: GameOptionI[] = [
     invest: 10000000,
     balance: 300000000,
     image: '/options/N8_A.png',
+    trustResult: 20,
+    reputationResult: 20,
   },
   {
     id: 2,
@@ -30,6 +32,8 @@ const options: GameOptionI[] = [
     invest: 15_000_000,
     balance: 240000000,
     image: '/options/N3_B.png',
+    trustResult: -10,
+    reputationResult: -10,
   },
   {
     id: 3,
@@ -44,6 +48,8 @@ const options: GameOptionI[] = [
     invest: 0,
     numberPanels: 500,
     image: '/options/N3_C.png',
+    trustResult: -20,
+    reputationResult: -20,
   },
 ];
 

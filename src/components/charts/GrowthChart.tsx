@@ -56,21 +56,22 @@ export default function GrowthChart() {
   const growthOptions: ChartOptions<'line'> = {
     scales: {
       y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: 'Balance Acumulado',
-        },
-        suggestedMin: 0, // Establece el mínimo sugerido
+        //beginAtZero: true,
+        // title: {
+        //   display: true,
+        //   text: 'Balance Acumulado',
+        // },
+        // Establece el mínimo sugerido
+        //suggestedMin: 600000 , // Valor mínimo dinámico
         suggestedMax:
           Math.max(...growthData.datasets.map(data=> data.data[0])) ||
           900000, // Valor máximo dinámico
       },
       x: {
-        title: {
-          display: true,
-          text: 'Niveles',
-        },
+        // title: {
+        //   display: true,
+        //   text: 'Niveles',
+        // },
       },
     },
     plugins: {
