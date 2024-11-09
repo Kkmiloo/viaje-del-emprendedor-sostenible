@@ -14,7 +14,7 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
   };
 
   return (
-    <div className='animate-jump-in animate-duration-[800ms] animate-ease-out flex md:flex-row  flex-col items-center justify-center gap-3 p-2 bg-slate-200 m-auto rounded-xl z-40 max-w-6xl'>
+    <div className='animate-jump-in animate-duration-[800ms] animate-ease-out flex md:flex-row  flex-col items-center justify-center  md:gap-3 p-2 bg-slate-200 m-auto rounded-xl z-40 max-w-6xl'>
       {options.map((option) => (
         <div
           key={option.id}
@@ -27,16 +27,16 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
           <img
             src={option.image}
             alt={option.text}
-            className='absolute w-28 h-28 right-0 -top-5  md:-top-20 md:right-1  text-justify'
+            className='absolute  w-20 h-20 md:w-28 md:h-28 right-0 -top-10  md:-top-20 md:right-1  text-justify'
           />
 
           <div className='flex items-center mt-11'>
-            <p className='text-7xl md:text-8xl chewy ml-2'>
+            <p className='text-6xl md:text-8xl chewy ml-2'>
               {' '}
               {optionLetters[option.id - 1]}{' '}
             </p>
             {/* <img src={option.image} alt={option.text} className='w-32 h-32' /> */}
-            <p className='ml-6 h-full'>{option.text}</p>
+            <p className='ml-4 md:ml-6 h-full text-base md:text-lg'>{option.text}</p>
           </div>
         </div>
       ))}

@@ -111,7 +111,7 @@ const GamePage = () => {
             alt='background'
           /> */}
           <div className=' w-full flex flex-col z-20 '>
-            <div className='max-w-6xl items-center m-auto px-4 z-20 text-2xl bg-slate-700 w-full rounded-xl flex justify-between p-4 border-2 border-slate-200'>
+            <div className='max-w-6xl items-center m-auto px-4 z-20  md:text-2xl bg-slate-700 w-full rounded-xl flex justify-between p-2 md:p-4 border-2 border-slate-200'>
               <h1 className='font-bold text-center text-white '>
                 {currentScene.name}
               </h1>

@@ -5,7 +5,7 @@ export const HealthIndicator = () => {
   const totalLives = 3;
 
   return (
-    <div className='bg-gray-300 flex items-center px-5 md:px-16 rounded-md h-10 space-x-1'>
+    <div className='bg-gray-300 flex items-center px-4 md:px-16 rounded-md md:py-1 space-x-1'>
       {[...Array(totalLives)].map((_, index) => (
         <span
           key={index}

@@ -94,11 +94,11 @@ export const Dialog = ({
             showQuestion && question ? 'items-start' : ''
           }  flex h-full `}
         >
-          <img src={robot} className=' max-w-36   h-fit rounded-xl p-2' />
+          <img src={robot} className=' max-w-28 md:max-w-36 h-fit rounded-xl p-2' />
           <div
             className={`${
               showQuestion ? 'justify-start ' : 'justify-between flex-col'
-            } flex  h-full  ml-8 w-full`}
+            } flex  h-full ml-3 md:ml-8 w-full`}
           >
             {currentPage <= pages.length - 1 && !showQuestion && (
               <div>
@@ -112,9 +112,9 @@ export const Dialog = ({
               </div>
             )}
             {showQuestion && question && (
-              <>
-                <div className='flex flex-col gap-1 border w-fit px-3 rounded-lg bg-gray-200 h-fit'>
-                  <h2 className='font-bold border-b border-slate-400 mb-2'>
+              <div className='flex flex-col md:flex-row text-base md:text-xl'>
+                <div className='flex md:flex-col gap-1 border w-full px-3 rounded-lg bg-gray-200 h-fit md:w-fit mb-2 '>
+                  <h2 className='font-bold md:border-b border-r pr-2 border-slate-400 md:mb-2'>
                     Objetivo
                   </h2>
                   <p className='text-red-600'> 🏁: {goal}</p>
@@ -125,7 +125,7 @@ export const Dialog = ({
                 <div className='ml-4'>
                   <Typewriter text={question} delay={30} infinite={false} />
                 </div>
-              </>
+              </div>
             )}
 
             {!showQuestion && (
