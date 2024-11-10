@@ -3,14 +3,19 @@ import { useState, useEffect } from 'react';
 interface TypewriterProps {
   text: string;
   delay: number;
-  infinite: boolean;
+  animationFinished: boolean; // Nueva prop
+  onComplete: () => void; // Callback para indicar que terminó la animación
 }
 
-const Typewriter = ({ text, delay, infinite }: TypewriterProps) => {
+const Typewriter = ({
+  text,
+  delay,
+  animationFinished,
+  onComplete,
+}: TypewriterProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayText, setDisplayText] = useState<(JSX.Element | string)[]>([]);
 
-  // Define las palabras clave a resaltar
   const keywords = [
     'COP',
     '8 horas',
@@ -27,41 +32,53 @@ const Typewriter = ({ text, delay, infinite }: TypewriterProps) => {
     '$300,000',
   ];
 
+  // Mostrar el texto completo si `animationFinished` es verdadero
   useEffect(() => {
-    let timeout: number;
-
-    if (currentIndex < text.length) {
-      timeout = setTimeout(() => {
-        // Verifica si el texto en la posición actual coincide con alguna palabra clave
-        const remainingText = text.slice(currentIndex);
+    if (animationFinished) {
+      const fullText = text.split('').map((char, index) => {
+        const remainingText = text.slice(index);
         const keyword = keywords.find((kw) => remainingText.startsWith(kw));
-
         if (keyword) {
-          // Agrega la palabra clave completa como un span con estilo
-          setDisplayText((prevText) => [
-            ...prevText,
-            <span
-              style={{ color: 'blue', fontWeight: 'bold' }}
-              key={currentIndex}
-            >
+          return (
+            <span style={{ color: 'blue', fontWeight: 'bold' }} key={index}>
               {keyword}
-            </span>,
-          ]);
-          setCurrentIndex((prevIndex) => prevIndex + keyword.length); // Salta la palabra clave
-        } else {
-          // Agrega la siguiente letra
-          setDisplayText((prevText) => [...prevText, text[currentIndex]]);
-          setCurrentIndex((prevIndex) => prevIndex + 1);
+            </span>
+          );
         }
-      }, delay);
-    } else if (infinite) {
-      // Reinicia el efecto si es infinito
-      setCurrentIndex(0);
-      setDisplayText([]);
+        return char;
+      });
+      setDisplayText(fullText);
+      onComplete(); // Llama a la función cuando la animación termina
     }
+  }, [animationFinished, text]);
+
+  // Lógica de animación por letra si `animationFinished` es falso
+  useEffect(() => {
+    if (animationFinished || currentIndex >= text.length) return;
+
+    const timeout = setTimeout(() => {
+      const remainingText = text.slice(currentIndex);
+      const keyword = keywords.find((kw) => remainingText.startsWith(kw));
+
+      if (keyword) {
+        setDisplayText((prev) => [
+          ...prev,
+          <span
+            style={{ color: 'blue', fontWeight: 'bold' }}
+            key={currentIndex}
+          >
+            {keyword}
+          </span>,
+        ]);
+        setCurrentIndex(currentIndex + keyword.length);
+      } else {
+        setDisplayText((prev) => [...prev, text[currentIndex]]);
+        setCurrentIndex(currentIndex + 1);
+      }
+    }, delay);
 
     return () => clearTimeout(timeout);
-  }, [currentIndex, delay, infinite, text]);
+  }, [currentIndex, delay, text, animationFinished]);
 
   return <span>{displayText}</span>;
 };

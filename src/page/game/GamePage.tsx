@@ -10,12 +10,16 @@ import { Introduction } from '../../components/game/Introduction';
 import { Ending } from '../../components/game/Ending';
 import { IntroLevel } from '../../components/game/IntroLevel';
 import { HealthIndicator } from '../../components/game/HealthIndicator';
-import { Modal } from '../../components/dialog/Modal';
+//import { Modal } from '../../components/dialog/Modal';
 import GrowthChart from '../../components/charts/GrowthChart';
 import { Resume } from '../../components/game/Resume';
-import robot from '../../assets/robotsito-04.png';
+//import robot from '../../assets/robotsito-04.png';
+import robotIncorrecto from '../../assets/robotsito-05.png';
+import robotCorrecto from '../../assets/robotsito-06.png';
+
 import { Counter } from '../../components/text/Counter';
 import { ProgressBar } from '../../components/stats/ProgressBar';
+import Typewriter from '../../components/text/Typewriter';
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -43,8 +47,9 @@ const GamePage = () => {
   const [currentScene, setCurrentScene] = useState(scenes[level - 1]);
   const [currentOptions, setCurrentOptions] = useState<GameOptionI[]>([]);
   const [currentStep, setCurrentStep] = useState<
-    'consequence' | 'impact' | 'additionalContext' | 'resume' | null
-  >(null);
+    'consequence' | 'impact' | 'additionalContext' | null
+  >('consequence');
+  const [showResume, setShowResumen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<GameOptionI | null>(
     null
   );
@@ -69,14 +74,16 @@ const GamePage = () => {
     setShowIntroLevel(true);
     setShowOptions(false);
     setShowQuestion(false);
+    setShowResumen(false);
   };
 
   const handleOptionSelect = (option: GameOptionI) => {
     setSelectedOption(option);
     setTrust(option.trustResult);
     setReputation(option.reputationResult);
-    setGameBalance(option.isCorrect ? option.balance : option.balance * 0.1);
+    setGameBalance(option.balance, option.invest);
     setCurrentStep('consequence');
+    setShowResumen(true);
   };
 
   const changeScene = ({ isCorrect }: ChangeSceneParams) => {
@@ -119,10 +126,10 @@ const GamePage = () => {
             alt='background'
           /> */}
           <div className=' w-full flex flex-col z-20 '>
-            <div className='max-w-6xl items-center m-auto px-4 z-20  md:text-2xl bg-slate-700 w-full rounded-xl flex justify-between p-2 md:p-4 border-2 border-slate-200'>
-              <h1 className='font-bold text-center text-white '>
+            <div className='max-w-6xl items-center m-auto px-4 z-20   bg-slate-700 w-full rounded-xl flex justify-between p-2 md:p-4 border-2 border-slate-200'>
+              <h2 className='font-bold text-center text-white '>
                 {currentScene.name}
-              </h1>
+              </h2>
             </div>
             <div className='max-w-6xl m-auto flex justify-between items-center w-full px-6 py-2 bg-slate-700 border-2 rounded-xl'>
               <div className='text-white font-bold'>
@@ -148,7 +155,7 @@ const GamePage = () => {
             />
             {selectedOption && (
               <>
-                {currentStep === 'consequence' && (
+                {/* {currentStep === 'consequence' && (
                   <Modal
                     text={selectedOption.consequence}
                     onConfirm={() => {
@@ -169,21 +176,59 @@ const GamePage = () => {
                 {currentStep === 'additionalContext' && (
                   <Modal
                     text={selectedOption.additionalContext!}
-                    onConfirm={() => {
-                      setCurrentStep('resume');
-                    }}
+                    onConfirm={() => {}}
                   />
-                )}
-                {currentStep === 'resume' && (
+                )} */}
+                {showResume && (
                   <Resume
                     onConfirm={() => {
-                      handleOptionResult();
+                      if (currentStep !== null) {
+                        if (currentStep === 'consequence') {
+                          setCurrentStep('impact');
+                        } else if (currentStep === 'impact') {
+                          setCurrentStep('additionalContext');
+                        } else if (currentStep === 'additionalContext') {
+                          handleOptionResult();
+                        }
+                      }
                     }}
                   >
                     <div className='font-bold '>
-                      <div className='flex w-full'>
-                        <img src={robot} alt='' className='w-32 h-32' />
-                        <div className='flex flex-col items-center w-full ml-7'>
+                      <div className='flex w-full mb-5'>
+                        <img
+                          src={
+                            selectedOption.isCorrect
+                              ? robotCorrecto
+                              : robotIncorrecto
+                          }
+                          alt=''
+                          className='w-32 h-32'
+                        />
+                        {currentStep === 'consequence' ? (
+                          <Typewriter
+                            text={selectedOption.consequence}
+                            animationFinished={false}
+                            delay={40}
+                            onComplete={() => { }}
+                          />
+                        ) : currentStep === 'impact' ? (
+                          <Typewriter
+                            text={selectedOption.impact}
+                            animationFinished={false}
+                            delay={40}
+                            onComplete={() => { }}
+                          />
+                        ) : (<Typewriter
+                            text={selectedOption.additionalContext}
+                            animationFinished={false}
+                            delay={40}
+                            onComplete={() => { }}
+                          />)
+                      
+                      }
+                      </div>
+                      <div>
+                        <div className='flex flex-col items-center w-full px-4 '>
                           <div className=' flex w-full justify-between items-center animate-fade-right animate-ease-in'>
                             {' '}
                             <p>Paneles: </p>{' '}
@@ -196,7 +241,7 @@ const GamePage = () => {
                           </div>
 
                           <div className='flex w-full justify-between items-center'>
-                            <p>reputacion : </p>
+                            <p>Reputación : </p>
                             <ProgressBar
                               max={100}
                               value={reputation}
@@ -232,8 +277,6 @@ const GamePage = () => {
                             />
                           </div>
                         </div>
-                      </div>
-                      <div>
                         <GrowthChart />
                       </div>
                     </div>

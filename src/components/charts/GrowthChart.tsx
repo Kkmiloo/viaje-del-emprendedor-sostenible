@@ -7,7 +7,8 @@ import {
   PointElement,
   Legend,
   ChartOptions,
-    LineElement,
+  LineElement,
+    Filler
 
 } from 'chart.js';
 import { useEffect, useRef } from 'react';
@@ -18,14 +19,20 @@ ChartJS.register(
   Tooltip,
     Legend,
   PointElement,
-  LineElement
+  LineElement,
+  Filler
+  
 );
 
 export default function GrowthChart() {
   const chartRef = useRef<ChartJS<'line'>>();
   const { gameBalance, idealGameBalance, level } = useGameStore();
   
-  const labels = Array.from({ length: level }, (_, index) => `Nivel ${index + 1}`);
+  const labels = [];
+
+  for (let i = 1; i <= level; i++) {
+    labels.push('', `Nivel ${i}`);
+  }
 
   const growthData = {
     labels: ['',...labels],
@@ -34,7 +41,7 @@ export default function GrowthChart() {
         label: 'Competencia',
         data: idealGameBalance, // Ajusta según el crecimiento perfecto por nivel
         borderColor: 'rgba(128, 128, 128, 0.5)',
-        fill: false,
+        fill: true,
         borderWidth: 2,
         pointRadius: 2,
             tension: 0.3,

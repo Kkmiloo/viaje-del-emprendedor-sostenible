@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useState } from 'react';
 //import man from '../../assets/man.webp';
 import robot from '../../assets/robotsito-04.png';
 import robotQuestion from '../../assets/robotsito-07.png';
@@ -11,72 +11,29 @@ interface DialogProps {
   question?: string;
   showQuestion?: boolean;
   setShowQuestion?: (showQuestion: boolean) => void;
-  finishedAnimation? : boolean;
+  finishedAnimation?: boolean;
   onNext: () => void;
 }
-
 export const Dialog = ({
   text,
   question,
   onNext,
   showQuestion,
   setShowQuestion,
-  finishedAnimation,
+  //finishedAnimation,
 }: DialogProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [pages, setPages] = useState<string[]>([]);
 
+  const [animationFinished, setAnimationFinished] = useState(false);
   const { goal, moneyPerInstallation } = useGameStore();
-  // Función para dividir el texto en partes según el tamaño del contenedor
-  const paginateText = (text: string, charsPerPage: number) => {
-    const words = text.split(' ');
-    let currentPageText = '';
-    const result: string[] = [];
 
-    words.forEach((word) => {
-      // Si agregar la palabra excede el límite, empuja la página actual
-      if (currentPageText.length + word.length <= charsPerPage) {
-        currentPageText += word + ' ';
-      } else {
-        result.push(currentPageText.trim());
-        currentPageText = word + ' '; // Inicia una nueva página
-      }
-    });
-
-    // Empuja la última página si queda texto
-    if (currentPageText) {
-      result.push(currentPageText.trim());
-    }
-
-    return result;
-  };
-
-  // Efecto para calcular el tamaño del contenedor y paginar el texto
-  useEffect(() => {
-    if (containerRef.current) {
-      const containerHeight = containerRef.current.clientHeight;
-      const containerWidth = containerRef.current.clientWidth;
-
-      // Estimación del número de caracteres por línea y página
-      const charsPerLine = Math.floor(containerWidth / 15); // Aproximado, depende del tamaño de la fuente
-      const linesPerPage = Math.floor(containerHeight / 20); // Aproximado, depende de la altura de línea
-      const charsPerPage = charsPerLine * linesPerPage;
-
-      // Divide el texto en páginas basadas en el tamaño del contenedor
-      const textPages = paginateText(text, charsPerPage);
-      setPages(textPages);
-    }
-  }, [text]);
-
-  // Función para avanzar a la siguiente página del diálogo
   const handleNext = () => {
-    if (currentPage < pages.length - 1) {
-      setCurrentPage(currentPage + 1);
+    if (!animationFinished) {
+      setAnimationFinished(true);
     } else if (question) {
       if (setShowQuestion) setShowQuestion(true);
+      setAnimationFinished(false);
       onNext();
-      // Ejecuta la función al terminar la última página y tener pregunta
     }
   };
 
@@ -94,23 +51,25 @@ export const Dialog = ({
         <div
           className={` ${
             showQuestion && question ? 'items-start' : ''
-          }  flex h-full `}
+          } flex h-full `}
         >
-          <img src={showQuestion?  robotQuestion: robot} className=' max-w-28 md:max-w-36 h-fit rounded-xl p-2' />
+          <img
+            src={showQuestion ? robotQuestion : robot}
+            className=' max-w-28 md:max-w-36 h-fit rounded-xl p-2'
+          />
           <div
             className={`${
               showQuestion ? 'justify-start ' : 'justify-between flex-col'
             } flex  h-full ml-3 md:ml-8 w-full`}
           >
-            {currentPage <= pages.length - 1 && !showQuestion && (
+            {!showQuestion && (
               <div>
-                {finishedAnimation && (
-                  <Typewriter
-                    text={pages[currentPage]}
-                    delay={30}
-                    infinite={false}
-                  />
-                )}
+                <Typewriter
+                  text={text}
+                  delay={30}
+                  animationFinished={animationFinished}
+                  onComplete={() => setAnimationFinished(true)} // Marcar que terminó la animación
+                />
               </div>
             )}
             {showQuestion && question && (
@@ -125,7 +84,12 @@ export const Dialog = ({
                   </p>
                 </div>
                 <div className='ml-4'>
-                  <Typewriter text={question} delay={30} infinite={false} />
+                  <Typewriter
+                    text={question}
+                    delay={30}
+                    animationFinished={animationFinished}
+                    onComplete={() => setAnimationFinished(true)}
+                  />
                 </div>
               </div>
             )}
