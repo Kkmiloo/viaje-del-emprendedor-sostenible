@@ -47,7 +47,7 @@ const GamePage = () => {
   const [currentScene, setCurrentScene] = useState(scenes[level - 1]);
   const [currentOptions, setCurrentOptions] = useState<GameOptionI[]>([]);
   const [currentStep, setCurrentStep] = useState<
-    'consequence' | 'impact' | 'additionalContext' | null
+    'consequence' | 'impact' | 'additionalContext' | 'incorrectAnswer' | null
   >('consequence');
   const [showResume, setShowResumen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<GameOptionI | null>(
@@ -188,6 +188,12 @@ const GamePage = () => {
                         } else if (currentStep === 'impact') {
                           setCurrentStep('additionalContext');
                         } else if (currentStep === 'additionalContext') {
+                          if (!selectedOption.isCorrect) {
+                             setCurrentStep('incorrectAnswer')
+                          } else {
+                            handleOptionResult();
+                          }
+                        } else {
                           handleOptionResult();
                         }
                       }
@@ -204,28 +210,40 @@ const GamePage = () => {
                           alt=''
                           className='w-32 h-32'
                         />
-                        {currentStep === 'consequence' ? (
-                          <Typewriter
-                            text={selectedOption.consequence}
-                            animationFinished={false}
-                            delay={40}
-                            onComplete={() => { }}
-                          />
-                        ) : currentStep === 'impact' ? (
-                          <Typewriter
-                            text={selectedOption.impact}
-                            animationFinished={false}
-                            delay={40}
-                            onComplete={() => { }}
-                          />
-                        ) : (<Typewriter
-                            text={selectedOption.additionalContext}
-                            animationFinished={false}
-                            delay={40}
-                            onComplete={() => { }}
-                          />)
-                      
-                      }
+                        <div className='ml-12'>
+                          {currentStep === 'consequence' && (
+                            <Typewriter
+                              text={selectedOption.consequence}
+                              animationFinished={false}
+                              delay={40}
+                              onComplete={() => {}}
+                            />
+                          )}{' '}
+                          {currentStep === 'impact' && (
+                            <Typewriter
+                              text={selectedOption.impact}
+                              animationFinished={false}
+                              delay={40}
+                              onComplete={() => {}}
+                            />
+                          )}
+                          {currentStep === 'additionalContext' && (
+                            <Typewriter
+                              text={selectedOption.additionalContext}
+                              animationFinished={false}
+                              delay={40}
+                              onComplete={() => {}}
+                            />
+                          )}
+                          {currentStep === 'incorrectAnswer' && (
+                            <Typewriter
+                              text={currentScene.incorrectQuestionMessage}
+                              animationFinished={false}
+                              delay={40}
+                              onComplete={() => {}}
+                            />
+                          )}
+                        </div>
                       </div>
                       <div>
                         <div className='flex flex-col items-center w-full px-4 '>
@@ -250,7 +268,7 @@ const GamePage = () => {
                             />{' '}
                           </div>
                           <div className='flex w-full justify-between items-center'>
-                            <p>confianza : </p>
+                            <p>Confianza : </p>
                             <ProgressBar
                               max={100}
                               value={trust}
@@ -259,7 +277,7 @@ const GamePage = () => {
                             />{' '}
                           </div>
                           <div className='flex w-full justify-between items-center mb-4'>
-                            <p>Dinero:</p>
+                            <p>Ingresos:</p>
                             <div className='flex mr-4'>
                               <Counter
                                 duration={4}

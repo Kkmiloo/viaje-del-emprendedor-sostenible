@@ -56,34 +56,37 @@ const storeApi: StateCreator<GameState> = (set, get) => ({
   idealGameBalance: [600000],
   reputation: 100,
   trust: 100,
-setGameBalance: (newBalance, invest) =>
-  set((state) => {
-    const levelInvest = get().balance - invest;
-    const finalBalance = levelInvest + newBalance;
+  setGameBalance: (newBalance, invest) =>
+    set((state) => {
+      const levelInvest = get().balance - invest;
+      const finalBalance = levelInvest + newBalance;
 
-    // Obtener los valores actuales de confianza y reputación
-    const { trust, reputation } = get();
+      // Obtener los valores actuales de confianza y reputación
+      const { trust, reputation } = get();
 
-    // Calcular el factor de ajuste dinámico
-    const adjustmentFactor = 1 - ((trust + reputation) / 200) * 0.2; // Ajuste entre 0.9 y 1.0
+      // Calcular el factor de ajuste dinámico
+      const adjustmentFactor = 1 - ((trust + reputation) / 200) * 0.2; // Ajuste entre 0.9 y 1.0
 
-    // Calcular el balance ideal y la inversión ideal de la competencia
-    const idealGameInvest = state.idealGameBalance[state.idealGameBalance.length - 1] - invest * adjustmentFactor;
-    const competitionBalance = idealGameInvest + (newBalance * adjustmentFactor);
+      // Calcular el balance ideal y la inversión ideal de la competencia
+      const idealGameInvest =
+        state.idealGameBalance[state.idealGameBalance.length - 1] -
+        invest * adjustmentFactor;
+      const competitionBalance =
+        idealGameInvest + newBalance * adjustmentFactor;
 
-    return {
-      gameBalance: [...state.gameBalance, levelInvest, finalBalance],
-      idealGameBalance: [
-        ...state.idealGameBalance,
-        idealGameInvest,
-        competitionBalance,
-      ],
-      balance: get().balance + newBalance,
-    };
-  }),
+      return {
+        gameBalance: [...state.gameBalance, levelInvest, finalBalance],
+        idealGameBalance: [
+          ...state.idealGameBalance,
+          idealGameInvest,
+          competitionBalance,
+        ],
+        balance: get().balance + newBalance,
+      };
+    }),
   setReputation: (newReputation) =>
-    set({ reputation: get().reputation + newReputation }),
-  setTrust: (newTrust) => set({ trust: get().trust + newTrust }),
+    set({ reputation: Math.min(get().reputation + newReputation, 100) }),
+  setTrust: (newTrust) => set({ trust: Math.min(get().trust + newTrust, 100) }),
   setGoal: (newGoal) => set({ goal: newGoal }),
   setInstallationTime: (newInstallationTime) =>
     set({ installationTime: newInstallationTime }),
