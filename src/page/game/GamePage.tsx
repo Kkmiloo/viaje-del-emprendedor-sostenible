@@ -15,7 +15,7 @@ import { HealthIndicator } from '../../components/game/HealthIndicator';
 // import Typewriter from '../../components/text/Typewriter';
 import BackgroundMusic from '../../components/game/BackgroundMusic';
 import { ResultSummary } from '../../components/game/ResultSummary';
-
+import GameOver from '../../components/game/GameOver';
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -185,7 +185,6 @@ const GamePage = () => {
                     reputation={reputation}
                     selectedOption={selectedOption}
                     trust={trust}
-                    
                     setFinishedAnimationResume={() =>
                       setFinishedAnimationResume(true)
                     }
@@ -204,17 +203,10 @@ const GamePage = () => {
       )}
 
       {isGameOver && (
-        <div className='flex flex-col items-center justify-center h-full text-center text-3xl text-white z-40 bg-slate-700 m-auto p-12 rounded-lg border-4 border-gray-300'>
-          <h1>Game Over</h1>
-          <button
-            className='mt-4 p-2 bg-red-500 rounded text-white hover:bg-red-700'
-            onClick={resetGame}
-          >
-            Reiniciar Juego
-          </button>
-        </div>
+        <GameOver onRestart={resetGame} bestScore={12} score={12} />
       )}
-      {stage === 'ending' && !isGameOver && <Ending onRestart={resetGame} />}
+
+      {stage === 'ending' && !isGameOver &&  <Ending onRestart={resetGame} />}
     </main>
   );
 };
