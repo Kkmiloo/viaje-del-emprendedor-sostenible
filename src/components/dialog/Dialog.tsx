@@ -11,7 +11,7 @@ interface DialogProps {
   question?: string;
   showQuestion?: boolean;
   setShowQuestion?: (showQuestion: boolean) => void;
-  finishedAnimation?: boolean;
+  showIntroText?: boolean;
   onNext: () => void;
 }
 export const Dialog = ({
@@ -20,19 +20,25 @@ export const Dialog = ({
   onNext,
   showQuestion,
   setShowQuestion,
-  //finishedAnimation,
+  showIntroText,
 }: DialogProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [animationFinished, setAnimationFinished] = useState(false);
+  const [animationFinishedIntro, setAnimationFinishedIntro] = useState(false);
+
   const { goal, moneyPerInstallation } = useGameStore();
 
   const handleNext = () => {
-    if (!animationFinished) {
+
+    if (!animationFinished || !animationFinishedIntro) {
       setAnimationFinished(true);
+      setAnimationFinishedIntro(true);
     } else if (question) {
       if (setShowQuestion) setShowQuestion(true);
       setAnimationFinished(false);
+      setAnimationFinishedIntro(false);
+
       onNext();
     }
   };
@@ -56,21 +62,25 @@ export const Dialog = ({
           />
           <div
             className={`${
-              showQuestion ? 'justify-start ' : 'justify-between flex-col'
+              showQuestion
+                ? 'justify-start '
+                : 'justify-between flex-col text-base md:text-xl'
             } flex  h-full ml-3 md:ml-8 w-full`}
           >
             {!showQuestion && (
               <div>
-                <Typewriter
-                  text={text}
-                  delay={30}
-                  animationFinished={animationFinished}
-                  onComplete={() => setAnimationFinished(true)} // Marcar que terminó la animación
-                />
+                {showIntroText && (
+                  <Typewriter
+                    text={text}
+                    delay={30}
+                    animationFinished={animationFinishedIntro}
+                    onComplete={() => setAnimationFinishedIntro(true)}
+                  />
+                )}
               </div>
             )}
             {showQuestion && question && (
-              <div className='flex flex-col md:flex-row text-base md:text-xl'>
+              <div className='flex flex-col md:flex-row '>
                 <div className='flex md:flex-col gap-1 border w-full px-3 rounded-lg bg-gray-200 h-fit md:w-fit mb-2 '>
                   <h2 className='font-bold md:border-b md:border-r-0 border-r pr-2 border-slate-400 md:mb-2'>
                     Objetivo

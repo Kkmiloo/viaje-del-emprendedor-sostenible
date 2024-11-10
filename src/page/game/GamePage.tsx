@@ -57,14 +57,14 @@ const GamePage = () => {
   const [showIntroLevel, setShowIntroLevel] = useState<boolean>(true);
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [showQuestion, setShowQuestion] = useState(false);
-  const [finishedAnimation, setFinishedAnimation] = useState(false);
+  const [showIntroText, setShowIntroText] = useState(false);
   const [finishedAnimationResume, setFinishedAnimationResume] = useState(false);
 
   const [toggleMusic, setToggleMusic] = useState(false);
 
   const handleIntroLevel = () => {
     setShowIntroLevel(false);
-    setTimeout(() => setFinishedAnimation(true), 200);
+    setTimeout(() => setShowIntroText(true), 200);
   };
 
   const handleShowOptions = () => {
@@ -161,7 +161,7 @@ const GamePage = () => {
               onNext={handleShowOptions}
               showQuestion={showQuestion}
               setShowQuestion={setShowQuestion}
-              finishedAnimation={finishedAnimation}
+              showIntroText={showIntroText}
             />
             {selectedOption && (
               <>
