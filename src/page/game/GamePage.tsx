@@ -58,7 +58,9 @@ const GamePage = () => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [showQuestion, setShowQuestion] = useState(false);
   const [finishedAnimation, setFinishedAnimation] = useState(false);
-  const [toggleMusic, setToggleMusic] = useState(false)
+  const [finishedAnimationResume, setFinishedAnimationResume] = useState(false);
+
+  const [toggleMusic, setToggleMusic] = useState(false);
 
   const handleIntroLevel = () => {
     setShowIntroLevel(false);
@@ -118,7 +120,7 @@ const GamePage = () => {
       {stage === 'introduction' && (
         <Introduction
           onStart={() => {
-            setToggleMusic(true)
+            setToggleMusic(true);
             changeStage('level');
           }}
         />
@@ -190,7 +192,11 @@ const GamePage = () => {
                 {showResume && (
                   <Resume
                     onConfirm={() => {
-                      if (currentStep !== null) {
+                      if (!finishedAnimationResume) {
+                        setFinishedAnimationResume(true);
+                        return;
+                      } else if (currentStep !== null) {
+                        setFinishedAnimationResume(false);
                         if (currentStep === 'consequence') {
                           setCurrentStep('impact');
                         } else if (currentStep === 'impact') {
@@ -222,33 +228,41 @@ const GamePage = () => {
                           {currentStep === 'consequence' && (
                             <Typewriter
                               text={selectedOption.consequence}
-                              animationFinished={false}
+                              animationFinished={finishedAnimationResume}
                               delay={40}
-                              onComplete={() => {}}
+                              onComplete={() => {
+                                setFinishedAnimationResume(true);
+                              }}
                             />
                           )}{' '}
                           {currentStep === 'impact' && (
                             <Typewriter
                               text={selectedOption.impact}
-                              animationFinished={false}
+                              animationFinished={finishedAnimationResume}
                               delay={40}
-                              onComplete={() => {}}
+                              onComplete={() => {
+                                setFinishedAnimationResume(true);
+                              }}
                             />
                           )}
                           {currentStep === 'additionalContext' && (
                             <Typewriter
                               text={selectedOption.additionalContext}
-                              animationFinished={false}
+                              animationFinished={finishedAnimationResume}
                               delay={40}
-                              onComplete={() => {}}
+                              onComplete={() => {
+                                setFinishedAnimationResume(true);
+                              }}
                             />
                           )}
                           {currentStep === 'incorrectAnswer' && (
                             <Typewriter
                               text={currentScene.incorrectQuestionMessage}
-                              animationFinished={false}
+                              animationFinished={finishedAnimationResume}
                               delay={40}
-                              onComplete={() => {}}
+                              onComplete={() => {
+                                setFinishedAnimationResume(true);
+                              }}
                             />
                           )}
                         </div>

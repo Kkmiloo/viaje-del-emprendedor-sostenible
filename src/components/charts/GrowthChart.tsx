@@ -100,5 +100,5 @@ export default function GrowthChart() {
       }
     };
   }, []);
-  return <Line data={growthData} options={growthOptions} />;
+  return <Line data={growthData} options={growthOptions}  className='z-50' onClick={(event)=> event.stopPropagation()}/>;
 }
