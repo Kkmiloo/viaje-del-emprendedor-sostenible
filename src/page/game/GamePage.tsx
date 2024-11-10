@@ -79,6 +79,7 @@ const GamePage = () => {
     setShowOptions(false);
     setShowQuestion(false);
     setShowResumen(false);
+    setShowIntroText(false);
   };
 
   const handleOptionSelect = (option: GameOptionI) => {
