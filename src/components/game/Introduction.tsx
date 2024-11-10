@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import man from '../../assets/man.webp';
+//import man from '../../assets/man.webp';
 
 interface IntroductionProps {
   onStart: () => void;
