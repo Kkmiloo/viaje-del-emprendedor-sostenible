@@ -5,12 +5,12 @@ import { shuffleOptions } from '../../utils/randomizeOptions';
 const options: GameOptionI[] = [
   {
     id: 1,
-    text: 'Abrir sedes locales en México y Brasil, contratando gerentes locales por $700,000 COP cada uno.',
+    text: 'Comprar 2 camiones de largo alcance por $3,500,000 COP cada uno.',
     consequence:
-      'Pudiste realizar las 500 instalaciones, cumpliendo con el contrato internacional.',
-    impact: 'Ingresos de $100,000,000 COP',
+      'Pudiste cubrir hasta 200 entregas diarias, pero no toda la demanda.',
+    impact: 'Ingresos diarios de $2,000,000 COP.',
     additionalContext:
-      'Invertiste mucho en abrir sedes locales, pero lograste cumplir con todo el contrato y aseguraste futuras oportunidades en América Latina.',
+      'Lograste realizar una parte significativa de las entregas hacia los puertos internacionales, pero perdiste la oportunidad de asegurar contratos adicionales por no cubrir la demanda completa.',
     isCorrect: true,
     numberPanels: 500,
     invest: 1400000,
@@ -21,12 +21,12 @@ const options: GameOptionI[] = [
   },
   {
     id: 2,
-    text: 'Subcontratar una empresa de logística internacional por $5,000,000 COP para gestionar las instalaciones en ambos países.',
+    text: 'Comprar 3 camiones de largo alcance por $3,500,000 COP cada uno.',
     consequence:
-      'Lograste realizar 400 instalaciones, pero no cubriste toda la demanda.',
-    impact: 'Ingresos de $80,000,000 COP.',
+      'Pudiste cubrir las 300 entregas diarias, asegurando que tu empresa pueda cumplir con las entregas hacia los puertos internacionales.',
+    impact: 'Ingresos diarios de $3,000,000 COP',
     additionalContext:
-      'La subcontratación ayudó a cumplir la mayor parte del contrato, pero con menos margen y sin asegurar futuras oportunidades en la región.',
+      'La inversión fue considerable, pero lograste expandir tu operación y consolidar la logística de exportación desde Sucre hacia los puertos internacionales.',
     isCorrect: true,
     numberPanels: 400,
     invest: 5000000,
@@ -37,12 +37,12 @@ const options: GameOptionI[] = [
   },
   {
     id: 3,
-    text: 'Intentar gestionar el proyecto internacional sin abrir sedes ni contratar gerentes locales',
+    text: 'Comprar 1 camión de largo alcance por $3,500,000 COP.',
     consequence:
-      'Solo pudiste realizar 300 instalaciones, lo que no fue suficiente para cumplir con el contrato.',
-    impact: 'Ingresos de $60,000,000 COP.',
+      'Pudiste realizar solo 100 entregas diarias, lo que no fue suficiente para cubrir la demanda de 300 entregas.',
+    impact: 'Ingresos diarios de $1,000,000 COP',
     additionalContext:
-      'Perdiste oportunidades internacionales y tu reputación global se vio afectada.',
+      'No cubriste la demanda mínima y perdiste contratos clave para exportación, afectando la viabilidad de tu expansión internacional.',
     isCorrect: false,
     numberPanels: 300,
     invest: 0,
@@ -61,16 +61,16 @@ const incorrectQuestionId = options.find(
 
 export const levelSeven: GameLevelI = {
   level: 7,
-  name: 'Nivel 7: "Expansión Internacional" - Energía Solar en América Latina',
+  name: 'Nivel 7: "Rutas Empresariales Internacionales" - Desde Sucre a Puertos Internacionales (Camiones de Largo Alcance)',
   introduction:
-    'Tu empresa ha dado un salto internacional y ha firmado contratos para realizar 500 instalaciones solares en México y Brasil. Cada instalación genera $200,000 COP, pero la logística internacional y la gestión de equipos en diferentes países será un desafío.',
+    'Tu empresa ha crecido a nivel regional, y ahora gestionas envíos hacia puertos clave del Caribe colombiano. La demanda diaria ha aumentado a 300 entregas diarias, y necesitas camiones de largo alcance que te permitan transportar productos desde las áreas de producción hasta los puertos internacionales. El objetivo es gestionar grandes volúmenes de productos para exportación.',
   question:
-    '¿Cómo gestionarás la expansión internacional y el cumplimiento de este contrato?',
+    '¿Cuántos camiones de largo alcance adquirirás para manejar las entregas hacia los puertos internacionales?',
 
   options: randomizedOptions,
   incorrectQuestionId: incorrectQuestionId,
-  incorrectQuestionMessage: `perdiste una vida por "incapacidad operativa internacional". Al solo completar 300 instalaciones, no pudiste cumplir con el contrato y afectaste tu capacidad para expandirte globalmente`,
+  incorrectQuestionMessage: `perdiste una vida por "incapacidad operativa". Al cubrir solo 100 entregas diarias, no pudiste cumplir con la demanda de 300 entregas hacia los puertos, lo que resultó en la pérdida de contratos internacionales clave y afectó la expansión de tu empresa.`,
   goal: 500,
   installationTime: 5,
-  moneyPerInstallation: 200000
+  moneyPerInstallation: 200000,
 };

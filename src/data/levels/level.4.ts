@@ -5,12 +5,12 @@ import { shuffleOptions } from '../../utils/randomizeOptions';
 const options: GameOptionI[] = [
   {
     id: 1,
-    text: 'Contratar a 3 instaladores adicionales por $200,000 COP cada uno, permitiendo cumplir con la demanda.',
+    text: 'Comprar 2 vehículos eléctricos pequeños por $800,000 COP cada uno.',
     consequence:
-      'Pudiste instalar todos los paneles en 100 hogares, cumpliendo con el proyecto.',
-    impact: 'Ingresos de $7,500,000 COP.',
+      'Pudiste realizar hasta 80 entregas diarias, pero no cumpliste con toda la demanda.',
+    impact: 'Ingresos diarios de $800,000 COP.',
     additionalContext:
-      'Invertiste en más personal, asegurando el cumplimiento del proyecto y mejorando tu reputación.',
+      'Aunque los vehículos eléctricos son más eficientes, no lograste cubrir la demanda completa, lo que afectó tu capacidad para ganar más clientes.',
     image: '/options/N4_A.png',
     isCorrect: true,
     numberPanels: 100,
@@ -21,12 +21,12 @@ const options: GameOptionI[] = [
   },
   {
     id: 2,
-    text: 'Comprar herramientas avanzadas para mejorar la productividad de tu equipo actual.',
+    text: 'Comprar 3 vehículos eléctricos pequeños por $800,000 COP cada uno',
     consequence:
-      'Pudiste instalar 80 paneles, lo que fue suficiente para satisfacer la mayor parte del contrato.',
-    impact: 'Ingresos de $6,000,000 COP.',
+      'Pudiste cubrir completamente la demanda de 120 entregas diarias, permitiendo que tu empresa se mantenga eficiente y sostenible.',
+    impact: 'Ingresos diarios de $1,200,000 COP.',
     additionalContext:
-      'Aunque no cumpliste completamente con el proyecto, mantuviste tu reputación relativamente intacta.',
+      'La inversión fue mayor, pero aseguraste que tu empresa pueda manejar toda la demanda actual y estar lista para futuros incrementos.',
     image: '/options/N1_A.png',
     isCorrect: true,
     numberPanels: 80,
@@ -37,12 +37,12 @@ const options: GameOptionI[] = [
   },
   {
     id: 3,
-    text: 'Intentar gestionar el proyecto con tu equipo actual, sin contratar ni mejorar herramientas.',
+    text: 'Comprar 1 vehículo eléctrico pequeño por $800,000 COP.',
     consequence:
-      'Solo pudiste instalar 50 paneles, lo que no fue suficiente para cumplir con el proyecto.',
-    impact: 'Ingresos de $3,750,000 COP.',
+      'Pudiste realizar solo 40 entregas diarias, lo que no fue suficiente para cubrir la demanda de 120 entregas.',
+    impact: 'Ingresos diarios de $400,000 COP.',
     additionalContext:
-      'Perdiste futuras oportunidades de proyectos municipales por no cumplir con el contrato.',
+      'Al no cubrir la demanda mínima, afectaste la reputación de tu empresa, perdiendo contratos importantes.',
     image: '/options/N3_C.png',
     isCorrect: false,
     numberPanels: 50,
@@ -61,15 +61,16 @@ const incorrectQuestionId = options.find(
 
 export const levelFour: GameLevelI = {
   level: 4,
-  name: 'Nivel 4: "Expansión a Proyectos Municipales" - Energía Solar para la Comunidad',
+  name: 'Nivel 4: "Sostenibilidad sobre Cuatro Ruedas" - Sincelejo (Vehículos Eléctricos Pequeños)',
   introduction:
-    'Tu empresa ha crecido lo suficiente como para comenzar a realizar proyectos municipales. El gobierno local te ha contratado para instalar paneles solares en 100 hogares, y cada instalación generará $75,000 COP. Este es un proyecto grande que requerirá contratar más personal.',
-  question: '¿Qué estrategia adoptarás para gestionar este proyecto?',
+    'Tu empresa sigue creciendo y la demanda diaria ha aumentado a 120 entregas diarias. Las bicicletas y motocicletas ya no son suficientes para gestionar todas las entregas. Ahora necesitas vehículos eléctricos pequeños para cubrir más pedidos por día, seguir siendo sostenible y atender entregas de mayor volumen.',
+  question:
+    '¿Cuántos vehículos eléctricos pequeños comprarás para cumplir con la demanda?',
 
   options: randomizedOptions,
   incorrectQuestionId: incorrectQuestionId,
-  incorrectQuestionMessage: `perdiste una vida por "incumplimiento de contrato". Solo instalaste 50 paneles, lo que no fue suficiente para cumplir con el contrato.`,
+  incorrectQuestionMessage: `perdiste una vida por "incapacidad operativa". Solo pudiste realizar 40 entregas diarias, lo que no cubrió la demanda mínima de 120 entregas, afectando tu capacidad para mantener contratos importantes y generando pérdidas de reputación.`,
   goal: 100,
   installationTime: 2,
-  moneyPerInstallation: 75000
+  moneyPerInstallation: 75000,
 };

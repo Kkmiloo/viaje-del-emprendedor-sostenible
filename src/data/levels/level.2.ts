@@ -5,13 +5,12 @@ import { shuffleOptions } from '../../utils/randomizeOptions';
 const options: GameOptionI[] = [
   {
     id: 1,
-    text: 'Comprar herramientas de instalación más avanzadas por $200,000 COP, mejorando tu eficiencia.',
+    text: 'Comprar 2 bicicletas de alta gama por $250,000 COP cada una.',
     consequence:
-      'Pudiste realizar 16 instalaciones diarias, pero no cubriste toda la demanda.',
-    impact:
-      'Ingresos diarios de $800,000 COP (16 instalaciones x $50,000 COP).',
+      'Pudiste realizar hasta 40 entregas diarias, pero no cubriste toda la demanda.',
+    impact: 'Ingresos diarios de $400,000 COP.',
     additionalContext:
-      'Mejoraste la eficiencia, pero aún perdiste contratos debido a la incapacidad de cubrir toda la demanda.',
+      'Pudiste mejorar la eficiencia, pero perdiste oportunidades de nuevos contratos por no cubrir toda la demanda.',
     isCorrect: true,
     numberPanels: 16,
     invest: 200000,
@@ -22,13 +21,12 @@ const options: GameOptionI[] = [
   },
   {
     id: 2,
-    text: 'Contratar a un asistente por $150,000 COP, permitiendo cumplir con toda la demanda.',
+    text: 'Comprar 3 bicicletas de alta gama por $250,000 COP cada una.',
     consequence:
-      'Pudiste realizar las 20 instalaciones diarias, cubriendo toda la demanda y mejorando tu reputación.',
-    impact:
-      'Ingresos diarios de $1,000,000 COP (20 instalaciones x $50,000 COP).',
+      'Pudiste realizar hasta 60 entregas diarias, cubriendo la demanda actual y aceptando nuevos pedidos.',
+    impact: 'Ingresos diarios de $600,000 COP.',
     additionalContext:
-      'Invertiste en talento, asegurando el crecimiento de la empresa.',
+      'Invertiste más, pero aseguraste la capacidad para cubrir toda la demanda y tener espacio para crecer.',
     isCorrect: true,
     numberPanels: 20,
     invest: 150000,
@@ -40,13 +38,12 @@ const options: GameOptionI[] = [
   },
   {
     id: 3,
-    text: 'Comprar paneles adicionales, pero sin contratar más personal.',
+    text: 'Comprar 1 bicicleta de alta gama por $250,000 COP.',
     consequence:
-      'Pudiste realizar solo 12 instalaciones diarias, lo que no fue suficiente.',
-    impact:
-      'Ingresos diarios de $600,000 COP (12 instalaciones x $50,000 COP).',
+      'Pudiste realizar solo 20 entregas diarias, lo que no fue suficiente para cumplir con la demanda de 50 entregas diarias.',
+    impact: 'Ingresos diarios de $200,000 COP.',
     additionalContext:
-      'No cumpliste con la demanda mínima, afectando tu reputación.',
+      'Al no cubrir la demanda mínima, perdiste contratos y tu reputación en el mercado.',
     isCorrect: false,
     numberPanels: 12,
     invest: 0,
@@ -65,15 +62,14 @@ const incorrectQuestionId = options.find(
 
 export const levelTwo: GameLevelI = {
   level: 2,
-  name: 'Nivel 2: "Expansión Solar" - Aumentando la Capacidad de Instalación',
+  name: 'Nivel 2: "Expansión con Pedales" - Sincelejo (Bicicletas de Alta Gama)',
   introduction:
-    'Tu empresa ha crecido, y ahora la demanda es de 20 instalaciones diarias. Cada instalación sigue generando $50,000 COP. Tienes que contratar más empleados o mejorar tu equipo para cumplir con la demanda.',
-  question:
-    '¿Cómo ampliarás tu capacidad para cumplir con la nueva demanda de instalaciones solares?',
+    'Tu empresa ha crecido, y ahora la demanda es de 50 entregas diarias, generando $10,000 COP por entrega. Las bicicletas de alta gama son más eficientes y permiten realizar más entregas diarias sin desgastarse tan rápido. Tienes que decidir cuántas comprar.',
+  question: '¿Cuántas bicicletas de alta gama comprarás?',
 
   options: randomizedOptions,
   incorrectQuestionId: incorrectQuestionId,
-  incorrectQuestionMessage: `perdiste una vida por "incapacidad operativa". Solo lograste realizar 12 instalaciones, afectando gravemente tu reputación`,
+  incorrectQuestionMessage: `perdiste una vida por "incapacidad operativa". No pudiste cumplir con la demanda de 50 entregas diarias, lo que afectó tu reputación y resultó en la pérdida de contratos clave para tu negocio.`,
   goal: 20,
   installationTime: 0.4,
   moneyPerInstallation: 50000,

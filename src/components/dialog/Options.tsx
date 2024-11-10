@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { GameOptionI } from '../../interfaces/gameOption.interface';
 
 interface OptionsProps {
@@ -6,37 +7,112 @@ interface OptionsProps {
 }
 
 export const Options = ({ options, onSelectOption }: OptionsProps) => {
-  
-  const optionLetters = ['A)', 'B)', 'C)']
-  
-  const handleOnClick = (option: GameOptionI) => {
-    onSelectOption(option);
-  };
+  const optionLetters = ['A)', 'B)', 'C)'];
 
   return (
-    <div className='animate-jump-in animate-duration-[800ms] animate-ease-out flex md:flex-row  flex-col items-center justify-center  md:gap-3 p-2 bg-slate-200 m-auto rounded-xl z-40 max-w-6xl'>
+    <motion.div
+      initial={{ opacity: 0.5, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className='grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-slate-100 rounded-xl max-w-6xl mx-auto'
+    >
       {options.map((option) => (
-        <div
+        <motion.div
           key={option.id}
-          className='shadow-lg relative h-full px-4 flex flex-col text-lg font-medium md:w-1/3 w-full bg-slate-600 text-slate-50 rounded-lg cursor-pointer hover:bg-slate-700 m-1  hover:animate-wiggle animate-infinite animate-ease-in animate-duration-[1200ms]'
-          onClick={() => handleOnClick(option)}
+          layout
+          whileHover={{
+            scale: 1.03,
+            boxShadow: '0 10px 15px rgba(0,0,0,0.1)',
+            transition: {
+              duration: 0.3,
+              type: 'spring',
+              stiffness: 300,
+            },
+          }}
+          whileTap={{ scale: 0.97 }}
+          className='relative'
         >
-          <img
-            src={option.image}
-            alt={option.text}
-            className='absolute  w-20 h-20 md:w-28 md:h-28 right-0 -top-10  md:-top-20 md:right-1  text-justify'
-          />
+          <div
+            onClick={() => onSelectOption(option)}
+            className='
+              cursor-pointer 
+              bg-white 
+              rounded-xl 
+              overflow-hidden 
+              shadow-md 
+              hover:shadow-lg 
+              transition-shadow 
+              duration-300 
+              border-2 
+              border-transparent 
+              hover:border-blue-500
+              flex 
+              flex-col 
+              h-full
+            '
+          >
+            {/* Imagen con overlay */}
+            <div className='relative w-full h-48 overflow-hidden'>
+              <motion.img
+                src={option.image}
+                alt={option.text}
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+                className='
+                  absolute 
+                  inset-0 
+                  w-full 
+                  h-full 
+                  object-contain 
+                  transition-transform 
+                  duration-300
+                '
+              />
+              {/* Letra de opción superpuesta */}
+              <div
+                className='
+                absolute 
+                top-2 
+                left-2 
+                bg-blue-500/80 
+                text-white 
+                px-3 
+                py-1 
+                rounded-full 
+                text-2xl 
+                font-bold
+              '
+              >
+                {optionLetters[option.id - 1]}
+              </div>
+            </div>
 
-          <div className='flex mt-11  pt-2'>
-            <p className='text-6xl md:text-8xl  chewy ml-2 self-start mb-16'>
-              {optionLetters[option.id - 1]}
-            </p>
-            <span className='ml-4 md:ml-6 align-top float-left h-full text-base md:text-lg self-start '>
-              {option.text}
-            </span>
+            {/* Contenido de texto */}
+            <div
+              className='
+              p-4 
+              flex 
+              flex-col 
+              justify-between 
+              flex-grow
+            '
+            >
+              <p
+                className='
+                text-lg 
+                font-semibold 
+                text-gray-800 
+                mb-2
+                line-clamp-3
+              '
+              >
+                {option.text}
+              </p>
+            </div>
           </div>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };

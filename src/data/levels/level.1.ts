@@ -5,12 +5,13 @@ import { shuffleOptions } from '../../utils/randomizeOptions';
 const options: GameOptionI[] = [
   {
     id: 1,
-    text: 'Comprar herramientas avanzadas de instalación para acelerar el proceso',
+    text: 'Comprar 2 bicicletas por $150,000 COP cada una (total $300,000 COP)',
     consequence:
-      'Pudiste realizar 4 de las 5 instalaciones. No lograste cumplir completamente con la demanda.',
-    impact: 'Ingresos de $200,000 COP (4 instalaciones x $50,000 COP).',
+      'Pudiste realizar justo las 20 entregas diarias, pero no tuviste capacidad para atender nuevos pedidos.',
+    impact:
+      'Ingresos diarios de $200,000 COP (20 entregas x $10,000 COP por entrega).',
     additionalContext:
-      'Mejoraste la velocidad de instalación, pero algunos clientes quedaron insatisfechos',
+      'Pudiste cumplir con la demanda mínima, pero no tuviste capacidad para crecer con nuevos clientes.',
     isCorrect: true,
     numberPanels: 4,
     invest: 50000,
@@ -21,15 +22,15 @@ const options: GameOptionI[] = [
   },
   {
     id: 2,
-    text: 'Contratar un ayudante por $100,000 COP para completar más instalaciones.',
+    text: 'Comprar 3 bicicletas por $150,000 COP cada una (total $450,000 COP).',
     consequence:
-      'Pudiste completar las 5 instalaciones en un día, cumpliendo con la demanda.',
-    impact: 'Ingresos de $250,000 COP (5 instalaciones x $50,000 COP).',
+      'Pudiste realizar hasta 30 entregas diarias, cubriendo la demanda actual y aceptando nuevos pedidos.',
+    impact: 'Ingresos diarios de $300,000 COP (30 entregas diarias).',
     additionalContext:
-      'Lograste satisfacer a todos los clientes y mejorar tu reputación.',
+      'Invertiste más, pero tuviste capacidad para aceptar nuevos pedidos y expandir tu negocio.',
     isCorrect: true,
     numberPanels: 5,
-    invest:100000,
+    invest: 100000,
     image: '/options/N1_B.png',
     balance: 250000,
     trustResult: 20,
@@ -37,12 +38,12 @@ const options: GameOptionI[] = [
   },
   {
     id: 3,
-    text: 'Intentar realizar las instalaciones tú solo, sin adquirir nuevas herramientas.',
+    text: 'Comprar solo 1 bicicleta por $150,000 COP.',
     consequence:
-      'Solo lograste completar 3 instalaciones, no cumpliendo con la demanda mínima.',
-    impact: 'Ingresos de $150,000 COP (3 instalaciones x $50,000 COP).',
+      'Solo pudiste realizar 10 entregas diarias, lo que significa que no cumpliste con la demanda mínima de 20 entregas.',
+    impact: 'Ingresos diarios de $100,000 COP.',
     additionalContext:
-      'Al no cumplir con la demanda mínima, afectaste tu reputación en el mercado local.',
+      'No pudiste cumplir con la demanda mínima de entregas, afectando negativamente tu reputación y las posibilidades de obtener nuevos contratos.',
     isCorrect: false,
     numberPanels: 3,
     invest: 0,
@@ -61,16 +62,15 @@ const incorrectQuestionId = options.find(
 
 export const levelOne: GameLevelI = {
   level: 1,
-  name: 'Nivel 1: "Los Primeros Rayos" - Desarrollo de Prototipos Iniciales',
+  name: 'Nivel 1: "El Comienzo Sobre Ruedas" - Sincelejo (Bicicletas)',
   introduction:
-    'Has lanzado tu empresa de energía solar desde tu hogar. Tienes una demanda inicial para instalar paneles solares en 5 casas locales. Cada instalación te genera $50,000 COP. Tienes un límite de 8 horas diarias para completar las instalaciones, y cada instalación de panel solar toma 2 horas.',
-  question:
-    '¿Qué estrategia usarás para cubrir la demanda inicial de instalaciones de paneles solares?',
+    'Has lanzado tu empresa de entregas sostenibles en Sincelejo. Según un estudio de mercado, hay una demanda de 20 entregas diarias, y cada entrega te genera $10,000 COP. Tienes un límite de 8 horas diarias para completar las entregas. Cada bicicleta puede realizar 10 entregas por día.',
+  question: '¿Cuántas bicicletas comprarás para cubrir la demanda?',
 
   options: randomizedOptions,
   incorrectQuestionId: incorrectQuestionId,
-  incorrectQuestionMessage: `perdiste una vida por "incapacidad operativa". Solo pudiste realizar 3 instalaciones, lo que no cubrió las 5 instalaciones requeridas, afectando tu reputación y perdiendo futuros contratos.`,
+  incorrectQuestionMessage: `perdiste una vida por "incapacidad operativa". Al tener solo 1 bicicleta, no pudiste realizar las 20 entregas diarias requeridas, lo que afectó tu reputación y resultó en la pérdida de oportunidades de crecimiento.`,
   goal: 5,
   installationTime: 2,
-  moneyPerInstallation: 50000
+  moneyPerInstallation: 50000,
 };

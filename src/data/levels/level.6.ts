@@ -5,12 +5,12 @@ import { shuffleOptions } from '../../utils/randomizeOptions';
 const options: GameOptionI[] = [
   {
     id: 1,
-    text: 'Contratar a 3 gerentes de ciudad por $500,000 COP cada uno para gestionar los proyectos en cada ubicación.',
+    text: 'Comprar 2 camiones eléctricos por $2,500,000 COP cada uno.',
     consequence:
-      'Pudiste realizar todas las 300 instalaciones, cubriendo el contrato nacional.',
-    impact: 'Ingresos de $30,000,000 COP.',
+      'Pudiste cubrir 150 entregas diarias, pero no cumpliste con toda la demanda.',
+    impact: 'Ingresos diarios de $1,500,000 COP.',
     additionalContext:
-      'Aunque la inversión en gerentes fue alta, lograste cumplir con todo el contrato y asegurar futuras oportunidades en cada ciudad.',
+      'Lograste cubrir una parte significativa de las entregas, pero la falta de capacidad completa afectó tu posibilidad de captar más contratos.',
     image: '/options/N6_A.png',
     isCorrect: true,
     numberPanels: 300,
@@ -21,12 +21,12 @@ const options: GameOptionI[] = [
   },
   {
     id: 2,
-    text: 'Subcontratar una empresa nacional de logística por $2,000,000 COP para gestionar los proyectos en las 3 ciudades.',
+    text: 'Comprar 3 camiones eléctricos por $2,500,000 COP cada uno.',
     consequence:
-      'Lograste completar 240 instalaciones, pero no cubriste toda la demanda.',
-    impact: 'Ingresos de $24,000,000 COP.',
+      'Pudiste cubrir las 200 entregas diarias, manejando toda la logística en Sucre.',
+    impact: 'Ingresos diarios de $2,000,000 COP.',
     additionalContext:
-      'La subcontratación te ayudó a cumplir con la mayor parte del proyecto, pero tu margen de beneficio fue menor y perdiste algunas oportunidades futuras.',
+      'Aunque la inversión fue grande, pudiste cubrir toda la demanda interregional y consolidar tu presencia en todo el departamento.',
     image: '/options/N3_B.png',
     isCorrect: true,
     numberPanels: 240,
@@ -37,16 +37,16 @@ const options: GameOptionI[] = [
   },
   {
     id: 3,
-    text: 'Gestionar el proyecto nacional con tu equipo actual, sin contratar ni subcontratar ayuda.',
+    text: 'Comprar 1 camión eléctrico por $2,500,000 COP.',
     consequence:
-      'Solo pudiste realizar 150 instalaciones, lo que no fue suficiente para cumplir con el contrato.',
-    impact: 'Ingresos de $15,000,000 COP.',
+      'Pudiste realizar solo 100 entregas diarias, lo que no fue suficiente para cubrir la demanda de 200 entregas.',
+    impact: 'Ingresos diarios de $1,000,000 COP.',
     additionalContext:
-      'Perdiste la oportunidad de expandirte a nivel nacional y tu reputación en otras ciudades se vio afectada.',
+      'Al no cubrir la demanda mínima, afectaste la reputación de tu empresa en las regiones de Sucre.',
     image: '/options/N3_C.png',
     isCorrect: false,
     numberPanels: 150,
-    invest:0,
+    invest: 0,
     balance: 15000000,
     trustResult: -20,
     reputationResult: -20,
@@ -61,16 +61,16 @@ const incorrectQuestionId = options.find(
 
 export const levelSix: GameLevelI = {
   level: 6,
-  name: 'Nivel 6: "Expansión Nacional" - Proyectos Solares en Múltiples Ciudades',
+  name: 'Nivel 6: "Logística en Carretera" - Regiones de Sucre (Camiones Eléctricos)',
   introduction:
-    'Tu empresa se ha expandido lo suficiente como para realizar proyectos en 3 ciudades diferentes. La demanda es alta: 300 instalaciones en total, repartidas entre las ciudades de Bogotá, Medellín y Cali. Cada instalación genera $100,000 COP, pero la logística y la gestión de equipos se vuelven más complejas.',
+    'Tu empresa ha crecido lo suficiente como para manejar la logística interregional en todo el departamento de Sucre. Ahora tienes que gestionar 200 entregas diarias y necesitas camiones eléctricos para cubrir largas distancias y manejar grandes volúmenes de productos.',
   question:
-    '¿Cómo gestionarás la expansión nacional y el cumplimiento de este gran contrato?',
+    '¿Cuántos camiones eléctricos comprarás para manejar la logística en todo el departamento de Sucre?',
 
   options: randomizedOptions,
   incorrectQuestionId: incorrectQuestionId,
-  incorrectQuestionMessage: `perdiste una vida por "mala planificación de expansión". Al solo completar 150 instalaciones, no cumpliste con el contrato nacional, afectando tu capacidad de seguir expandiéndote.`,
+  incorrectQuestionMessage: `perdiste una vida por "incapacidad operativa". Al solo cubrir 100 entregas diarias, no pudiste cumplir con la demanda mínima de 200 entregas, lo que afectó tu capacidad para mantener contratos clave y expandir tu negocio interregionalmente.`,
   goal: 300,
   installationTime: 5,
-  moneyPerInstallation: 100000
+  moneyPerInstallation: 100000,
 };

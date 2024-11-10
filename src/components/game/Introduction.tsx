@@ -22,34 +22,37 @@ export const Introduction = ({ onStart }: IntroductionProps) => {
 
       {currentDialogueIndex == 0 && (
         <p className='text-xl mb-8'>
-          ¡Es hora de demostrar tu visión, ingenio y liderazgo! En este
-          emocionante viaje, tomarás el rol de un emprendedor ambicioso que ha
-          decidido transformar el mundo con soluciones innovadoras en energía
-          solar. Tu misión: construir desde cero una empresa que desarrolle
-          tecnologías solares, aportando al crecimiento sostenible y rentable.
+          ¡Es hora de poner a prueba tu visión, ingenio y determinación! En este
+          emocionante viaje, tomarás el papel de un emprendedor visionario que
+          ha decidido cambiar el mundo con un enfoque innovador y sostenible. Tu
+          misión: construir desde cero una empresa de logística y entregas, que
+          no solo sea rentable, sino también ecológicamente responsable.
         </p>
       )}
 
       {currentDialogueIndex == 1 && (
         <p className='text-xl mb-8'>
-          A lo largo del juego, te enfrentarás a decisiones clave que pondrán a
-          prueba tu capacidad para tomar decisiones estratégicas, gestionar
-          recursos y liderar equipos. Comenzarás solo, desarrollando prototipos
-          de paneles solares desde tu hogar. Con cada elección, tu empresa
-          crecerá, incorporando talento y expandiéndose a nuevos mercados.
+          A lo largo del juego, te enfrentarás a desafíos empresariales que
+          pondrán a prueba tus habilidades de liderazgo, toma de decisiones y
+          gestión de recursos. Comenzarás con una pequeña flota de bicicletas en
+          la vibrante ciudad de Sincelejo, y con cada decisión que tomes, tu
+          empresa crecerá y se expandirá hacia nuevos mercados, utilizando
+          siempre el transporte más adecuado para cada etapa del negocio.
         </p>
       )}
 
       {currentDialogueIndex == 2 && (
         <p className='text-xl mb-8'>
-          Tu objetivo es claro: convertirte en el CEO de una empresa líder en
-          energía solar, transformando hogares, empresas, y ciudades con energía
-          limpia. ¿Estás listo para iluminar el futuro con tu visión?
+          Tu viaje comienza en Sincelejo, pero tu destino final es Coveñas,
+          donde tendrás la oportunidad de liderar un negocio de exportación
+          sostenible y transformar tu pequeña empresa en un gigante
+          internacional.
         </p>
       )}
       {currentDialogueIndex == 3 && (
         <p className='text-xl mb-8 font-bold '>
-          ¡Adelante, emprendedor! El futuro de la energía está en tus manos.
+          ¡Adelante, emprendedor! Tu éxito depende de tus decisiones. ¿Estás
+          listo para cambiar el mundo con cada entrega?
         </p>
       )}
 
@@ -68,8 +71,6 @@ export const Introduction = ({ onStart }: IntroductionProps) => {
           ¡Comenzar Juego!
         </button>
       )}
-
-
     </div>
   );
 };

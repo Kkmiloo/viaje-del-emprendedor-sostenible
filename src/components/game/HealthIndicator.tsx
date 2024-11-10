@@ -11,7 +11,7 @@ export const HealthIndicator = () => {
           key={index}
           className={index < lives ? 'text-orange-500' : 'text-gray-500'}
         >
-          {index < lives ? '🧡' : '🖤'}
+          {index < lives ? '❤️' : '🖤'}
         </span>
       ))}
     </div>

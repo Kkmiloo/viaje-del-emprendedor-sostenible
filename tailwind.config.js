@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'scene1': "url(/src/assets/scene1.webp)"
+        'scene1': "url(/src/assets/delivery1.webp)"
       },
       keyframes: {
         'fade-in-left': {

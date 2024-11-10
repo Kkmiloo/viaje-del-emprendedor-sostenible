@@ -6,7 +6,7 @@ export const MenuLayout = () => {
     <div className='flex flex-col h-screen chewy text-center bg-gradient-to-r from-slate-900 to-slate-700 pt-32'>
       <header className='p-4'>
         <h1 className=' text-white text-5xl'>
-          Energy Empire: El Ascenso Solar
+          El Viaje del Emprendedor Sostenible
         </h1>
       </header>
 
@@ -15,7 +15,7 @@ export const MenuLayout = () => {
       </main>
 
       <footer className=' text-white p-4 text-center '>
-        <p>&copy; 2024 Energy Empire: El Ascenso Solar</p>
+        <p>&copy; 2024 El Viaje del Emprendedor Sostenible</p>
       </footer>
     </div>
   );

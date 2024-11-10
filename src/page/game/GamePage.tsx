@@ -3,24 +3,19 @@ import { Dialog } from '../../components/dialog/Dialog';
 import { Options } from '../../components/dialog/Options';
 import { scenes } from '../../data/scenes';
 import { useEffect, useState } from 'react';
-//import man from '../../assets/man.webp';
-//import scene1 from '../../assets/scene1.webp';
 import { GameOptionI } from '../../interfaces/gameOption.interface';
 import { Introduction } from '../../components/game/Introduction';
 import { Ending } from '../../components/game/Ending';
 import { IntroLevel } from '../../components/game/IntroLevel';
 import { HealthIndicator } from '../../components/game/HealthIndicator';
-//import { Modal } from '../../components/dialog/Modal';
-import GrowthChart from '../../components/charts/GrowthChart';
-import { Resume } from '../../components/game/Resume';
-//import robot from '../../assets/robotsito-04.png';
-import robotIncorrecto from '../../assets/robotsito-05.png';
-import robotCorrecto from '../../assets/robotsito-06.png';
-
-import { Counter } from '../../components/text/Counter';
-import { ProgressBar } from '../../components/stats/ProgressBar';
-import Typewriter from '../../components/text/Typewriter';
+// import GrowthChart from '../../components/charts/GrowthChart';
+//import { Resume } from '../../components/game/Resume';
+// import { Counter } from '../../components/text/Counter';
+// import { ProgressBar } from '../../components/stats/ProgressBar';
+// import Typewriter from '../../components/text/Typewriter';
 import BackgroundMusic from '../../components/game/BackgroundMusic';
+import { ResultSummary } from '../../components/game/ResultSummary';
+
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -117,7 +112,7 @@ const GamePage = () => {
   return (
     <main className='relative min-w-full min-h-screen flex flex-col justify-center w-full h-full '>
       <BackgroundMusic togglePlay={toggleMusic} />
-      <div className='absolute inset-0 blur-sm bg-scene1  h-screen w-screen bg-contain bg-no-repeat object-cover'></div>
+      <div className='absolute inset-0 blur-md bg-scene1   bg-cover  bg-no-repeat object-fill'></div>
       {stage === 'introduction' && (
         <Introduction
           onStart={() => {
@@ -128,6 +123,7 @@ const GamePage = () => {
       )}
       {stage === 'level' && !isGameOver && (
         <>
+          {/* <GameInterface></GameInterface> */}
           {showIntroLevel && (
             <IntroLevel title={currentScene.name} onClick={handleIntroLevel} />
           )}
@@ -149,13 +145,6 @@ const GamePage = () => {
               </div>
               <HealthIndicator />
             </div>
-            {/* <img
-              className='absolute bottom-[90px] left-28 object-cover z-30'
-              width={220}
-              src={man}
-              alt='character'
-            /> */}
-
             <Dialog
               text={currentScene.introduction}
               question={currentScene.question}
@@ -166,32 +155,8 @@ const GamePage = () => {
             />
             {selectedOption && (
               <>
-                {/* {currentStep === 'consequence' && (
-                  <Modal
-                    text={selectedOption.consequence}
-                    onConfirm={() => {
-                      setCurrentStep('impact');
-                    }}
-                  ></Modal>
-                )}
-                {currentStep === 'impact' && (
-                  <Modal
-                    text={selectedOption.impact}
-                    onConfirm={() => {
-                      setCurrentStep('additionalContext');
-                    }}
-                  >
-                    <GrowthChart />{' '}
-                  </Modal>
-                )}
-                {currentStep === 'additionalContext' && (
-                  <Modal
-                    text={selectedOption.additionalContext!}
-                    onConfirm={() => {}}
-                  />
-                )} */}
                 {showResume && (
-                  <Resume
+                  <ResultSummary
                     onConfirm={() => {
                       if (!finishedAnimationResume) {
                         setFinishedAnimationResume(true);
@@ -213,115 +178,18 @@ const GamePage = () => {
                         }
                       }
                     }}
-                  >
-                    <div className='font-bold '>
-                      <div className='flex w-full mb-5'>
-                        <img
-                          src={
-                            selectedOption.isCorrect
-                              ? robotCorrecto
-                              : robotIncorrecto
-                          }
-                          alt=''
-                          className='w-32 h-32'
-                        />
-                        <div className='ml-12'>
-                          {currentStep === 'consequence' && (
-                            <Typewriter
-                              text={selectedOption.consequence}
-                              animationFinished={finishedAnimationResume}
-                              delay={40}
-                              onComplete={() => {
-                                setFinishedAnimationResume(true);
-                              }}
-                            />
-                          )}{' '}
-                          {currentStep === 'impact' && (
-                            <Typewriter
-                              text={selectedOption.impact}
-                              animationFinished={finishedAnimationResume}
-                              delay={40}
-                              onComplete={() => {
-                                setFinishedAnimationResume(true);
-                              }}
-                            />
-                          )}
-                          {currentStep === 'additionalContext' && (
-                            <Typewriter
-                              text={selectedOption.additionalContext}
-                              animationFinished={finishedAnimationResume}
-                              delay={40}
-                              onComplete={() => {
-                                setFinishedAnimationResume(true);
-                              }}
-                            />
-                          )}
-                          {currentStep === 'incorrectAnswer' && (
-                            <Typewriter
-                              text={currentScene.incorrectQuestionMessage}
-                              animationFinished={finishedAnimationResume}
-                              delay={40}
-                              onComplete={() => {
-                                setFinishedAnimationResume(true);
-                              }}
-                            />
-                          )}
-                        </div>
-                      </div>
-                      <div>
-                        <div className='flex flex-col items-center w-full px-4 '>
-                          <div className=' flex w-full justify-between items-center animate-fade-right animate-ease-in'>
-                            {' '}
-                            <p>Paneles: </p>{' '}
-                            <ProgressBar
-                              max={goal}
-                              value={selectedOption.numberPanels}
-                              progress='ratio'
-                              color='red'
-                            />{' '}
-                          </div>
-
-                          <div className='flex w-full justify-between items-center'>
-                            <p>Reputación : </p>
-                            <ProgressBar
-                              max={100}
-                              value={reputation}
-                              progress='percent'
-                              color='red'
-                            />{' '}
-                          </div>
-                          <div className='flex w-full justify-between items-center'>
-                            <p>Confianza : </p>
-                            <ProgressBar
-                              max={100}
-                              value={trust}
-                              progress='percent'
-                              color='red'
-                            />{' '}
-                          </div>
-                          <div className='flex w-full justify-between items-center mb-4'>
-                            <p>Ingresos:</p>
-                            <div className='flex mr-4'>
-                              <Counter
-                                duration={4}
-                                number={currentScene.moneyPerInstallation}
-                              />{' '}
-                              *{' '}
-                              <Counter
-                                duration={4}
-                                number={selectedOption.numberPanels}
-                              />
-                            </div>
-                            <Counter
-                              duration={4}
-                              number={selectedOption.balance}
-                            />
-                          </div>
-                        </div>
-                        <GrowthChart />
-                      </div>
-                    </div>
-                  </Resume>
+                    currentScene={currentScene}
+                    currentStep={currentStep}
+                    finishedAnimationResume={finishedAnimationResume}
+                    goal={goal}
+                    reputation={reputation}
+                    selectedOption={selectedOption}
+                    trust={trust}
+                    
+                    setFinishedAnimationResume={() =>
+                      setFinishedAnimationResume(true)
+                    }
+                  />
                 )}
               </>
             )}
