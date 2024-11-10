@@ -20,6 +20,7 @@ import robotCorrecto from '../../assets/robotsito-06.png';
 import { Counter } from '../../components/text/Counter';
 import { ProgressBar } from '../../components/stats/ProgressBar';
 import Typewriter from '../../components/text/Typewriter';
+import BackgroundMusic from '../../components/game/BackgroundMusic';
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -57,6 +58,7 @@ const GamePage = () => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [showQuestion, setShowQuestion] = useState(false);
   const [finishedAnimation, setFinishedAnimation] = useState(false);
+  const [toggleMusic, setToggleMusic] = useState(false)
 
   const handleIntroLevel = () => {
     setShowIntroLevel(false);
@@ -111,9 +113,15 @@ const GamePage = () => {
 
   return (
     <main className='relative min-w-full min-h-screen flex flex-col justify-center w-full h-full '>
+      <BackgroundMusic togglePlay={toggleMusic} />
       <div className='absolute inset-0 blur-sm bg-scene1  h-screen w-screen bg-contain bg-no-repeat object-cover'></div>
       {stage === 'introduction' && (
-        <Introduction onStart={() => changeStage('level')} />
+        <Introduction
+          onStart={() => {
+            setToggleMusic(true)
+            changeStage('level');
+          }}
+        />
       )}
       {stage === 'level' && !isGameOver && (
         <>
@@ -189,7 +197,7 @@ const GamePage = () => {
                           setCurrentStep('additionalContext');
                         } else if (currentStep === 'additionalContext') {
                           if (!selectedOption.isCorrect) {
-                             setCurrentStep('incorrectAnswer')
+                            setCurrentStep('incorrectAnswer');
                           } else {
                             handleOptionResult();
                           }
