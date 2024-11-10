@@ -41,13 +41,10 @@ export const Dialog = ({
     <div
       className={`${
         !showQuestion ? 'cursor-pointer' : ''
-      }  py-6  px-6 md:py-10 text-gray-800 text-xl font-medium rounded-xl border-4 bg-gray-100 h-auto md:h-[280px] max-h-56 w-full md:max-h-64  max-w-6xl m-auto z-20`}
+      }  py-6  px-6 md:py-10 text-gray-800 text-xl font-medium rounded-xl border-4 bg-gray-100  md:h-[280px] w-full h-auto max-w-6xl min-h-44 md:min-h-52 m-auto z-20`}
       onClick={handleNext}
     >
-      <div
-        ref={containerRef}
-        className='h-full overflow-auto flex flex-col justify-between'
-      >
+      <div ref={containerRef} className='h-full flex flex-col justify-between'>
         <div
           className={` ${
             showQuestion && question ? 'items-start' : ''

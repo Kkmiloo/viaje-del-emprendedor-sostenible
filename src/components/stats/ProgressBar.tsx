@@ -41,7 +41,7 @@ export const ProgressBar = ({
       color={color}
       progress={progress}
       indicating
-      className='w-3/4'
+      className='w-1/2 md:w-3/4'
     />
     
   );

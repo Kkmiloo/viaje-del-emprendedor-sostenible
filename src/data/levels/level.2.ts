@@ -52,8 +52,8 @@ const options: GameOptionI[] = [
     invest: 0,
     image: '/options/N2_C.png',
     balance: 600000,
-    trustResult: -5,
-    reputationResult: -10,
+    trustResult: -10,
+    reputationResult: -20,
   },
 ];
 
