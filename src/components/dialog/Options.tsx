@@ -56,8 +56,8 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
               <motion.img
                 src={option.image}
                 alt={option.text}
-                initial={{ scale: 1 }}
-                whileHover={{ scale: 1.1 }}
+                initial={{ scale: 0.9 }}
+                whileHover={{ scale: 1 }}
                 transition={{ duration: 0.3 }}
                 className='
                   absolute 

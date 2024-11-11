@@ -27,7 +27,7 @@ const options: GameOptionI[] = [
     impact: 'Ingresos diarios de $1,200,000 COP.',
     additionalContext:
       'La inversión fue mayor, pero aseguraste que tu empresa pueda manejar toda la demanda actual y estar lista para futuros incrementos.',
-    image: '/options/N1_A.png',
+    image: '/options/N4_B.png',
     isCorrect: true,
     numberPanels: 120,
     invest: 2400000,
@@ -43,7 +43,7 @@ const options: GameOptionI[] = [
     impact: 'Ingresos diarios de $400,000 COP.',
     additionalContext:
       'Al no cubrir la demanda mínima, afectaste la reputación de tu empresa, perdiendo contratos importantes.',
-    image: '/options/N3_C.png',
+    image: '/options/N4_C.png',
     isCorrect: false,
     numberPanels: 40,
     invest: 800_000,

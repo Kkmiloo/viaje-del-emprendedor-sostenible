@@ -11,7 +11,7 @@ const options: GameOptionI[] = [
     impact: 'Ingresos diarios de $1,000,000 COP.',
     additionalContext:
       'Aunque lograste cubrir una parte significativa de la demanda, perdiste oportunidades de contratos adicionales por no cubrir el 100% de las entregas.',
-    image: '/options/N5_A.png',
+    image: '/options/N4_A.png',
     isCorrect: true,
     numberPanels: 100,
     invest: 3_000_000,
@@ -27,7 +27,7 @@ const options: GameOptionI[] = [
     impact: 'Ingresos diarios de $1,500,000 COP.',
     additionalContext:
       'Aunque la inversión fue grande, lograste cubrir la demanda total y aseguraste el crecimiento futuro de tu empresa en los municipios cercanos.',
-    image: '/options/N3_B.png',
+    image: '/options/N4_B.png',
     isCorrect: true,
     numberPanels: 150,
     invest: 4_500_000,
@@ -43,7 +43,7 @@ const options: GameOptionI[] = [
     impact: 'Ingresos diarios de $500,000 COP.',
     additionalContext:
       'Al no cubrir la demanda mínima, afectaste la reputación de tu empresa en los municipios cercanos, lo que resultó en la pérdida de contratos.',
-    image: '/options/N3_C.png',
+    image: '/options/N4_C.png',
     isCorrect: false,
     invest: 1500_000,
     numberPanels: 50,

@@ -27,7 +27,7 @@ const options: GameOptionI[] = [
     impact: 'Ingresos diarios de $2,000,000 COP.',
     additionalContext:
       'Aunque la inversión fue grande, pudiste cubrir toda la demanda interregional y consolidar tu presencia en todo el departamento.',
-    image: '/options/N3_B.png',
+    image: '/options/N6_B.png',
     isCorrect: true,
     numberPanels: 200,
     invest:  7_500_000,
@@ -43,7 +43,7 @@ const options: GameOptionI[] = [
     impact: 'Ingresos diarios de $1,000,000 COP.',
     additionalContext:
       'Al no cubrir la demanda mínima, afectaste la reputación de tu empresa en las regiones de Sucre.',
-    image: '/options/N3_C.png',
+    image: '/options/N6_C.png',
     isCorrect: false,
     numberPanels: 100,
     invest: 2_500_000,

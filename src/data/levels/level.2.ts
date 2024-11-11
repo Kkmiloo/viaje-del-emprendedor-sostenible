@@ -46,7 +46,7 @@ const options: GameOptionI[] = [
     isCorrect: false,
     numberPanels: 20,
     invest: 250000,
-    image: '/options/N2_C.png',
+    image: '/options/N1_C.png',
     balance: 200000,
     trustResult: -10,
     reputationResult: -20,
