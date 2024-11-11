@@ -1,10 +1,12 @@
-import { useRef, useState } from 'react';
+import {  useState } from 'react';
 //import man from '../../assets/man.webp';
 import robot from '../../assets/robotsito-04.png';
 import robotQuestion from '../../assets/robotsito-07.png';
 
 import Typewriter from '../text/Typewriter';
 import { useGameStore } from '../../store';
+import { motion } from 'framer-motion';
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
 interface DialogProps {
   text: string;
@@ -22,7 +24,7 @@ export const Dialog = ({
   setShowQuestion,
   showIntroText,
 }: DialogProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  //const containerRef = useRef<HTMLDivElement>(null);
 
   const [animationFinished, setAnimationFinished] = useState(false);
   const [animationFinishedIntro, setAnimationFinishedIntro] = useState(false);
@@ -44,29 +46,45 @@ export const Dialog = ({
   };
 
   return (
-    <div
-      className={`${
-        !showQuestion ? 'cursor-pointer' : ''
-      }  py-6  px-6 md:py-10 text-gray-800 text-xl font-medium rounded-xl border-4 bg-white md:h-[280px] w-full h-auto max-w-6xl min-h-44 md:min-h-52 m-auto z-20`}
+    <motion.div
+      className={`
+        ${!showQuestion ? 'cursor-pointer' : ''} 
+        py-6 px-6 md:py-10 text-gray-800 text-xl font-medium 
+        rounded-xl border-4 bg-white md:h-[280px] w-full h-auto 
+        max-w-6xl min-h-44 md:min-h-52 m-auto z-20
+      `}
       onClick={handleNext}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3 }}
     >
-      <div ref={containerRef} className='h-full flex flex-col justify-between'>
+      <div className='h-full flex flex-col justify-between'>
         <div
-          className={` ${
+          className={`flex h-full ${
             showQuestion && question ? 'items-start' : ''
-          } flex h-full `}
+          }`}
         >
-          <img
+          {/* Robot Image */}
+          <motion.img
             src={showQuestion ? robotQuestion : robot}
-            className=' max-w-28 md:max-w-36 h-fit rounded-xl p-2'
+            className='max-w-28 md:max-w-36 h-fit rounded-xl p-2'
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
           />
+
+          {/* Dialog Content */}
           <div
-            className={`${
-              showQuestion
-                ? 'justify-start '
-                : 'justify-between flex-col text-base md:text-xl'
-            } flex  h-full ml-3 md:ml-8 w-full`}
+            className={`
+              flex h-full ml-3 md:ml-8 w-full
+              ${
+                showQuestion
+                  ? 'justify-start'
+                  : 'justify-between flex-col text-base md:text-xl'
+              }
+            `}
           >
+            {/* Intro Text */}
             {!showQuestion && (
               <div>
                 {showIntroText && (
@@ -79,17 +97,28 @@ export const Dialog = ({
                 )}
               </div>
             )}
+
+            {/* Question Section */}
             {showQuestion && question && (
-              <div className='flex flex-col md:flex-row '>
-                <div className='flex md:flex-col gap-1 border w-full px-3 rounded-lg bg-gray-200 h-fit md:w-fit mb-2 '>
+              <div className='flex flex-col md:flex-row gap-4'>
+                {/* Goal and Money Info */}
+                <motion.div
+                  className='flex md:flex-col gap-1 border w-full px-3 rounded-lg bg-gray-200 h-fit md:w-fit mb-2'
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2, duration: 0.3 }}
+                >
                   <h2 className='font-bold md:border-b md:border-r-0 border-r pr-2 border-slate-400 md:mb-2'>
                     Objetivo
                   </h2>
-                  <p className='text-red-600'> 🏁: {goal}</p>
+                  <p className='text-red-600'>🏁: {goal}</p>
                   <p className='text-green-600'>
-                    💸: {Intl.NumberFormat().format(moneyPerInstallation)}
+                    💸:{' '}
+                    {Intl.NumberFormat('es-CO').format(moneyPerInstallation)}
                   </p>
-                </div>
+                </motion.div>
+
+                {/* Question Text */}
                 <div className='ml-4'>
                   <Typewriter
                     text={question}
@@ -101,26 +130,24 @@ export const Dialog = ({
               </div>
             )}
 
+            {/* Continue Indicator */}
             {!showQuestion && (
-              <div className='animate-bounce w-full'>
-                <svg
-                  className='m-auto '
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='30'
-                  height='30'
-                  viewBox='0 0 512 298.04'
-                  fill='#334155'
-                >
-                  <path
-                    fillRule='nonzero'
-                    d='M12.08 70.78c-16.17-16.24-16.09-42.54.15-58.7 16.25-16.17 42.54-16.09 58.71.15L256 197.76 441.06 12.23c16.17-16.24 42.46-16.32 58.71-.15 16.24 16.16 16.32 42.46.15 58.7L285.27 285.96c-16.24 16.17-42.54 16.09-58.7-.15L12.08 70.78z'
-                  />
-                </svg>
-              </div>
+              <motion.div
+                animate={{
+                  y: [0, 10, 0],
+                  transition: {
+                    repeat: Infinity,
+                    duration: 1.5,
+                  },
+                }}
+                className='mr-6 transform flex items-center justify-center text-gray-500'
+              >
+                <ChevronDownIcon className='w-8 h-8' />
+              </motion.div>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

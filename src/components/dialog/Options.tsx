@@ -52,7 +52,7 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
             '
           >
             {/* Imagen con overlay */}
-            <div className='relative w-full h-48 overflow-hidden'>
+            <div className='relative w-full h-36 md:h-48 overflow-hidden'>
               <motion.img
                 src={option.image}
                 alt={option.text}
@@ -67,6 +67,7 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
                   object-contain 
                   transition-transform 
                   duration-300
+                  
                 '
               />
               {/* Letra de opción superpuesta */}

@@ -7,7 +7,7 @@ import { GameOptionI } from '../../interfaces/gameOption.interface';
 import { Introduction } from '../../components/game/Introduction';
 import { Ending } from '../../components/game/Ending';
 import { IntroLevel } from '../../components/game/IntroLevel';
-import { HealthIndicator } from '../../components/game/HealthIndicator';
+//import { HealthIndicator } from '../../components/game/HealthIndicator';
 // import GrowthChart from '../../components/charts/GrowthChart';
 //import { Resume } from '../../components/game/Resume';
 // import { Counter } from '../../components/text/Counter';
@@ -16,6 +16,7 @@ import { HealthIndicator } from '../../components/game/HealthIndicator';
 import BackgroundMusic from '../../components/game/BackgroundMusic';
 import { ResultSummary } from '../../components/game/ResultSummary';
 import GameOver from '../../components/game/GameOver';
+import { GameHeader } from '../../components/game/GameHeader';
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -133,18 +134,7 @@ const GamePage = () => {
             alt='background'
           /> */}
           <div className=' w-full flex flex-col z-20 '>
-            <div className='max-w-6xl items-center m-auto px-4 z-20   bg-slate-700 w-full rounded-xl flex justify-between p-2 md:p-4 border-2 border-slate-200'>
-              <h2 className='font-bold text-center text-white '>
-                {currentScene.name}
-              </h2>
-            </div>
-            <div className='max-w-6xl m-auto flex justify-between items-center w-full px-6 py-2 bg-slate-700 border-2 rounded-xl'>
-              <div className='text-white font-bold'>
-                {' '}
-                💰 $ {Intl.NumberFormat().format(balance)} COP{' '}
-              </div>
-              <HealthIndicator />
-            </div>
+            <GameHeader balance={balance} currentScene={currentScene} />
             <Dialog
               text={currentScene.introduction}
               question={currentScene.question}
