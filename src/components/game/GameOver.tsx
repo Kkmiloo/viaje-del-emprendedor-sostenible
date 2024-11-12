@@ -35,7 +35,7 @@ const LessonLearned = ({
   </motion.div>
 );
 
-export const GameOver = ({ onRestart, score, bestScore }: GameOverProps) => {
+export const GameOver = ({ onRestart }: GameOverProps) => {
   const lessons = [
     {
       icon: ExclamationTriangleIcon,
@@ -108,25 +108,6 @@ export const GameOver = ({ onRestart, score, bestScore }: GameOverProps) => {
           </motion.div>
 
           {/* Estadísticas */}
-          <motion.div
-            className='flex justify-center space-x-8 mb-8'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.5 }}
-          >
-            <div className='text-center'>
-              <p className='text-xl font-bold text-gray-700'>
-                Puntuación Actual
-              </p>
-              <p className='text-3xl text-red-600'>{score}</p>
-            </div>
-            <div className='text-center'>
-              <p className='text-xl font-bold text-gray-700'>
-                Mejor Puntuación
-              </p>
-              <p className='text-3xl text-green-600'>{bestScore}</p>
-            </div>
-          </motion.div>
 
           {/* Lecciones Aprendidas */}
           <motion.div
