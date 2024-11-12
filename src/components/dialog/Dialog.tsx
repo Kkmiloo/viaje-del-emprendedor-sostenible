@@ -49,7 +49,7 @@ export const Dialog = ({
     <motion.div
       className={`
         ${!showQuestion ? 'cursor-pointer' : ''} 
-        py-6 px-6 md:py-10 text-gray-800 text-xl font-medium 
+        py-6 px-6 md:py-10 text-gray-800 text-xl text-justify font-medium 
         rounded-xl border-4 bg-white md:h-[280px] w-full h-auto 
         max-w-6xl min-h-44 md:min-h-52 m-auto z-20
       `}
