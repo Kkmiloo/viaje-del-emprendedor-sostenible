@@ -73,7 +73,7 @@ export const ResultSummary = ({
               className='w-40 h-40 mr-6 object-contain'
             />
             <>
-              <div className='flex-grow'>
+              <div className='flex-grow text-justify'>
                 <div
                   className={`text-${themeColor}-600 font-bold text-xl mb-2`}
                 >
