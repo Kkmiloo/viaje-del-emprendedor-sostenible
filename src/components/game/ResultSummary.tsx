@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { Counter } from '../text/Counter'; 
-import { ProgressBar } from '../stats/ProgressBar'; 
+import { Counter } from '../text/Counter';
+import { ProgressBar } from '../stats/ProgressBar';
 import GrowthChart from '../charts/GrowthChart';
-import Typewriter from '../text/Typewriter'; 
+import Typewriter from '../text/Typewriter';
 import robotIncorrecto from '../../assets/robotsito-05.png';
 import robotCorrecto from '../../assets/robotsito-06.png';
 import { GameOptionI } from '../../interfaces/gameOption.interface';
@@ -28,8 +28,8 @@ export const ResultSummary = ({
   reputation,
   trust,
   finishedAnimationResume,
-    setFinishedAnimationResume,
-  onConfirm
+  setFinishedAnimationResume,
+  onConfirm,
 }: ResultSummaryProps) => {
   // Determinar la imagen del robot y el color del tema
   const robotImage = selectedOption.isCorrect ? robotCorrecto : robotIncorrecto;
@@ -56,32 +56,14 @@ export const ResultSummary = ({
           className={`bg-${themeColor}-600 text-white p-4 flex justify-between items-center bg-slate-700`}
         >
           <h2 className={`text-xl font-bold text-white`}>Resumen</h2>
-          <button
-            onClick={() => {}}
-            className='hover:bg-white/20 rounded-full p-2'
-            aria-label='Cerrar'
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth='2'
-                d='M6 18L18 6M6 6l12 12'
-              />
-            </svg>
-          </button>
         </div>
 
         {/* Contenido Principal */}
         <div className='p-6 '>
-          <div className='flex items-center mb-6 bg-gray-100 rounded-xl p-4'>
+          <div
+            className='flex items-center mb-6 bg-gray-100 rounded-xl p-4 cursor-pointer relative'
+            onClick={onConfirm}
+          >
             <motion.img
               src={robotImage}
               alt='Resultado'
@@ -90,51 +72,81 @@ export const ResultSummary = ({
               transition={{ type: 'spring', stiffness: 300 }}
               className='w-40 h-40 mr-6 object-contain'
             />
-            <div className='flex-grow'>
-              <div className={`text-${themeColor}-600 font-bold text-xl mb-2`}>
-                {selectedOption.isCorrect ? 'Correcto' : 'Incorrecto'}
+            <>
+              <div className='flex-grow'>
+                <div
+                  className={`text-${themeColor}-600 font-bold text-xl mb-2`}
+                >
+                  {selectedOption.isCorrect ? 'Correcto' : 'Incorrecto'}
+                </div>
+                {currentStep === 'consequence' && (
+                  <Typewriter
+                    text={selectedOption.consequence}
+                    animationFinished={finishedAnimationResume}
+                    delay={40}
+                    onComplete={() => {
+                      setFinishedAnimationResume();
+                    }}
+                  />
+                )}{' '}
+                {currentStep === 'impact' && (
+                  <Typewriter
+                    text={selectedOption.impact}
+                    animationFinished={finishedAnimationResume}
+                    delay={40}
+                    onComplete={() => {
+                      setFinishedAnimationResume();
+                    }}
+                  />
+                )}{' '}
+                {currentStep === 'additionalContext' && (
+                  <Typewriter
+                    text={selectedOption.additionalContext}
+                    animationFinished={finishedAnimationResume}
+                    delay={40}
+                    onComplete={() => {
+                      setFinishedAnimationResume();
+                    }}
+                  />
+                )}{' '}
+                {currentStep === 'incorrectAnswer' && (
+                  <Typewriter
+                    text={currentScene.incorrectQuestionMessage}
+                    animationFinished={finishedAnimationResume}
+                    delay={40}
+                    onComplete={() => {
+                      setFinishedAnimationResume();
+                    }}
+                  />
+                )}
               </div>
-              {currentStep === 'consequence' && (
-                <Typewriter
-                  text={selectedOption.consequence}
-                  animationFinished={finishedAnimationResume}
-                  delay={40}
-                  onComplete={() => {
-                    setFinishedAnimationResume();
-                  }}
+            </>
+            <motion.div
+              animate={{
+                opacity: [0.5, 1, 0.5],
+                y: [0, -10, 0],
+                transition: {
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                },
+              }}
+              className='absolute bottom-2 right-3 text-sm text-gray-500 italic flex items-center'
+            >
+              <span>Haz click para continuar</span>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-5 w-5 ml-2'
+                viewBox='0 0 20 20'
+                fill='currentColor'
+              >
+                <path
+                  fillRule='evenodd'
+                  d='M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z'
+                  clipRule='evenodd'
                 />
-              )}{' '}
-              {currentStep === 'impact' && (
-                <Typewriter
-                  text={selectedOption.impact}
-                  animationFinished={finishedAnimationResume}
-                  delay={40}
-                  onComplete={() => {
-                    setFinishedAnimationResume();
-                  }}
-                />
-              )}{' '}
-              {currentStep === 'additionalContext' && (
-                <Typewriter
-                  text={selectedOption.additionalContext}
-                  animationFinished={finishedAnimationResume}
-                  delay={40}
-                  onComplete={() => {
-                    setFinishedAnimationResume();
-                  }}
-                />
-              )}{' '}
-              {currentStep === 'incorrectAnswer' && (
-                <Typewriter
-                  text={currentScene.incorrectQuestionMessage}
-                  animationFinished={finishedAnimationResume}
-                  delay={40}
-                  onComplete={() => {
-                    setFinishedAnimationResume();
-                  }}
-                />
-              )}
-            </div>
+              </svg>
+            </motion.div>
           </div>
 
           {/* Métricas */}
@@ -143,21 +155,18 @@ export const ResultSummary = ({
               label='Paneles'
               max={goal}
               value={selectedOption.numberPanels}
-           
               progressType='ratio'
             />
             <MetricRow
               label='Reputación'
               max={100}
               value={reputation}
-           
               progressType='percent'
             />
             <MetricRow
               label='Confianza'
               max={100}
               value={trust}
-        
               progressType='percent'
             />
 
@@ -199,24 +208,6 @@ export const ResultSummary = ({
             <GrowthChart />
           </motion.div>
         </div>
-
-        {/* Pie de página con botón de continuar */}
-        <div className='bg-gray-100 p-4 flex justify-center'>
-          <button
-            onClick={onConfirm}
-            className={`
-              bg-slate-600 
-              text-white 
-              px-6 
-              py-2 
-              rounded-full 
-              hover:bg-${themeColor}-700 
-              transition-colors
-            `}
-          >
-            Continuar
-          </button>
-        </div>
       </motion.div>
     </motion.div>
   );
@@ -224,11 +215,11 @@ export const ResultSummary = ({
 
 // Componente de fila de métrica reutilizable
 
-interface MetricRowProps{
-    label: string;
-    max: number;
-    value: number;
-    progressType: 'percent' | 'ratio';
+interface MetricRowProps {
+  label: string;
+  max: number;
+  value: number;
+  progressType: 'percent' | 'ratio';
 }
 
 const MetricRow = ({ label, max, value, progressType }: MetricRowProps) => (
@@ -239,11 +230,6 @@ const MetricRow = ({ label, max, value, progressType }: MetricRowProps) => (
     transition={{ type: 'spring', stiffness: 300 }}
   >
     <span className='font-semibold text-gray-700 w-24'>{label}</span>
-    <ProgressBar
-      max={max}
-      value={value}
-      progress={progressType}
-
-    />
+    <ProgressBar max={max} value={value} progress={progressType} />
   </motion.div>
 );
