@@ -22,7 +22,7 @@ export const Menu = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <ul className='flex flex-col max-w-6xl m-auto items-center gap-6'>
+      <ul className='flex flex-col max-w-6xl m-auto items-center gap-6 '>
         {menuItems.map((item, index) => (
           <motion.li
             key={item.to}
@@ -41,6 +41,7 @@ export const Menu = () => {
                 w-full p-3 rounded-xl flex items-center justify-center 
                 space-x-3 shadow-lg transform transition-all 
                 hover:scale-105 hover:shadow-xl
+                hover:!text-white
               `}
             >
               <item.icon className='w-6 h-6' />
