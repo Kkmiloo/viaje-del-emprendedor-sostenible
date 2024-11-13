@@ -70,12 +70,12 @@ export const ResultSummary = ({
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ type: 'spring', stiffness: 300 }}
-              className='w-40 h-40 mr-6 object-contain'
+              className='md:w-40 md:h-40 w-24 h-24 mr-6 object-contain'
             />
             <>
-              <div className='flex-grow text-justify'>
+              <div className='flex-grow text-justify pb-6'>
                 <div
-                  className={`text-${themeColor}-600 font-bold text-xl mb-2`}
+                  className={`text-${themeColor}-600 font-bold text-xl mb-2 `}
                 >
                   {selectedOption.isCorrect ? 'Correcto' : 'Incorrecto'}
                 </div>
@@ -124,7 +124,7 @@ export const ResultSummary = ({
             <motion.div
               animate={{
                 opacity: [0.5, 1, 0.5],
-                y: [0, -10, 0],
+                y: [0, -5, 0],
                 transition: {
                   duration: 1.5,
                   repeat: Infinity,

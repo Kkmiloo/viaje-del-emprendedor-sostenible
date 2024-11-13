@@ -103,19 +103,28 @@ export const Dialog = ({
               <div className='flex flex-col md:flex-row gap-4'>
                 {/* Goal and Money Info */}
                 <motion.div
-                  className='flex md:flex-col gap-1 border w-full px-3 rounded-lg bg-gray-200 h-fit md:w-fit mb-2'
+                  className='flex md:flex-col gap-1 border w-full px-3 h-fit md:w-fit mb-2 p-4 bg-white shadow-md rounded-lg'
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2, duration: 0.3 }}
                 >
-                  <h2 className='font-bold md:border-b md:border-r-0 border-r pr-2 border-slate-400 md:mb-2'>
-                    Objetivo
-                  </h2>
-                  <p className='text-red-600'>🏁: {goal}</p>
-                  <p className='text-green-600'>
-                    💸:{' '}
-                    {Intl.NumberFormat('es-CO').format(moneyPerInstallation)}
-                  </p>
+              
+                    <h2 className='font-bold text-xl border-b border-slate-400 pb-2 mb-2'>
+                      Objetivo
+                    </h2>
+                    <div className='flex items-center mb-2'>
+                      <span className='text-red-600 text-2xl mr-2'>🏁</span>
+                      <p className='text-lg'>{goal}</p>
+                    </div>
+                    <div className='flex items-center'>
+                      <span className='text-green-600 text-2xl mr-2'>💸</span>
+                      <p className='text-lg'>
+                        {Intl.NumberFormat('es-CO').format(
+                          moneyPerInstallation
+                        )}
+                      </p>
+                    </div>
+                  
                 </motion.div>
 
                 {/* Question Text */}
