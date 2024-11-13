@@ -15,21 +15,32 @@ const Typewriter = ({
 }: TypewriterProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayText, setDisplayText] = useState<(JSX.Element | string)[]>([]);
-  const keywords = [
-    'COP',
-    '8 horas',
-    '5 casas locales',
-    '5 instalaciones diarias',
-    '20 instalaciones diarias',
-    '50 instalaciones en 30 días',
-    '100 hogares',
-    '300 instalaciones',
-    '$50,000',
-    '$75,000',
-    '$100,000',
-    '$200,000',
-    '$300,000',
-  ];
+  const keywords = useMemo(
+    () => [
+      'Sincelejo',
+      '20 entregas diarias',
+      '$10,000 COP',
+      '10 entregas por dia',
+      '"incapacidad operativa"',
+      '50 entregas diarias',
+      '80 entregas diarias',
+      '30 entregas diarias',
+      '40 entregas diarias',
+      '120 entregas diarias',
+      '150 entregas diarias',
+      '100 entregas diarias',
+
+      '300 entregas diarias',
+
+      'vehículos eléctricos grandes',
+      '200 entregas diarias',
+      'camiones eléctricos',
+      '100 entregas diarias',
+      '200 entregas',
+      'camiones de largo alcance',
+    ],
+    []
+  );
 
   // Usar `useMemo` para calcular `fullText` solo una vez
   const fullText = useMemo(() => {
