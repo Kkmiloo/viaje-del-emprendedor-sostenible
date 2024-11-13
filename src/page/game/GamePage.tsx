@@ -17,6 +17,7 @@ import BackgroundMusic from '../../components/game/BackgroundMusic';
 import { ResultSummary } from '../../components/game/ResultSummary';
 import GameOver from '../../components/game/GameOver';
 import { GameHeader } from '../../components/game/GameHeader';
+import { Tutorial } from '../../components/game/Tutorial';
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -98,6 +99,10 @@ const GamePage = () => {
     }
   };
 
+  const endTutorial = () => {
+    changeStage('level');
+  }
+
   useEffect(() => {
     if (isGameOver) return;
 
@@ -118,10 +123,11 @@ const GamePage = () => {
         <Introduction
           onStart={() => {
             setToggleMusic(true);
-            changeStage('level');
+            changeStage('tutorial');
           }}
         />
       )}
+      {stage ==='tutorial' && <Tutorial onFinish={endTutorial} />}
       {stage === 'level' && !isGameOver && (
         <>
           {/* <GameInterface></GameInterface> */}

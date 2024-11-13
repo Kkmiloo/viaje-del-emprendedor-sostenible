@@ -8,7 +8,7 @@ export const HealthIndicator = () => {
 
   return (
     <motion.div
-      className='bg-gray-800 flex items-center px-4 md:px-6 rounded-full space-x-2 py-1'
+      className='bg-gray-800 flex items-center px-4 md:px-6 rounded-full space-x-2 py-1 my-first-step'
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ type: 'spring', stiffness: 300 }}

@@ -18,6 +18,7 @@ const Typewriter = ({
   const keywords = useMemo(
     () => [
       'Sincelejo',
+      'Coveñas',
       '20 entregas diarias',
       '$10,000 COP',
       '10 entregas por dia',
@@ -29,15 +30,16 @@ const Typewriter = ({
       '120 entregas diarias',
       '150 entregas diarias',
       '100 entregas diarias',
-
+      '300 entregas',
       '300 entregas diarias',
-
+      '500 entregas',
       'vehículos eléctricos grandes',
       '200 entregas diarias',
       'camiones eléctricos',
       '100 entregas diarias',
       '200 entregas',
       'camiones de largo alcance',
+      'barcos de carga sostenibles',
     ],
     []
   );

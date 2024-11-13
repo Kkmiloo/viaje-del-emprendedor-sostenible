@@ -14,7 +14,7 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
       initial={{ opacity: 0.5, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className='grid grid-cols-1 md:grid-cols-3 gap-4 p-4 text-justify bg-slate-100 rounded-xl max-w-6xl mx-auto'
+      className='grid grid-cols-1 md:grid-cols-3 gap-4 p-4 text-justify bg-slate-100 rounded-xl max-w-6xl mx-auto third-step'
     >
       {options.map((option) => (
         <motion.div

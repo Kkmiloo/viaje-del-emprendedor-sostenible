@@ -1,7 +1,7 @@
 import { create, StateCreator } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
-type GameStage = 'introduction' | 'level' | 'ending';
+type GameStage = 'introduction' | 'tutorial'|'level' | 'ending';
 
 // const idealBalance = [
 //   600000, 1350000, 4700000, 6500000, 13200000, 27500000, 95600000, 290000000,
