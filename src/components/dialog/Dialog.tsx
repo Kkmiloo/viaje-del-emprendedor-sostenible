@@ -86,7 +86,7 @@ export const Dialog = ({
           >
             {/* Intro Text */}
             {!showQuestion && (
-              <div>
+              <div className='text-justify'>
                 {showIntroText && (
                   <Typewriter
                     text={text}

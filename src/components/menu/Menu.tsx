@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   PlayIcon,
-  QuestionMarkCircleIcon,
-  CogIcon,
 } from '@heroicons/react/24/solid';
 
 const menuItems = [
@@ -13,21 +11,7 @@ const menuItems = [
     icon: PlayIcon,
     bgColor: 'bg-emerald-500 hover:bg-emerald-600',
     textColor: 'text-white',
-  },
-  {
-    to: './tutorial',
-    label: 'Tutorial',
-    icon: QuestionMarkCircleIcon,
-    bgColor: 'bg-blue-500 hover:bg-blue-600',
-    textColor: 'text-white',
-  },
-  {
-    to: './opciones',
-    label: 'Opciones',
-    icon: CogIcon,
-    bgColor: 'bg-gray-500 hover:bg-gray-600',
-    textColor: 'text-white',
-  },
+  }
 ];
 
 export const Menu = () => {

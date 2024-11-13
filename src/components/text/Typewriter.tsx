@@ -1,156 +1,88 @@
-import { useEffect, useState, useMemo, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState, useMemo } from 'react';
 
 interface TypewriterProps {
   text: string;
-  delay?: number;
-  animationFinished?: boolean;
-  onComplete?: () => void;
-  highlightColor?: string;
-  className?: string;
-  width?: string; // Ancho opcional para control de línea
+  delay: number;
+  animationFinished: boolean;
+  onComplete: () => void;
 }
 
 const Typewriter = ({
   text,
-  delay = 30,
-  animationFinished = false,
+  delay,
+  animationFinished,
   onComplete,
-  highlightColor = 'blue',
-  className = '',
-  width = 'auto', // Ancho por defecto
 }: TypewriterProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayText, setDisplayText] = useState<(JSX.Element | string)[]>([]);
+  const keywords = [
+    'COP',
+    '8 horas',
+    '5 casas locales',
+    '5 instalaciones diarias',
+    '20 instalaciones diarias',
+    '50 instalaciones en 30 días',
+    '100 hogares',
+    '300 instalaciones',
+    '$50,000',
+    '$75,000',
+    '$100,000',
+    '$200,000',
+    '$300,000',
+  ];
 
-  // Palabras clave configurables
-  const keywords = useMemo(
-    () => [
-      'COP',
-      '8 horas',
-      '5 casas locales',
-      '5 instalaciones diarias',
-      '20 instalaciones diarias',
-      '50 instalaciones en 30 días',
-      '100 hogares',
-      '300 instalaciones',
-      '$50,000',
-      '$75,000',
-      '$100,000',
-      '$200,000',
-      '$300,000',
-    ],
-    []
-  );
-
-  // Función para dividir texto en palabras sin cortar
-  const splitTextWithoutCuttingWords = useCallback(
-    (fullText: string) => {
-      const words: (JSX.Element | string)[] = [];
-      const textParts = fullText.split(/\s+/);
-
-      textParts.forEach((part, index) => {
-        // Buscar si la palabra es una palabra clave
-        const keywordMatch = keywords.find((kw) => kw === part);
-
-        if (keywordMatch) {
-          // Si es una palabra clave, resaltarla
-          words.push(
-            <motion.span
-              key={`keyword-${index}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                color: highlightColor,
-                fontWeight: 'bold',
-                display: 'inline-block',
-              }}
-            >
-              {keywordMatch}
-            </motion.span>
-          );
-
-          // Añadir espacio después de la palabra clave
-          if (index < textParts.length - 1) {
-            words.push('\u00A0');
-          }
-        } else {
-          // Si no es palabra clave, añadir normalmente
-          words.push(part);
-
-          // Añadir espacio después de la palabra
-          if (index < textParts.length - 1) {
-            words.push('\u00A0');
-          }
-        }
-      });
-
-      return words;
-    },
-    [keywords, highlightColor]
-  );
-
-  // Calcular texto completo con resaltado
+  // Usar `useMemo` para calcular `fullText` solo una vez
   const fullText = useMemo(() => {
-    return splitTextWithoutCuttingWords(text);
-  }, [text, splitTextWithoutCuttingWords]);
+    const result = [];
+    let i = 0;
 
-  // Efecto para mostrar texto completo
+    while (i < text.length) {
+      const remainingText = text.slice(i);
+      const keyword = keywords.find((kw) => remainingText.startsWith(kw));
+
+      if (keyword) {
+        result.push(
+          <span
+            style={{ color: 'rgb(34, 211, 238)', fontWeight: 'bold' }}
+            key={i}
+          >
+            {keyword}
+          </span>
+        );
+        i += keyword.length;
+      } else {
+        result.push(text[i]);
+        i += 1;
+      }
+    }
+
+    return result;
+  }, [text, keywords]);
+
+  // Mostrar el texto completo si `animationFinished` es verdadero
   useEffect(() => {
     if (animationFinished) {
       setDisplayText(fullText);
-      onComplete?.();
+      onComplete(); // Llama a la función cuando la animación termina
     }
-  }, [animationFinished, fullText, onComplete]);
+  }, [animationFinished, onComplete]);
 
-  // Lógica de animación por letra
+  // Lógica de animación por letra si `animationFinished` es falso
   useEffect(() => {
     if (animationFinished || currentIndex >= fullText.length) {
-      onComplete?.();
+      onComplete();
       return;
     }
 
     const timeout = setTimeout(() => {
       setDisplayText((prev) => [...prev, fullText[currentIndex]]);
-      setCurrentIndex((prev) => prev + 1);
+      setCurrentIndex(currentIndex + 1);
     }, delay);
 
     return () => clearTimeout(timeout);
-  }, [currentIndex, delay, fullText, animationFinished, onComplete]);
+  }, [currentIndex, delay, fullText, animationFinished]);
 
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
-      className={className}
-      style={{
-        width: width,
-        wordBreak: 'keep-all', // Evitar corte de palabras
-        overflowWrap: 'normal', // Mantener palabras completas
-        display: 'inline-block',
-      }}
-    >
-      <AnimatePresence>
-        {displayText.map((char, index) => (
-          <motion.span
-            key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            style={{
-              display: 'inline-block',
-              whiteSpace: 'pre-wrap',
-            }}
-          >
-            {char}
-          </motion.span>
-        ))}
-      </AnimatePresence>
-    </motion.div>
-  );
+  return <span>{displayText}</span>;
 };
 
 export default Typewriter;
