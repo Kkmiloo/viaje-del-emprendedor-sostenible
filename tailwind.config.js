@@ -1,13 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       backgroundImage: {
-        'scene1': "url(/src/assets/delivery1.webp)"
+        scene1: 'url(/src/assets/delivery1.webp)',
+        scene2: 'url(/src/assets/bg-2.webp)',
       },
       keyframes: {
         'fade-in-left': {
@@ -25,8 +23,6 @@ export default {
       },
     },
   },
-    plugins: [
-    require('tailwindcss-animated')
-  ],
-}
+  plugins: [require('tailwindcss-animated')],
+};
 

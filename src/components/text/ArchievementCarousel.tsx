@@ -35,9 +35,9 @@ const AchievementCarousel = ({ achievements }: CarouselProps) => {
     infinite: true,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 6000,
 
-    speed: 500,
+    speed: 1500,
     slidesToShow: 1, // Muestra 1 slide a la vez
     slidesToScroll: 1,
 
