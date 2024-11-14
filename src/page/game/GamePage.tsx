@@ -18,6 +18,7 @@ import { ResultSummary } from '../../components/game/ResultSummary';
 import GameOver from '../../components/game/GameOver';
 import { GameHeader } from '../../components/game/GameHeader';
 import { Tutorial } from '../../components/game/Tutorial';
+import { useNavigate } from 'react-router-dom';
 
 interface ChangeSceneParams {
   isCorrect: boolean;
@@ -58,6 +59,8 @@ const GamePage = () => {
   const [finishedAnimationResume, setFinishedAnimationResume] = useState(false);
 
   const [toggleMusic, setToggleMusic] = useState(false);
+
+   const navigate = useNavigate();
 
   const handleIntroLevel = () => {
     setShowIntroLevel(false);
@@ -198,7 +201,7 @@ const GamePage = () => {
         <GameOver onRestart={resetGame} bestScore={12} score={12} />
       )}
 
-      {stage === 'ending' && !isGameOver &&  <Ending onRestart={resetGame} />}
+      {stage === 'ending' && !isGameOver && <Ending onRestart={() => { navigate('/'); resetGame()  }} />}
     </main>
   );
 };
