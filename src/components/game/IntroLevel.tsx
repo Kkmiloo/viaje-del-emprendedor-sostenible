@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 interface IntroLevelProps {
   title: string;
   onClick: () => void;
+  image?: string; // URL de la imagen de fondo
 }
 
-export const IntroLevel = ({ title, onClick }: IntroLevelProps) => {
+export const IntroLevel = ({ title, onClick, image }: IntroLevelProps) => {
   const [fadeOut, setFadeOut] = useState(false);
 
   const handleOnClick = () => {
@@ -16,13 +17,22 @@ export const IntroLevel = ({ title, onClick }: IntroLevelProps) => {
 
   return (
     <div
-      className={`bg-slate-600 w-screen h-screen absolute z-50 flex items-center justify-center cursor-pointer ${
+      className={`w-screen h-screen absolute z-50 flex items-center justify-center cursor-pointer ${
         fadeOut ? 'animate-fade-down' : ''
       }`}
       onClick={handleOnClick}
     >
-      <div className='text-center animate-fade-in-left'>
-        <p className='text-white font-bold text-3xl '>{title}</p>
+      <div
+        className='absolute w-full h-full '
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundSize: 'cover', // Asegura que la imagen cubra todo el fondo
+          backgroundPosition: 'center', // Centra la imagen
+          filter: 'blur(9px)', // Aplica el desenfoque al fondo
+        }}
+      ></div>
+      <div className='bg-black bg-opacity-70 p-6 rounded-lg text-center animate-fade-in-left'>
+        <p className='text-white font-bold text-3xl'>{title}</p>
         <motion.div
           animate={{
             y: [0, 10, 0],
@@ -31,14 +41,7 @@ export const IntroLevel = ({ title, onClick }: IntroLevelProps) => {
               duration: 1.5,
             },
           }}
-          className=' 
-             mr-6
-              transform 
-              flex
-              items-center
-              justify-center
-              text-white
-            '
+          className='mr-6 transform flex items-center justify-center text-white'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'

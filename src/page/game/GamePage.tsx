@@ -131,14 +131,10 @@ const GamePage = () => {
       {stage === 'level' && !isGameOver && (
         <>
           {/* <GameInterface></GameInterface> */}
-          {showIntroLevel && (
-            <IntroLevel title={currentScene.name} onClick={handleIntroLevel} />
-          )}
-          {/* <img
-            className='absolute inset-0 w-full h-full bg-contain bg-no-repeat bg-center object-cover'
-            src={scene1}
-            alt='background'
-          /> */}
+          {showIntroLevel ? (
+            <IntroLevel title={currentScene.name} onClick={handleIntroLevel} image={ currentScene.image} />
+          ) : (
+
           <div className=' w-full flex flex-col z-20 '>
             <GameHeader balance={balance} currentScene={currentScene} />
             <Dialog
@@ -194,7 +190,7 @@ const GamePage = () => {
                 onSelectOption={handleOptionSelect}
               />
             )}
-          </div>
+          </div>)}
         </>
       )}
 

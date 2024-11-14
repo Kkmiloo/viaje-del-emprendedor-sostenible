@@ -71,4 +71,5 @@ export const levelThree: GameLevelI = {
   goal: 80,
   installationTime: 4.8,
   moneyPerInstallation: 10000,
+  image:'/l3.jpg'
 };

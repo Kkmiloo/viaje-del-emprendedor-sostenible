@@ -110,6 +110,15 @@ export const Tutorial = ({ onFinish }: TutorialProps) => {
         showSkipButton
         continuous
         callback={handleJoyrideCallback} // Agrega el callback aquí
+        locale={
+          {
+            back: 'Atrás',
+            close: 'Cerrar',
+            last: 'Finalizar',
+            next: 'Siguiente',
+            skip: 'Saltar tutorial',
+          }
+        }
       />
       <GameHeader balance={333333} currentScene={test} />
       <Dialog text='Hola' onNext={() => {}} />

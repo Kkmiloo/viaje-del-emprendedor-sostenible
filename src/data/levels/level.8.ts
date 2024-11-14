@@ -75,4 +75,5 @@ export const levelEight: GameLevelI = {
   goal: 500,
   installationTime: 10,
   moneyPerInstallation: 15_000,
+  image: '/l8.jpg'
 };
