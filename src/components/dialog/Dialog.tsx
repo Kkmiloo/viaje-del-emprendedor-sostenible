@@ -67,7 +67,7 @@ export const Dialog = ({
           {/* Robot Image */}
           <motion.img
             src={showQuestion ? robotQuestion : robot}
-            className='max-w-28 md:max-w-36 h-fit rounded-xl p-2'
+            className='max-w-28 max-h-28 md:max-w-36 md:max-h-36  rounded-xl p-2'
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
