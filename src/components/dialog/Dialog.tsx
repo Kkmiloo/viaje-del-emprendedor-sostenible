@@ -50,8 +50,8 @@ export const Dialog = ({
       className={`
         ${!showQuestion ? 'cursor-pointer' : ''} 
         py-6 px-6 md:py-10 text-gray-800 text-xl text-justify font-medium 
-        rounded-xl border-4 bg-white md:h-[280px] w-full h-auto 
-        max-w-6xl min-h-44 md:min-h-52 m-auto z-20
+        rounded-xl border-4 bg-white md:h-[220px] w-full h-auto 
+        max-w-6xl min-h-44 md:min-h-40 m-auto z-20
       `}
       onClick={handleNext}
       initial={{ opacity: 0, scale: 0.95 }}
@@ -76,12 +76,8 @@ export const Dialog = ({
           {/* Dialog Content */}
           <div
             className={`
-              flex h-full ml-3 md:ml-8 w-full
-              ${
-                showQuestion
-                  ? 'justify-start'
-                  : 'justify-between flex-col text-base md:text-xl'
-              }
+              flex h-full ml-3 md:ml-8 w-full text-base md:text-xl
+              ${showQuestion ? 'justify-start' : 'justify-between flex-col '}
             `}
           >
             {/* Intro Text */}
@@ -103,28 +99,24 @@ export const Dialog = ({
               <div className='flex flex-col md:flex-row gap-4'>
                 {/* Goal and Money Info */}
                 <motion.div
-                  className='flex md:flex-col gap-1 border w-full px-3 h-fit md:w-fit mb-2 p-4 bg-white shadow-md rounded-lg'
+                  className='flex md:flex-col gap-1 border  w-full px-3 h-fit md:w-fit mb-2 p-1 md:p-4 bg-white shadow-md text-base md:text-xl rounded-lg'
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2, duration: 0.3 }}
                 >
-              
-                    <h2 className='font-bold text-xl border-b border-slate-400 pb-2 mb-2'>
-                      Objetivo
-                    </h2>
-                    <div className='flex items-center mb-2'>
-                      <span className='text-red-600 text-2xl mr-2'>🏁</span>
-                      <p className='text-lg'>{goal}</p>
-                    </div>
-                    <div className='flex items-center'>
-                      <span className='text-green-600 text-2xl mr-2'>💸</span>
-                      <p className='text-lg'>
-                        {Intl.NumberFormat('es-CO').format(
-                          moneyPerInstallation
-                        )}
-                      </p>
-                    </div>
-                  
+                  <h2 className='font-bold text-xl border-b border-slate-400 mr-2 pb-2 mb-0 md:mb-2'>
+                    Objetivo
+                  </h2>
+                  <div className='flex items-center mb-2'>
+                    <span className='text-red-600 text-xl mr-2'>🏁</span>
+                    <p className='text-lg'>{goal}</p>
+                  </div>
+                  <div className='flex items-center'>
+                    <span className='text-green-600 text-xl mr-2'>💸</span>
+                    <p className='text-lg'>
+                      {Intl.NumberFormat('es-CO').format(moneyPerInstallation)}
+                    </p>
+                  </div>
                 </motion.div>
 
                 {/* Question Text */}

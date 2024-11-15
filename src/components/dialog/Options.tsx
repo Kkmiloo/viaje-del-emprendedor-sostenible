@@ -14,7 +14,7 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
       initial={{ opacity: 0.5, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className='grid grid-cols-1 md:grid-cols-3 gap-4 p-4 text-justify bg-slate-100 rounded-xl max-w-6xl mx-auto third-step'
+      className='grid grid-cols-1 md:grid-cols-3 gap-4 p-4 text-justify  bg-slate-100 rounded-xl max-w-6xl mx-auto third-step'
     >
       {options.map((option) => (
         <motion.div
@@ -49,10 +49,11 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
               flex 
               flex-col 
               h-full
+              
             '
           >
             {/* Imagen con overlay */}
-            <div className='relative w-full h-36 md:h-48 overflow-hidden'>
+            <div className='relative w-full h-28 md:h-48 overflow-hidden'>
               <motion.img
                 src={option.image}
                 alt={option.text}
@@ -80,8 +81,9 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
                 text-white 
                 px-3 
                 py-1 
-                rounded-full 
-                text-2xl 
+                rounded-full
+                text-xl 
+                md:text-2xl 
                 font-bold
               '
               >
@@ -101,7 +103,8 @@ export const Options = ({ options, onSelectOption }: OptionsProps) => {
             >
               <p
                 className='
-                text-lg 
+                
+                text-base md:text-lg 
                 font-semibold 
                 text-gray-800 
                 mb-2
